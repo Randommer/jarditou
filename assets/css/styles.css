@@ -1,0 +1,72 @@
+/* Styles de la page */
+body {
+    margin: 0 20px 0 20px;
+}
+
+/* Styles du header */
+header.site {
+    font-size: x-large;
+    margin: 0 20px 0 20px;    
+}
+img.logo {
+    height: 60px;
+}
+div.header {
+    display: flex;
+}
+div.logo {
+    flex-grow: 1;
+}
+div.slogan {
+    flex-grow: 1;
+    padding: 20px 0 20px 0;
+}
+
+/* Styles des barres de navigation */
+a.nav {
+    color: white;
+}
+li {
+    list-style-type: none;
+    display: inline;
+}
+
+/* Styles de la barre de navigation haute */
+nav {
+    background-color: black;
+    padding: 1px;
+}
+
+/* Styles de la barre de navigation basse */
+footer {
+    background-color: black;
+    padding: 1px;
+}
+
+
+header.promo {
+    grid-column: 1 / 3;
+}
+img.promo {
+    max-width: 100%;
+    height: auto;
+}
+
+section.corps {
+    display: grid;
+    grid-template-columns: 68% 32%;
+    margin: 5px 0 0 0 ;
+}
+section.principale#gauche {
+    margin: 0 0 20px 0;
+    padding: 0 0 20px 0;
+
+}
+section.principale#droite {
+    background-color: lightgray;
+    
+    width: 100%;
+    height: 99%;
+}
+
+

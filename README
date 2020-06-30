@@ -1,0 +1,30 @@
+Projet évolutif d'un site de magasin de jardinage.
+
+Au fil des cours sur les différentes technologies web, on ajoute au site ces novelles technologies.
+
+
+Technologies implémentées :
+HTML
+CSS
+Git
+
+
+HTML :
+Création de trois pages en HTML5
+index, tableau et contact
+index est notre accueil, elle utilise les différentes balises importantes du HTML5 (header, footer, section, etc)
+tableau est une liste de produits, elle utilise un tableau pour la mise en forme d'informations
+contact est un formulaire pour contacter le service client, elle utilise les différentes balises form pour envoyer des infos
+Les trois pages sont accessibles l'une à l'autre, reprennent la meme structure de balises pour une future intégration de style commun en CSS et respetent les normes W3C
+
+CSS :
+Création de deux feuilles de style en CSS
+styles et mobile
+styles est le style par défaut utilisé par les différentes pages du site, il est utilisé pour un écran d'ordinateur de taille standard
+mobile est le style utilisé par les différentes pages du site sur les écrans de 768px de largeur et moins, il est prévu pour une utilisation mobile du site
+Les deux styles sont utilisés par toutes les pages en fonction de la résolution d'écran, utilisent des noms génériques ou spécifiques en prévision de futures ajouts de pages ou de codes dans les pages existantes et respectent les normes W3C
+
+Git :
+Création d'un dépot Git local pour le projet
+Création d'un dépot Git distant sur GitHub
+Dépots configurés et prêts à recevoir les futures versions versions du projet
