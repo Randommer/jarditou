@@ -60,7 +60,7 @@ section.corps {
     display: grid;
     grid-template-columns: 100%;
     margin: 5px 0 0 0 ;
-    font-size: 2rem;
+    font-size: 1rem;
 }
 section.principale#gauche {
     margin: 0 0 20px 0;
