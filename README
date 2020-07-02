@@ -7,6 +7,7 @@ Technologies implémentées :
 HTML
 CSS
 Git
+Bootstrap
 
 
 HTML :
@@ -28,3 +29,11 @@ Git :
 Création d'un dépot Git local pour le projet
 Création d'un dépot Git distant sur GitHub
 Dépots configurés et prêts à recevoir les futures versions versions du projet
+
+Bootstrap :
+Recréation des 3 pages HTML en utilisant les class Bootstrap
+utilisation de la class navbar pour des menus dynamiques
+utilisation de grille pour faciliter la mise en page
+utilisation de la class table pour faire un tableau dynamiques
+utilisation de la classe form-group pour créer un formulaire dynamiques
+Toutes les pages s'adaptent à la taille de l'écran pour une utilisation mobile et respetent les normes W3C
