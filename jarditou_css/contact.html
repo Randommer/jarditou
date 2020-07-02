@@ -47,7 +47,7 @@
                             <input type="radio" name="sexe" id="masculin" value="masculin" required><label for="masculin"> Masculin</label>
                             <input type="radio" name="sexe" id="neutre" value="neutre" required><label for="neutre"> Neutre</label>
                             <br>
-                        <label for="naissance">Date de Naissance* : </label><input type="date" name="naissance" id="naissance" placeholder="jj/mm/aaaa" pattern="(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/](19|20)\d\d" required><br>
+                        <label for="naissance">Date de Naissance* : </label><input type="date" name="naissance" id="naissance" required><br>
                         <label for="CP">Code postal* : </label><input type="text" name="CP" id="CP" required><br>
                         <label for="adresse">Adresse : </label><input type="text" name="adresse" id="adresse"><br>
                         <label for="ville">Ville : </label><input type="text" name="ville" id="ville"><br>
@@ -57,7 +57,7 @@
                         <legend>Votre demande</legend>
                         <label for="sujet">Sujet* : </label>
                         <select name="sujet" id="sujet" required>
-                            <option selected disabled>Veuillez sélectionner un sujet</option>
+                            <option value="" selected disabled>Veuillez sélectionner un sujet</option>
                             <option value="commandes">Mes commandes</option>
                             <option value="question">Question sur un produit</option>
                             <option value="reclamation">Réclamation</option>
