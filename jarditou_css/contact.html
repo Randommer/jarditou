@@ -5,20 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JardiTou - Contact</title>
+    <!-- Lien vers style CSS écran normal -->
     <link rel="stylesheet" media="screen and (min-width: 768px)" href="assets/css/styles.css">
+    <!-- Lien vers style CSS écran mobile -->
     <link rel="stylesheet" media="screen and (max-width: 768px)" href="assets/css/mobile.css">
 </head>
 <body>
+    <!-- Barre de titre du site -->
     <header class="site">
         <div class="header">
+            <!-- Logo du site -->
             <div class="logo">
                 <a href="index.html" title="JardiTou"><img class="logo" src="src/img/jarditou_logo.jpg" height=60 alt="Logo JardiTou"></a>
             </div>
+            <!-- Slogan du site -->
             <div class="slogan">
                 La qualité depuis 70 ans
             </div>
         </div>
     </header>
+    <!-- Barre de navigation haute du site -->
     <nav>
         <ul>
             <li><a href="index.html" title="Accueil" class="nav">Accueil</a></li>
@@ -26,51 +32,89 @@
             <li><a href="contact.html" title="Contact" class="nav">Contact</a></li>
         </ul>
     </nav>
+    <!-- Corps du site -->
     <section class="corps">
-        
-        <header class="promo">
+        <!-- Bannière promo du site -->
+        <div class="promo">
             <img src="src/img/promotion.jpg" alt="Bannière de promotion" class="promo">
-        </header>
+        </div>
+        <!-- Partie article de la page -->
         <section class="principale" id="gauche">
-            <h2>Contact</h2>
+            <h1>Contact</h1>
             <hr>
             <div>* Ces zones sont oligatoires</div>
             <section>
-                <h3></h3>
+                <!-- Zone de formulaire -->
                 <form action="http://bienvu.net/script.php" method="POST">
                     <fieldset>
                         <legend>Vos coordonnées</legend>
-                        <label for="nom">Votre nom* : </label><input type="text" name="nom" id="nom" required><br>
-                        <label for="prenom">Votre prénom* : </label><input type="text" name="prenom" id="prenom" required><br>
-                        Sexe* : <br>
-                            <input type="radio" name="sexe" id="feminin" value="feminin" required><label for="feminin"> Féminin</label>
-                            <input type="radio" name="sexe" id="masculin" value="masculin" required><label for="masculin"> Masculin</label>
-                            <input type="radio" name="sexe" id="neutre" value="neutre" required><label for="neutre"> Neutre</label>
-                            <br>
-                        <label for="naissance">Date de Naissance* : </label><input type="date" name="naissance" id="naissance" required><br>
-                        <label for="CP">Code postal* : </label><input type="text" name="CP" id="CP" required><br>
-                        <label for="adresse">Adresse : </label><input type="text" name="adresse" id="adresse"><br>
-                        <label for="ville">Ville : </label><input type="text" name="ville" id="ville"><br>
-                        <label for="email">Email* : </label><input type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="nom">Votre nom* : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="nom" id="nom" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="prenom">Votre prénom* : </label>
+                            <input type="text" name="prenom" id="prenom" required>
+                        </div>
+                        <div class="row">
+                            <label for="sexe">Sexe* : </label>
+                                <input type="radio" name="sexe" id="feminin" value="feminin" required><label for="feminin"> Féminin</label>
+                                <input type="radio" name="sexe" id="masculin" value="masculin" required><label for="masculin"> Masculin</label>
+                                <input type="radio" name="sexe" id="neutre" value="neutre" required><label for="neutre"> Neutre</label>
+                        </div>
+                        <div class="row">
+                            <label for="naissance">Date de Naissance* : </label>
+                            <input type="date" name="naissance" id="naissance" required>
+                        </div>
+                        <div class="row">
+                            <label for="CP">Code postal* : </label>
+                            <input type="text" name="CP" id="CP" required>
+                        </div>
+                        <div class="row">
+                            <label for="adresse">Adresse : </label>
+                            <input type="text" name="adresse" id="adresse">
+                        </div>
+                        <div class="row">
+                            <label for="ville">Ville : </label>
+                            <input type="text" name="ville" id="ville">
+                        </div>
+                        <div class="row">
+                            <label for="email">Email* : </label>
+                            <input type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
+                        </div>
                     </fieldset>
                     <fieldset>
                         <legend>Votre demande</legend>
-                        <label for="sujet">Sujet* : </label>
-                        <select name="sujet" id="sujet" required>
-                            <option value="" selected disabled>Veuillez sélectionner un sujet</option>
-                            <option value="commandes">Mes commandes</option>
-                            <option value="question">Question sur un produit</option>
-                            <option value="reclamation">Réclamation</option>
-                            <option value="autres">Autres</option>
-                        </select><br>
-                        <label for="question">Votre question* : </label><textarea name="question" id="question" rows="2" required></textarea><br>
+                        <div class="row">
+                            <label for="sujet">Sujet* : </label>
+                            <select name="sujet" id="sujet" required>
+                                <option value="" selected disabled>Veuillez sélectionner un sujet</option>
+                                <option value="commandes">Mes commandes</option>
+                                <option value="question">Question sur un produit</option>
+                                <option value="reclamation">Réclamation</option>
+                                <option value="autres">Autres</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="question">Votre question* : </label>
+                            <textarea name="question" id="question" rows="2" required></textarea>
+                        </div>
                     </fieldset>
-                    <input type="checkbox" name="accepted" id="accepted" value=true required><label for="accepted">J'accepte le traitement informatique de ce formulaire.</label><br><br>
+                    <div class="row">
+                        <input type="checkbox" name="accepted" id="accepted" value=true required>
+                        <label for="accepted">J'accepte le traitement informatique de ce formulaire.</label>
+                    </div>
+                    <br>
                     <input type="submit" value="Envoyer"> <input type="reset" value="Annuler">
                 </form>
             </section>
         </section>
     </section>
+    <!-- Barre de navigation basse du site -->
     <footer>
         <ul>
             <li><a href="#" title="Mentions légales" class="nav">Mentions légales</a></li>
