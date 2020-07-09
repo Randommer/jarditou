@@ -94,8 +94,8 @@ label {
     padding: 12px 12px 12px 0;
     display: inline-block;
 }
-input[type=text], select, textarea {
-    width: 100%;
+input[type=text], input[type=date], input[type=email], select, textarea {
+    width: 95%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;

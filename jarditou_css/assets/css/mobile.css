@@ -76,4 +76,35 @@ section.principale#droite {
     height: 99%;
 }
 
-
+/* Styles du formulaire de contact */
+fieldset {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.col-25 {
+    float: left;
+    width: 100%;
+    margin-top: 0px;
+}
+.col-75 {
+    float: left;
+    width: 100%;
+    margin-top: 0px;
+}
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+input[type=text], input[type=date], input[type=email], select, textarea {
+    width: 95%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }

@@ -57,51 +57,87 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="prenom">Votre prénom* : </label>
-                            <input type="text" name="prenom" id="prenom" required>
+                            <div class="col-25">
+                                <label for="prenom">Votre prénom* : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="prenom" id="prenom" required>
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="sexe">Sexe* : </label>
+                            <div class="col-25">
+                                <label for="sexe">Sexe* : </label>
+                            </div>
+                            <div class="col-75">
                                 <input type="radio" name="sexe" id="feminin" value="feminin" required><label for="feminin"> Féminin</label>
                                 <input type="radio" name="sexe" id="masculin" value="masculin" required><label for="masculin"> Masculin</label>
                                 <input type="radio" name="sexe" id="neutre" value="neutre" required><label for="neutre"> Neutre</label>
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="naissance">Date de Naissance* : </label>
-                            <input type="date" name="naissance" id="naissance" required>
+                            <div class="col-25">
+                                <label for="naissance">Date de Naissance* : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="date" name="naissance" id="naissance" required>
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="CP">Code postal* : </label>
-                            <input type="text" name="CP" id="CP" required>
+                            <div class="col-25">
+                                <label for="CP">Code postal* : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="CP" id="CP" required>
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="adresse">Adresse : </label>
-                            <input type="text" name="adresse" id="adresse">
+                            <div class="col-25">
+                                <label for="adresse">Adresse : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="adresse" id="adresse">
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="ville">Ville : </label>
-                            <input type="text" name="ville" id="ville">
+                            <div class="col-25">
+                                <label for="ville">Ville : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" name="ville" id="ville">
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="email">Email* : </label>
-                            <input type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
+                            <div class="col-25">
+                                <label for="email">Email* : </label>
+                            </div>
+                            <div class="col-75">
+                                <input type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
+                            </div>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend>Votre demande</legend>
                         <div class="row">
-                            <label for="sujet">Sujet* : </label>
-                            <select name="sujet" id="sujet" required>
-                                <option value="" selected disabled>Veuillez sélectionner un sujet</option>
-                                <option value="commandes">Mes commandes</option>
-                                <option value="question">Question sur un produit</option>
-                                <option value="reclamation">Réclamation</option>
-                                <option value="autres">Autres</option>
-                            </select>
+                            <div class="col-25">
+                                <label for="sujet">Sujet* : </label>
+                            </div>
+                            <div class="col-75">
+                                <select name="sujet" id="sujet" required>
+                                    <option value="" selected disabled>Veuillez sélectionner un sujet</option>
+                                    <option value="commandes">Mes commandes</option>
+                                    <option value="question">Question sur un produit</option>
+                                    <option value="reclamation">Réclamation</option>
+                                    <option value="autres">Autres</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="row">
-                            <label for="question">Votre question* : </label>
-                            <textarea name="question" id="question" rows="2" required></textarea>
+                            <div class="col-25">
+                                <label for="question">Votre question* : </label>
+                            </div>
+                            <div class="col-75">
+                                <textarea name="question" id="question" rows="2" required></textarea>
+                            </div>
                         </div>
                     </fieldset>
                     <div class="row">
@@ -109,7 +145,10 @@
                         <label for="accepted">J'accepte le traitement informatique de ce formulaire.</label>
                     </div>
                     <br>
-                    <input type="submit" value="Envoyer"> <input type="reset" value="Annuler">
+                    <div class="row">
+                        <input type="submit" value="Envoyer">
+                        <input type="reset" value="Annuler">
+                    </div>
                 </form>
             </section>
         </section>
