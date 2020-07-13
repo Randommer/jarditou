@@ -1,14 +1,15 @@
 var bouton1 = document.getElementById("Exo1");
 bouton1.addEventListener("click", Exo1);
-var start1 = document.getElementById("start");
-start1.addEventListener("click", Go1);
 
 function Exo1()
 {
     document.getElementById("titre").innerHTML = "Execice 1";
     document.getElementById("enonce").innerHTML = "Nous allons dénombrer les personnes d'âge strictement inférieur à 20 ans, les personnes d'âge strictement supérieur à 40 ans et celles dont l'âge est compris entre 20 ans et 40 ans (20 ans et 40 ans y compris).";
     document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer des ages les uns à la suite des autres, quand vous aurez terminé, rentrer l'age d'une personne centenaire.";
-    document.getElementById("start").innerHTML = "<button id='start'>Commencer</button>"
+    document.getElementById("start").innerHTML = "<button id='start1'>Commencer</button>"
+    var start1 = document.getElementById("start1");
+    start1.addEventListener("click", Go1);
+    document.getElementById("result").innerHTML = "";
 }
 
 function Go1()
@@ -76,6 +77,7 @@ function Go1()
             }
         }
     }
+    document.getElementById("start1").innerHTML = "Recommencer";
 }
 
 var bouton2 = document.getElementById("Exo2");
@@ -84,7 +86,25 @@ bouton2.addEventListener("click", Exo2);
 function Exo2()
 {
     document.getElementById("titre").innerHTML = "Execice 2";
-    window.alert("Yeah ! 2");
+    document.getElementById("enonce").innerHTML = "Nous allons afficher une table de multiplication.";
+    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un nombre entier, une fois rentré la page affichera sa table de multiplication.";
+    document.getElementById("start").innerHTML = "<button id='start2'>Commencer</button>"
+    var start2 = document.getElementById("start2");
+    start2.addEventListener("click", Go2);
+    document.getElementById("result").innerHTML = "";
+}
+
+function Go2()
+{
+    var N = parseInt(window.prompt("Saisissez un nombre entier"));
+    var i;
+    var code = String();
+    for (i=1 ; i<11 ; i+=1)
+    {
+        code  = code+i+" x "+N+" = "+(N*i)+"<br>";
+    }
+    document.getElementById("result").innerHTML = code;
+    document.getElementById("start2").innerHTML = "Recommencer"
 }
 
 var bouton3 = document.getElementById("Exo3");
