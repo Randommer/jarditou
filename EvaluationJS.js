@@ -104,7 +104,7 @@ function Go2()
         code  = code+i+" x "+N+" = "+(N*i)+"<br>";
     }
     document.getElementById("result").innerHTML = code;
-    document.getElementById("start2").innerHTML = "Recommencer"
+    document.getElementById("start2").innerHTML = "Recommencer";
 }
 
 var bouton3 = document.getElementById("Exo3");
@@ -113,7 +113,60 @@ bouton3.addEventListener("click", Exo3);
 function Exo3()
 {
     document.getElementById("titre").innerHTML = "Execice 3";
-    window.alert("Yeah ! 3");
+    document.getElementById("enonce").innerHTML = "Nous avons un tableau de prénoms, quand vous trouverez un prénom dans le tableau, il sera retiré.";
+    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer si possible.";
+    document.getElementById("start").innerHTML = "<button id='start3'>Commencer</button>"
+    var tab = ["Audrey", "Aurélien", "Flavien", "Jérémy", "Laurent", "Melik", "Nouara", "Salem", "Samuel", "Stéphane"];
+    var start3 = document.getElementById("start3");
+    start3.addEventListener("click", function(){ tab = Go3(tab); });
+    //document.getElementById("result").innerHTML = "";
+    AfficheTab(tab);
+}
+
+function Go3(tab)
+{
+    var prenom = window.prompt("Saisissez un prénom");
+    var i;
+    var n = -1;
+    for (i=0 ; i<tab.length ; i+=1)
+    {
+        if (tab[i] == prenom)
+        {
+            n = i;
+        }
+    }
+    if (n != -1)
+    {
+        for (i=n ; i<tab.length ; i+=1)
+        {
+            if (i+1==tab.length)
+            {
+                tab[i] = " ";
+            }
+            else
+            {
+                tab[i] = tab[i+1];
+            }
+        }
+    }
+    else
+    {
+        window.alert("Désolé, "+prenom+" n'est pas dans le tableau.");
+    }
+    AfficheTab(tab);
+    document.getElementById("start3").innerHTML = "Recommencer";
+    return tab;
+}
+
+function AfficheTab(tab)
+{
+    var code = "<h3>Tableau tab :</h3>";
+    var i;
+    for (i=0 ; i<tab.length ; i+=1)
+    {
+        code = code+"<br>case "+(i+1)+" : "+tab[i];
+    }
+    document.getElementById("result").innerHTML = code;
 }
 
 var bouton4 = document.getElementById("Exo4");
