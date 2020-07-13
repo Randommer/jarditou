@@ -114,12 +114,13 @@ function Exo3()
 {
     document.getElementById("titre").innerHTML = "Execice 3";
     document.getElementById("enonce").innerHTML = "Nous avons un tableau de prénoms, quand vous trouverez un prénom dans le tableau, il sera retiré.";
-    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer si possible.";
-    document.getElementById("start").innerHTML = "<button id='start3'>Commencer</button>"
+    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer de celui-ci. (Recommencer, remet le tableau à son état initial, Chercher ouvre la fenêtre pour entrer un prénom à chercher dans le tableau)";
+    document.getElementById("start").innerHTML = "<button id='restart'>Recommencer</button><button id='start3'>Chercher</button>"
     var tab = ["Audrey", "Aurélien", "Flavien", "Jérémy", "Laurent", "Melik", "Nouara", "Salem", "Samuel", "Stéphane"];
     var start3 = document.getElementById("start3");
     start3.addEventListener("click", function(){ tab = Go3(tab); });
-    //document.getElementById("result").innerHTML = "";
+    var restart = document.getElementById("restart");
+    restart.addEventListener("click", Exo3);
     AfficheTab(tab);
 }
 
@@ -154,7 +155,6 @@ function Go3(tab)
         window.alert("Désolé, "+prenom+" n'est pas dans le tableau.");
     }
     AfficheTab(tab);
-    document.getElementById("start3").innerHTML = "Recommencer";
     return tab;
 }
 
@@ -175,5 +175,54 @@ bouton4.addEventListener("click", Exo4);
 function Exo4()
 {
     document.getElementById("titre").innerHTML = "Execice 4";
-    window.alert("Yeah ! 4");
+    document.getElementById("enonce").innerHTML = "Nous allons afficher une facture à partir du prix unitaire d'un produit et de sa quantité commandée.";
+    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer le prix unitaire d'un produit et la quantité commandée, nous afficherons le prix total à payer qui prend en compte les remises possibles et les frais de port.";
+    document.getElementById("start").innerHTML = "<button id='start4'>Commencer</button>"
+    var start4 = document.getElementById("start4");
+    start4.addEventListener("click", Go4);
+    document.getElementById("result").innerHTML = "";
+}
+
+function Go4()
+{
+    var PU, QTECOM, PAP, REM, PORT;
+    PU = parseFloat(window.prompt("Saisissez le prix unitaire du produit"));
+    QTECOM = parseInt(window.prompt("Saisissez la quantité commandée du produit"));
+    var TOT = ((PU*100) * QTECOM)/100;
+    if (TOT >= 100)
+    {
+        if (TOT > 200)
+        {
+            REM = 10;
+        }
+        else
+        {
+            REM = 5;
+        }
+    }
+    else
+    {
+        REM = 0;
+    }
+
+    if (TOT > 500)
+    {
+        PORT = 0;
+    }
+    else
+    {
+        PORT = ((TOT*100) * (0.02*100))/10000;
+        if (PORT < 6)
+        {
+            PORT = 6;
+        }
+    }
+    
+    PAP = (((TOT*100) * (100-REM))/100 + (PORT*100))/100;
+
+    var code = "Prix unitaire : "+PU+"€<br>Quantité : "+QTECOM+"<br>Sous-Total : "+TOT+"€<br>Remise : "+REM+"%<br>Frais de port : "+PORT+"€<br>Total à payer : "+PAP+"€";
+
+    document.getElementById("result").innerHTML = code;
+
+    document.getElementById("start4").innerHTML = "Recommencer";
 }
