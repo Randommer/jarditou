@@ -59,27 +59,37 @@
         </div>
         <!-- Partie article de la page -->
         <!-- Zone de formulaire -->
-        <form action="http://bienvu.net/script.php" method="POST">
+        <form action="http://bienvu.net/script.php" method="POST" id="contact" name="contact" onSubmit="return Validation(this);" novalidate>
             <p>* Ces zones sont oligatoires</p>
             <h1>Vos coordonnées</h1>
             <div class="form-group">
                 <label for="nom">Nom*</label>
                 <input type="text" class="form-control" name="nom" id="nom" placeholder="Veuillez saisir votre nom" required>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Entrez un nom valide.</div>
             </div>
             <div class="form-group">
                 <label for="prenom">Prénom*</label>
                 <input type="text" class="form-control" name="prenom" id="prenom" placeholder="Veuillez saisir votre prénom" required>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Entrez un prénom valide.</div>
             </div>
             <div class="form-group">
-                <p>Sexe*</p>
+                <label for="sexe">Sexe*</label>
+                <br>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexe" id="feminin" value="feminin" required><label class="form-check-label" for="feminin"> Féminin</label>
+                        <input class="form-check-input" type="radio" name="sexe" id="feminin" value="feminin" required>
+                        <label class="form-check-label" for="feminin"> Féminin</label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexe" id="masculin" value="masculin" required><label class="form-check-label" for="masculin"> Masculin</label>
+                        <input class="form-check-input" type="radio" name="sexe" id="masculin" value="masculin" required>
+                        <label class="form-check-label" for="masculin"> Masculin</label>
                     </div>
                     <div class="form-check-inline">
-                        <input class="form-check-input" type="radio" name="sexe" id="neutre" value="neutre" required><label class="form-check-label" for="neutre"> Neutre</label>
+                        <input class="form-check-input" type="radio" name="sexe" id="neutre" value="neutre" required>
+                        <label class="form-check-label" for="neutre"> Neutre</label>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback" style="margin-left: 1em;"><br>Selectionnez un sexe.</div>
                     </div>
             </div>
             <div class="form-group">
@@ -89,11 +99,15 @@
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                     </div>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback" id="naissance-invalid">Selectionnez une date.</div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="CP">Code Postal*</label>
                 <input type="text" class="form-control" name="CP" id="CP" required>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Entrez un Code Postal valide.</div>
             </div>
             <div class="form-group">
                 <label for="adresse">Adresse</label>
@@ -106,6 +120,8 @@
             <div class="form-group">
                 <label for="email">Email*</label>
                 <input type="email" class="form-control" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Entrez une adresse e-mail valide.</div>
             </div>
             <h1>Votre demande</h1>
             <div class="form-group">
@@ -117,14 +133,20 @@
                     <option value="reclamation">Réclamation</option>
                     <option value="autres">Autres</option>
                 </select>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Selectionnez un sujet pour votre demande.</div>
             </div>
             <div class="form-group">
                 <label for="question">Votre question* :</label>
                 <textarea class="form-control" name="question" id="question" rows="2" required></textarea>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Formulez votre demande en quelques mots s'il vous plait.</div>
             </div>
             <div class="form-group form-check">
                 <input class="form-check-input" type="checkbox" name="accepted" id="accepted" value=true required>
                 <label class="form-check-label" for="accepted">J'accepte le traitement informatique de ce formulaire.</label>
+                <div class="valid-feedback"></div>
+                <div class="invalid-feedback">Cocher cette case est obligatoire.</div>
             </div>
             <div class="form-group">
                 <input class="btn btn-primary bg-dark" type="submit" value="Envoyer">
@@ -147,6 +169,8 @@
         </nav>
     </div>
 
+    <!-- Appel du fichier JavaScript des Exercices  -->
+    <script src="assets/js/script.js"></script>
 
 
 
