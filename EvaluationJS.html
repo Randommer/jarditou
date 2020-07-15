@@ -20,44 +20,72 @@
                 <h1 class="text-center">Evaluation JavaScript de Valentin Lengaigne</h1>
             </div>
         </div>
-        <!-- Barre de navigation entre les exercices -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Barres de navigation entre les exercices -->
+        <!-- Barre de navigation pour grands écrans -->
+        <nav class="navbar d-none d-md-flex navbar-expand-md navbar-light bg-light">
             <a class="navbar-brand" href="EvaluationJS.html">Evaluation</a>
-            <ul class="navbar-nav">
+            <ul class="navbar-nav">    
                 <li class="nav-item">
-                    <button class="btn btn-outline-success" id="Exo1">Exercice 1</button>
+                    <div class="btn-group">
+                        <button class="btn btn-outline-success" id="Exo1">Exercice 1</button>
+                        <button class="btn btn-outline-success" id="Exo2">Exercice 2</button>
+                        <button class="btn btn-outline-success" id="Exo3">Exercice 3</button>
+                        <button class="btn btn-outline-success" id="Exo4">Exercice 4</button>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-outline-success" id="Exo2">Exercice 2</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-outline-success" id="Exo3">Exercice 3</button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-outline-success" id="Exo4">Exercice 4</button>
-                </li>
-                <!-- Lien vers la page contact de JadiTou -->
-                <li class="nav-item">
-                    <a class="nav-link" href="jarditou_bootstrap/contact.html" title="Site JardiTou">Exercice 5</a>
+                    <!-- Lien vers la page contact de JadiTou -->
+                    <a href="jarditou_bootstrap/contact.html" title="Site JardiTou">
+                        <button class="btn btn-outline-dark">Exercice 5</button>
+                    </a>
                 </li>
             </ul>
         </nav>
+        <!-- Barre de navigation pour petits écrans -->
+        <nav class="navbar d-md-none navbar-light bg-light">
+                <a class="navbar-brand" href="EvaluationJS.html">Evaluation</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHaute">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarHaute">
+                    <ul class="navbar-nav">    
+                        <li class="nav-item">
+                            <button class="btn btn-outline-success btn-block" id="Exo1-md">Exercice 1</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-success btn-block" id="Exo2-md">Exercice 2</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-success btn-block" id="Exo3-md">Exercice 3</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="btn btn-outline-success btn-block" id="Exo4-md">Exercice 4</button>
+                        </li>
+                        <!-- Lien vers la page contact de JadiTou -->
+                        <li class="nav-item">
+                            <a href="jarditou_bootstrap/contact.html" title="Site JardiTou">
+                                <button class="btn btn-outline-dark btn-block">Exercice 5</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
         <!-- Emplacement où viendra s'afficher le nom de l'exercice -->
-        <div class="row">
+        <div class="row m-2">
             <h2 id="titre"></h2>
         </div>
-        <div class="row">
+        <div class="row m-2">
             <!-- Emplacement où viendra s'afficher le but du programme JavaScript -->
             <p id="enonce"></p>
             <!-- Emplacement où viendra s'afficher les informations qui seront demandées à l'utilisateeur et les traitements que fera le programme avec -->
             <p id="deroule"></p>
         </div>
         <!-- Emplacement où s'affichera le ou boutons pour interragir avec le programme -->
-        <div class="row">
+        <div class="row m-2">
             <p id="start"></p>
         </div>
         <!-- Emplacement d'affichage des résultats du programme -->
-        <div class="row">
+        <div class="row m-2">
             <p id="result"></p>
         </div>
 

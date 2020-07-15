@@ -2,9 +2,11 @@
 //Code pour l'Exercice 1
 //--
 
-//Ecoute du bouton d'affichage de l'interface de l'Exercice 1
+//Ecoute des boutons d'affichage de l'interface de l'Exercice 1
 var bouton1 = document.getElementById("Exo1");
 bouton1.addEventListener("click", Exo1);
+var bouton1md = document.getElementById("Exo1-md");
+bouton1md.addEventListener("click", Exo1);
 
 //Fonction qui affiche l'interface de l'Exercice 1
 function Exo1()
@@ -13,7 +15,7 @@ function Exo1()
     document.getElementById("titre").innerHTML = "Execice 1";
     document.getElementById("enonce").innerHTML = "Nous allons dénombrer les personnes d'âge strictement inférieur à 20 ans, les personnes d'âge strictement supérieur à 40 ans et celles dont l'âge est compris entre 20 ans et 40 ans (20 ans et 40 ans y compris).";
     document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer des ages les uns à la suite des autres, quand vous aurez terminé, rentrer l'age d'une personne centenaire.";
-    document.getElementById("start").innerHTML = "<button id='start1'>Commencer</button>"
+    document.getElementById("start").innerHTML = "<button id='start1' class='btn btn-info'>Commencer</button>"
     document.getElementById("result").innerHTML = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 1
     var start1 = document.getElementById("start1");
@@ -118,9 +120,11 @@ function Go1()
 //Code pour l'Exercice 2
 //--
 
-//Ecoute du bouton d'affichage de l'interface de l'Exercice 2
+//Ecoute des boutons d'affichage de l'interface de l'Exercice 2
 var bouton2 = document.getElementById("Exo2");
 bouton2.addEventListener("click", Exo2);
+var bouton2md = document.getElementById("Exo2-md");
+bouton2md.addEventListener("click", Exo2);
 
 //Fonction qui affiche l'interface de l'Exercice 2
 function Exo2()
@@ -129,7 +133,7 @@ function Exo2()
     document.getElementById("titre").innerHTML = "Execice 2";
     document.getElementById("enonce").innerHTML = "Nous allons afficher une table de multiplication.";
     document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un nombre entier, une fois rentré la page affichera sa table de multiplication.";
-    document.getElementById("start").innerHTML = "<button id='start2'>Commencer</button>"
+    document.getElementById("start").innerHTML = "<button id='start2' class='btn btn-info'>Commencer</button>"
     document.getElementById("result").innerHTML = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 2
     var start2 = document.getElementById("start2");
@@ -160,9 +164,11 @@ function Go2()
 //Code pour l'Exercice 3
 //--
 
-//Ecoute du bouton d'affichage de l'interface de l'Exercice 3
+//Ecoute des boutons d'affichage de l'interface de l'Exercice 3
 var bouton3 = document.getElementById("Exo3");
 bouton3.addEventListener("click", Exo3);
+var bouton3md = document.getElementById("Exo3-md");
+bouton3md.addEventListener("click", Exo3);
 
 //Fonction qui affiche l'interface de l'Exercice 3
 function Exo3()
@@ -171,7 +177,7 @@ function Exo3()
     document.getElementById("titre").innerHTML = "Execice 3";
     document.getElementById("enonce").innerHTML = "Nous avons un tableau de prénoms, quand vous trouverez un prénom dans le tableau, il sera retiré.";
     document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer de celui-ci. (Recommencer, remet le tableau à son état initial, Chercher ouvre la fenêtre pour entrer un prénom à chercher dans le tableau)";
-    document.getElementById("start").innerHTML = "<button id='restart'>Recommencer</button><button id='start3'>Chercher</button>"
+    document.getElementById("start").innerHTML = "<div class='btn-group'><button id='restart' class='btn btn-danger'>Recommencer</button><button id='start3' class='btn btn-info'>Chercher</button></div>"
     //Création du tableau tab qui contient les prénoms
     var tab = ["Audrey", "Aurélien", "Flavien", "Jérémy", "Laurent", "Melik", "Nouara", "Salem", "Samuel", "Stéphane"];
     //Ecoute des boutons de lancement et de réinitialisation du programme de l'Exercice 3
@@ -248,9 +254,11 @@ function AfficheTab(tab)
 //Code pour l'Exercice 4
 //--
 
-//Ecoute du bouton d'affichage de l'interface de l'Exercice 4
+//Ecoute des boutons d'affichage de l'interface de l'Exercice 4
 var bouton4 = document.getElementById("Exo4");
 bouton4.addEventListener("click", Exo4);
+var bouton4md = document.getElementById("Exo4-md");
+bouton4md.addEventListener("click", Exo4);
 
 //Fonction qui affiche l'interface de l'Exercice 4
 function Exo4()
@@ -259,7 +267,7 @@ function Exo4()
     document.getElementById("titre").innerHTML = "Execice 4";
     document.getElementById("enonce").innerHTML = "Nous allons afficher une facture à partir du prix unitaire d'un produit et de sa quantité commandée.";
     document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer le prix unitaire d'un produit et la quantité commandée, nous afficherons le prix total à payer qui prend en compte les remises possibles et les frais de port.";
-    document.getElementById("start").innerHTML = "<button id='start4'>Commencer</button>"
+    document.getElementById("start").innerHTML = "<button id='start4' class='btn btn-info'>Commencer</button>"
     document.getElementById("result").innerHTML = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 4
     var start4 = document.getElementById("start4");
