@@ -45,7 +45,7 @@
             <div>* Ces zones sont oligatoires</div>
             <section>
                 <!-- Zone de formulaire -->
-                <form action="http://bienvu.net/script.php" method="POST">
+                <form action="http://bienvu.net/script.php" method="POST" id="contact" name="contact" onSubmit="return Validation(this);" novalidate>
                     <fieldset>
                         <legend>Vos coordonnées</legend>
                         <div class="row">
@@ -53,16 +53,24 @@
                                 <label for="nom">Votre nom* : </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="nom" id="nom" required>
+                                <input class="valid" type="text" name="nom" id="nom" required>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-nom"></div>
                         </div>
                         <div class="row">
                             <div class="col-25">
                                 <label for="prenom">Votre prénom* : </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="prenom" id="prenom" required>
+                                <input class="valid" type="text" name="prenom" id="prenom" required>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-prenom"></div>
                         </div>
                         <div class="row">
                             <div class="col-25">
@@ -75,27 +83,39 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-sexe"></div>
+                        </div>
+                        <div class="row">
                             <div class="col-25">
                                 <label for="naissance">Date de Naissance* : </label>
                             </div>
                             <div class="col-75">
-                                <input type="date" name="naissance" id="naissance" required>
+                                <input class="valid" type="date" name="naissance" id="naissance" required>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-naissance"></div>
                         </div>
                         <div class="row">
                             <div class="col-25">
                                 <label for="CP">Code postal* : </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="CP" id="CP" required>
+                                <input class="valid" type="text" name="CP" id="CP" required>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-CP"></div>
                         </div>
                         <div class="row">
                             <div class="col-25">
                                 <label for="adresse">Adresse : </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="adresse" id="adresse">
+                                <input class="valid" type="text" name="adresse" id="adresse">
                             </div>
                         </div>
                         <div class="row">
@@ -103,7 +123,7 @@
                                 <label for="ville">Ville : </label>
                             </div>
                             <div class="col-75">
-                                <input type="text" name="ville" id="ville">
+                                <input class="valid" type="text" name="ville" id="ville">
                             </div>
                         </div>
                         <div class="row">
@@ -111,8 +131,12 @@
                                 <label for="email">Email* : </label>
                             </div>
                             <div class="col-75">
-                                <input type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
+                                <input class="valid" type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-email"></div>
                         </div>
                     </fieldset>
                     <fieldset>
@@ -122,7 +146,7 @@
                                 <label for="sujet">Sujet* : </label>
                             </div>
                             <div class="col-75">
-                                <select name="sujet" id="sujet" required>
+                                <select class="valid" name="sujet" id="sujet" required>
                                     <option value="" selected disabled>Veuillez sélectionner un sujet</option>
                                     <option value="commandes">Mes commandes</option>
                                     <option value="question">Question sur un produit</option>
@@ -132,18 +156,27 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-sujet"></div>
+                        </div>
+                        <div class="row">
                             <div class="col-25">
                                 <label for="question">Votre question* : </label>
                             </div>
                             <div class="col-75">
-                                <textarea name="question" id="question" rows="2" required></textarea>
+                                <textarea class="valid" name="question" id="question" rows="2" required></textarea>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25"></div>
+                            <div class="col-75" style="color: red;" id="invalid-question"></div>
                         </div>
                     </fieldset>
                     <div class="row">
                         <input type="checkbox" name="accepted" id="accepted" value=true required>
                         <label for="accepted">J'accepte le traitement informatique de ce formulaire.</label>
                     </div>
+                    <div class="row" style="color: red;" id="invalid-accepted"></div>
                     <br>
                     <div class="row">
                         <input type="submit" value="Envoyer">
@@ -161,5 +194,9 @@
             <li><a href="#" title="Plan du site" class="nav">Plan du site</a></li>
         </ul>
     </footer>
+
+    <!-- Appel du fichier JavaScript des Exercices  -->
+    <script src="assets/js/script.js"></script>
+
 </body>
 </html>

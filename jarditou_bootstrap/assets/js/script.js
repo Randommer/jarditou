@@ -11,16 +11,18 @@ function Validation(contact)
     //test si le champ Nom n'est pas rempli
     if (contact.elements['nom'].value.length == 0)
     {
-        //ajout d'une classe bootstrap pour rendre le champ rouge
+        //retire la classe bootstrap pour rendre le champ vert
         contact.elements['nom'].classList.remove('is-valid');
+        //ajout d'une classe bootstrap pour rendre le champ rouge
         contact.elements['nom'].classList.add('is-invalid');
         //formulaire invalide
         check = false;
     }
     else //si le champ Nom est rempli
     {
-        //ajout d'une classe bootstrap pour rendre le champ vert
+        //retire la classe bootstrap pour rendre le champ rouge
         contact.elements['nom'].classList.remove('is-invalid');
+        //ajout d'une classe bootstrap pour rendre le champ vert
         contact.elements['nom'].classList.add('is-valid');
     }
 

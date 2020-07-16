@@ -9,6 +9,7 @@ HTML
 CSS
 Git
 Bootstrap
+JavaScript
 
 
 HTML :
@@ -38,3 +39,11 @@ utilisation de grille pour faciliter la mise en page
 utilisation de la class table pour faire un tableau dynamiques
 utilisation de la classe form-group pour créer un formulaire dynamiques
 Toutes les pages s'adaptent à la taille de l'écran pour une utilisation mobile et respetent les normes W3C
+
+JavaScript :
+Réalisation d'une page HTML et de 3 fichiers JavaScript
+création d'une page HTML en Bootstrap, appelant un fichier JavaScript
+la page affiche un menu pour executer le code des différents exercices de l'évaluation JavaScript et y affichent les résultats
+création d'un fichier JavaScript pour la vérfication du formulaire de la page contact.html en Bootstrap et réécriture de la page contact.html en conséquence (utilisation de classes Bootstrap pour l'affichage des erreurs)
+création d'un fichier JavaScript pour la vérfication du formulaire de la page contact.html en CSS et réécriture de la page contact.html en conséquence (utilisation de classes maison en CSS et injustion d'HTML en JavaScript pour l'affichage des erreurs)
+gestion des différentes erreurs pouvant être entrées par l'utilisateur
