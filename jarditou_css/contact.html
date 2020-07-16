@@ -48,6 +48,7 @@
                 <form action="http://bienvu.net/script.php" method="POST" id="contact" name="contact" onSubmit="return Validation(this);" novalidate>
                     <fieldset>
                         <legend>Vos coordonnées</legend>
+                        <!-- Champ pour le nom -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="nom">Votre nom* : </label>
@@ -56,10 +57,12 @@
                                 <input class="valid" type="text" name="nom" id="nom" required>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si le nom n'est pas validé par la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-nom"></div>
                         </div>
+                        <!-- Champ pour le prénom -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="prenom">Votre prénom* : </label>
@@ -68,10 +71,12 @@
                                 <input class="valid" type="text" name="prenom" id="prenom" required>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si le prénom n'est pas validé par la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-prenom"></div>
                         </div>
+                        <!-- Boutons radio pour le sexe -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="sexe">Sexe* : </label>
@@ -82,10 +87,12 @@
                                 <input type="radio" name="sexe" id="neutre" value="neutre" required><label for="neutre"> Neutre</label>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si aucun sexe n'est sélectionné lors de la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-sexe"></div>
                         </div>
+                        <!-- Champ pour la date de naissance -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="naissance">Date de Naissance* : </label>
@@ -94,10 +101,12 @@
                                 <input class="valid" type="date" name="naissance" id="naissance" required>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si la date naissance n'est pas validée par la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-naissance"></div>
                         </div>
+                        <!-- Champ pour le code postal -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="CP">Code postal* : </label>
@@ -106,10 +115,12 @@
                                 <input class="valid" type="text" name="CP" id="CP" required>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si le code postal n'est pas validé par la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-CP"></div>
                         </div>
+                        <!-- Champ pour l'adresse -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="adresse">Adresse : </label>
@@ -118,6 +129,7 @@
                                 <input class="valid" type="text" name="adresse" id="adresse">
                             </div>
                         </div>
+                        <!-- Champ pour la ville -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="ville">Ville : </label>
@@ -126,6 +138,7 @@
                                 <input class="valid" type="text" name="ville" id="ville">
                             </div>
                         </div>
+                        <!-- Champ pour le mail -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="email">Email* : </label>
@@ -134,6 +147,7 @@
                                 <input class="valid" type="email" name="email" id="email" placeholder="dave.loper@afpa.fr" pattern="[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([_\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})" required>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si le mail n'est pas validé par la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-email"></div>
@@ -141,6 +155,7 @@
                     </fieldset>
                     <fieldset>
                         <legend>Votre demande</legend>
+                        <!-- Champ de selection du sujet -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="sujet">Sujet* : </label>
@@ -155,10 +170,12 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si un sujet n'est pas sélectionné lors de la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-sujet"></div>
                         </div>
+                        <!-- Champ d'écriture libre pour la question -->
                         <div class="row">
                             <div class="col-25">
                                 <label for="question">Votre question* : </label>
@@ -167,19 +184,25 @@
                                 <textarea class="valid" name="question" id="question" rows="2" required></textarea>
                             </div>
                         </div>
+                        <!-- ligne qui s'affiche si rien n'est écrit lors de la vérif -->
                         <div class="row">
                             <div class="col-25"></div>
                             <div class="col-75" style="color: red;" id="invalid-question"></div>
                         </div>
                     </fieldset>
+                    <!-- Case à cocher pour accepter les conditions d'utilisation du traitement des données -->
                     <div class="row">
                         <input type="checkbox" name="accepted" id="accepted" value=true required>
                         <label for="accepted">J'accepte le traitement informatique de ce formulaire.</label>
                     </div>
+                    <!-- ligne qui s'affiche si la case n'est pas cochée lors de la vérif -->
                     <div class="row" style="color: red;" id="invalid-accepted"></div>
                     <br>
+                    <!-- Boutons du formulaire -->
                     <div class="row">
+                        <!-- bouton submit du formulaire -->
                         <input type="submit" value="Envoyer">
+                        <!-- bouton qui remet à zéro tout les input du formulaire -->
                         <input type="reset" value="Annuler">
                     </div>
                 </form>
