@@ -40,7 +40,28 @@ function Go1()
     {
         n++;
         //Demande d'un âge à l'utilisateur
-        p = parseInt(window.prompt("Saisissez l'âge de la personne n°"+n+"\n(Entrez un age de 100 ou plus pour stopper le programme)"));
+
+
+        p = window.prompt("Saisissez l'âge de la personne n°"+n+"\n(Entrez un age de 100 ou plus pour stopper le programme)");
+        //Gestion d'erreur si l'utilisateur appuie sur Annuler
+        if (p == null)
+        {
+            return;
+        }
+        //Transforme l'entrée en nombre si possible
+        p = parseInt(p);
+        //Gestion d'erreur d'entrée utilisateur, si l'utilisateur rentre autre chose que des chiffres ou un nombre négatif.
+        while (isNaN(p) || p < 0)
+        {
+            window.alert("Vous n'avez pas rentré un age correct");
+            p = window.prompt("Saisissez l'âge de la personne n°"+n+"\n(Entrez un age de 100 ou plus pour stopper le programme)");
+            //Gestion d'erreur si l'utilisateur appuie sur Annuler
+            if (p == null)
+            {
+                return;
+            }
+            p = parseInt(p);
+        }
         //Test si l'age est sous les 20 ans
         if (p<20)
         {
@@ -60,6 +81,12 @@ function Go1()
             }
         }
     }
+
+    //Gestion d'erreur si l'utilisateur appuie sur Annuler
+    if (p == null)
+        {
+            return;
+        }
 
     //Affichage en cas d'une seule personne de plus de 40 ans
     if (n==1)
@@ -144,7 +171,26 @@ function Exo2()
 function Go2()
 {
     //Demande quelle table de multiplication afficher
-    var N = parseInt(window.prompt("Saisissez un nombre entier"));
+    var N = window.prompt("Saisissez un nombre entier");
+    //Gestion d'erreur si l'utilisateur appuie sur Annuler
+    if (N == null)
+    {
+        return;
+    }
+    //Transforme l'entrée en nombre si possible
+    N = Number(N);
+    //Gestion d'erreur d'entrée utilisateur, si l'utilisateur rentre autre chose que des chiffres.
+    while (isNaN(N))
+    {
+        window.alert("Vous n'avez pas rentré un nombre");
+        N = window.prompt("Saisissez un nombre entier");
+        //Gestion d'erreur si l'utilisateur appuie sur Annuler
+        if (N == null)
+        {
+            return;
+        }
+        N = Number(N);
+    }
     var i;
     //Initialisation d'une chaine contenant du code HTML à afficher dans la page
     var code = String();
@@ -194,6 +240,11 @@ function Go3(tab)
 {
     //Demande de saisie d'un prénom
     var prenom = window.prompt("Saisissez un prénom");
+    //Gestion d'erreur si l'utilisateur appuie sur Annuler
+    if (prenom == null)
+    {
+        return tab;
+    }
     var i;
     var n = -1;
     //Parcours du tableau tab
@@ -288,9 +339,47 @@ function Go4()
     //Initialisation des frais de Port
     var PORT;
     //Demande du Prix Produit à l'utilisateur
-    PU = parseFloat(window.prompt("Saisissez le prix unitaire du produit"));
+    PU = window.prompt("Saisissez le prix unitaire du produit");
+    //Gestion d'erreur si l'utilisateur appuie sur Annuler
+    if (PU == null)
+    {
+        return;
+    }
+    //Transforme l'entrée en nombre si possible
+    PU = parseFloat(PU);
+    //Gestion d'erreur d'entrée utilisateur, si l'utilisateur rentre autre chose que des chiffres ou un nombre négatif.
+    while (isNaN(PU) || PU < 0)
+    {
+        window.alert("Vous n'avez pas rentré un prix correct");
+        PU = window.prompt("Saisissez le prix unitaire du produit");
+        //Gestion d'erreur si l'utilisateur appuie sur Annuler
+        if (PU == null)
+        {
+            return;
+        }
+        PU = parseFloat(PU);
+    }
     //Demande de la Quantité Commandée à l'utilisateur
-    QTECOM = parseInt(window.prompt("Saisissez la quantité commandée du produit"));
+    QTECOM = window.prompt("Saisissez la quantité commandée du produit");
+    //Gestion d'erreur si l'utilisateur appuie sur Annuler
+    if (QTECOM == null)
+    {
+        return;
+    }
+    //Transforme l'entrée en nombre si possible
+    QTECOM = parseInt(QTECOM);
+    //Gestion d'erreur d'entrée utilisateur, si l'utilisateur rentre autre chose que des chiffres ou un nombre négatif.
+    while (isNaN(QTECOM) || QTECOM < 0)
+    {
+        window.alert("Vous n'avez pas rentré une quantité commandée correcte");
+        QTECOM = window.prompt("Saisissez la quantité commandée du produit");
+        //Gestion d'erreur si l'utilisateur appuie sur Annuler
+        if (QTECOM == null)
+        {
+            return;
+        }
+        QTECOM = parseInt(QTECOM);
+    }
     //Initialisation du Sous-Total avant remise et frais supplémentaires
     ////On utilise *100 et /100 pour palier à une limitation de JavaScript sur les opérations avec des nombres à virgule, voir https://www.w3schools.com/js/js_numbers.asp paragraphe Precision (sans ça, on récupère un millième de milième de nul part)
     var TOT = ((PU*100) * QTECOM)/100;
