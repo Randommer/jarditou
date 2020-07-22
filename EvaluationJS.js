@@ -251,7 +251,7 @@ function Go3(tab)
     for (i=0 ; i<tab.length ; i+=1)
     {
         //Récupération du numéro de la case contenant le prénom
-        if (tab[i] == prenom)
+        if (tab[i].toUpperCase() == prenom.toUpperCase())
         {
             n = i;
         }
@@ -380,14 +380,14 @@ function Go4()
         }
         QTECOM = parseInt(QTECOM);
     }
-    //Initialisation du Sous-Total avant remise et frais supplémentaires
+    //Initialisation du premier Sous-Total avant remise et frais supplémentaires
     ////On utilise *100 et /100 pour palier à une limitation de JavaScript sur les opérations avec des nombres à virgule, voir https://www.w3schools.com/js/js_numbers.asp paragraphe Precision (sans ça, on récupère un millième de milième de nul part)
-    var TOT = ((PU*100) * QTECOM)/100;
+    var TOT1 = (Math.round(PU*100) * QTECOM)/100;
     //Ajout d'une remise si le Sous-Total est supérieur à 100€
-    if (TOT >= 100)
+    if (TOT1 >= 100)
     {
         //Remise de 10% si le Sous-Total est supérieur à 200€
-        if (TOT > 200)
+        if (TOT1 > 200)
         {
             REM = 10;
         }
@@ -403,8 +403,11 @@ function Go4()
         REM = 0;
     }
 
+    //Initialisation du second Sous-Total après remise et avant frais supplémentaires
+    ////On utilise *100 et /100 pour palier à une limitation de JavaScript sur les opérations avec des nombres à virgule, voir https://www.w3schools.com/js/js_numbers.asp paragraphe Precision (sans ça, on récupère un millième de milième de nul part)
+    var TOT2 = Math.round(((TOT1*100) * (100-REM))/100)/100;
     //Frais de Port à 0€ si le Sous-Total est supérieur à 500€
-    if (TOT > 500)
+    if (TOT2 >= 500)
     {
         PORT = 0;
     }
@@ -413,7 +416,7 @@ function Go4()
     {
         //Calcul des frais de Port en calculant 2% du Sous-Total
         ////On utilise *100 et /10000 pour palier à une limitation de JavaScript sur les opérations avec des nombres à virgule, voir https://www.w3schools.com/js/js_numbers.asp paragraphe Precision (sans ça, on récupère un millième de milième de nul part)
-        PORT = ((TOT*100) * (0.02*100))/10000;
+        PORT = Math.round(((TOT2*100) * (0.02*100))/100)/100;
         //Si les 2% sont inférieur à 6€, les frais de Port sont de 6€
         if (PORT < 6)
         {
@@ -423,10 +426,10 @@ function Go4()
 
     //Calcul du Prix A Payer, en lui appliquant le pourcentage de Remise et en lui ajoutant les frais de Port
     ////On utilise *100 et /100 pour palier à une limitation de JavaScript sur les opérations avec des nombres à virgule, voir https://www.w3schools.com/js/js_numbers.asp paragraphe Precision (sans ça, on récupère un millième de milième de nul part)
-    PAP = (((TOT*100) * (100-REM))/100 + (PORT*100))/100;
+    PAP = ((TOT2*100) + (PORT*100))/100;
 
     //Initialisation d'une chaine contenant du code HTML de la facture à afficher dans la page
-    var code = "Prix unitaire : "+PU+"€<br>Quantité : "+QTECOM+"<br>Sous-Total : "+TOT+"€<br>Remise : "+REM+"%<br>Frais de port : "+PORT+"€<br>Total à payer : "+PAP+"€";
+    var code = "Prix unitaire : "+PU+"€<br>Quantité : "+QTECOM+"<br>Sous-Total avant remise : "+TOT1+"€<br>Remise : "+REM+"%<br>Sous-Total après remise : "+TOT2+"€<br>Frais de port : "+PORT+"€<br>Total à payer : "+PAP+"€";
 
     //Affichage du resultat en injectant le code HTML de la facture dans la page
     document.getElementById("result").innerHTML = code;
