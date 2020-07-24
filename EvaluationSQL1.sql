@@ -1,9 +1,12 @@
+#Partie 1 de l'Evalution de SQL
 DROP DATABASE IF EXISTS eval;
 
+#Création d'une base pour l'évaluation
 CREATE DATABASE eval;
 
 USE eval;
 
+#Création d'une table Client dans la base
 CREATE TABLE client(
     cli_num int NOT NULL AUTO_INCREMENT,
     cli_nom varchar(50) NOT NULL,
@@ -12,6 +15,7 @@ CREATE TABLE client(
     PRIMARY KEY (cli_num) 
 );
 
+#Création d'une table Produit dans la base
 CREATE TABLE produit(
     pro_num int NOT NULL AUTO_INCREMENT,
     pro_libelle varchar(50) NOT NULL,
@@ -19,6 +23,7 @@ CREATE TABLE produit(
     PRIMARY KEY (pro_num)
 );
 
+#Création d'une table Commande dans la base
 CREATE TABLE commande(
     com_num int NOT NULL AUTO_INCREMENT,
     cli_num int NOT NULL,
@@ -28,6 +33,7 @@ CREATE TABLE commande(
     CONSTRAINT com_fk FOREIGN KEY (cli_num) REFERENCES client (cli_num)
 );
 
+#Création d'une table est_compose dans la base
 CREATE TABLE est_compose(
     com_num int NOT NULL,
     pro_num int NOT NULL,
@@ -37,5 +43,6 @@ CREATE TABLE est_compose(
     CONSTRAINT est_fk2 FOREIGN KEY (pro_num) REFERENCES produit (pro_num)
 );
 
+#Création d'un index index_noms qui index les noms de la table Client
 CREATE INDEX index_noms
 ON client (cli_nom);

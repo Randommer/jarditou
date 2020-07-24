@@ -10,6 +10,7 @@ CSS
 Git
 Bootstrap
 JavaScript
+Base de données/SQL
 
 
 HTML :
@@ -47,3 +48,8 @@ la page affiche un menu pour executer le code des différents exercices de l'év
 création d'un fichier JavaScript pour la vérfication du formulaire de la page contact.html en Bootstrap et réécriture de la page contact.html en conséquence (utilisation de classes Bootstrap pour l'affichage des erreurs)
 création d'un fichier JavaScript pour la vérfication du formulaire de la page contact.html en CSS et réécriture de la page contact.html en conséquence (utilisation de classes maison en CSS et injustion d'HTML en JavaScript pour l'affichage des erreurs)
 gestion des différentes erreurs pouvant être entrées par l'utilisateur
+
+Base de données/SQL :
+Réalisation de 2 fichiers SQL contenant les requêtes à écrire pour l'Evaluation Base de données
+création d'un fichier SQL EvaluationSQL1, contenant les requètes pour créer une base dont le modèle est donné dans ennoncé et créer un index spécifique
+création d'un fichier SQL EvaluationSQL2, contenant les requètes pour appeler la base de données NorthWind et donner le resultat demandé dans l'ennoncé
