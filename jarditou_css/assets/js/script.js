@@ -1,7 +1,12 @@
+//Récupération du formulaire sous la forme d'un objet
+var contact = document.getElementById('contact');
+//Ajout d'une écoute pour quand le formulaire est envoyé, il fera tourner la fonction Validation
+contact.addEventListener("submit", function(event){ Validation(contact, event); });
+
 //Fonction de validation du formulaire de contact de JardiTou
-function Validation(contact)
+function Validation(contact, event)
 {
-    //Initialisation d'un booléen qui sera renvoyé à la page HTML
+    //Initialisation d'un booléen qui déterminera la validité ou non du formulaire
     //si il est vrai, le formulaire sera envoyé
     //si il est faux, on restera sur la page
     var check = true;
@@ -188,6 +193,10 @@ function Validation(contact)
         document.getElementById('invalid-accepted').innerHTML = "";
     }
 
-    //retour de validité ou non du formulaire
-    return check;
+    //vérifie si le formulaire est faux
+    if(check == false)
+    {
+        //empèche l'envoie du formulaire 
+        event.preventDefault();
+    }
 }
