@@ -27,7 +27,7 @@ CREATE TABLE produit(
 CREATE TABLE commande(
     com_num int NOT NULL AUTO_INCREMENT,
     cli_num int NOT NULL,
-    com_date    timestamp NOT NULL,
+    com_date    datetime NOT NULL,
     com_obs varchar(50),
     PRIMARY KEY (com_num),
     CONSTRAINT com_fk FOREIGN KEY (cli_num) REFERENCES client (cli_num)
