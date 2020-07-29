@@ -7,7 +7,7 @@ FROM customers
 WHERE customers.Country = 'France';
 
 /* Exercice 2 : Produits vendus par le fournisseur «Exotic Liquids» */
-SELECT products.ProductName AS 'Produit', products.UnitPrice AS 'Prix'
+SELECT products.ProductName AS 'Produit', ROUND(products.UnitPrice, 2) AS 'Prix'
 FROM suppliers
 INNER JOIN products ON suppliers.SupplierID = products.SupplierID
 WHERE suppliers.CompanyName = 'Exotic Liquids';
@@ -33,7 +33,7 @@ GROUP BY customers.CustomerID
 HAVING COUNT(orders.OrderID) > 10;
 
 /* Exercice 5 : Liste des clients ayant un chiffre d’affaires > 30 000 */
-SELECT customers.CompanyName AS 'Client', SUM((`order details`.UnitPrice * `order details`.Quantity) - `order details`.Discount) AS 'CA', customers.Country AS 'Pays'
+SELECT customers.CompanyName AS 'Client', ROUND(SUM((`order details`.UnitPrice * `order details`.Quantity) - `order details`.Discount), 2) AS 'CA', customers.Country AS 'Pays'
 FROM ((orders
 INNER JOIN customers ON orders.CustomerID = customers.CustomerID)
 INNER JOIN `order details` ON orders.OrderID = `order details`.OrderID)
@@ -55,13 +55,13 @@ WHERE `order details`.ProductID IN (
 GROUP BY customers.Country;
 
 /* Exercice 7 : Montant des ventes de 1997 */
-SELECT SUM((`order details`.UnitPrice * `order details`.Quantity) - `order details`.Discount) AS 'Montant Ventes 97'
+SELECT ROUND(SUM((`order details`.UnitPrice * `order details`.Quantity) - `order details`.Discount), 2) AS 'Montant Ventes 97'
 FROM `order details`
 INNER JOIN orders ON `order details`.OrderID = orders.OrderID
 WHERE YEAR(orders.OrderDate) = 1997;
 
 /* Exercice 8 : Montant des ventes de 1997 mois par mois */
-SELECT MONTH(orders.OrderDate) AS 'Mois 97', SUM((`order details`.UnitPrice * `order details`.Quantity) - `order details`.Discount) AS 'Montant Ventes'
+SELECT MONTH(orders.OrderDate) AS 'Mois 97', ROUND(SUM((`order details`.UnitPrice * `order details`.Quantity) - `order details`.Discount), 2) AS 'Montant Ventes'
 FROM `order details`
 INNER JOIN orders ON `order details`.OrderID = orders.OrderID
 WHERE YEAR(orders.OrderDate) = 1997
