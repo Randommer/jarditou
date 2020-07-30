@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- CSS des icons Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
+    <title>JardiTou - Tableau</title>
+    
+</head>
+<body>
+    <!-- Container du site -->
+    <div class="container">
+        <!-- Barre de titre du site -->
+        <div class="row d-none d-lg-flex align-items-center">
+            <!-- Logo du site -->
+            <div class="col-sm-12 col-lg-3">
+                <a href="index.html" title="JardiTou"><img class="img-fluid" src="src/img/jarditou_logo.jpg" alt="Logo JardiTou"></a>
+            </div>
+            <div class="d-sm-none d-lg-block col-lg-4"></div>
+            <!-- Slogan du site -->
+            <div class="col-sm-12 col-lg-5">
+                <h1 class="text-center">La qualité depuis 70 ans</h1>
+            </div>
+        </div>
+        <!-- Barre de navigation haute du site -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">JardiTou.com</a>
+            <!-- Bouton Burger pour la version mobile de la barre -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHaute">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Boutons du menu -->
+            <div class="collapse navbar-collapse" id="navbarHaute">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" title="Accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="tableau.html" title="Tableau">Tableau</a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="contact.html" title="Contact">Contact</a>
+                        </li>
+                </ul>
+            </div>
+            <!-- Champ de recherche du menu -->
+            <form class="form-inline d-none d-lg-block my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Votre promotion" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+            </form>
+        </nav>
+        <!-- Bannière promo du site -->
+        <div class="row">
+            <div class="col-sm-12"><img class="img-fluid" src="src/img/promotion.jpg" alt="Bannière de promotion"></div>
+        </div>
+        <!-- Partie article de la page -->
+        <table class="table table-bordered table-responsive-lg">
+            <thead class="thead-light">
+                <tr>
+                    <th><h2>Photo</h2></th>
+                    <th><h2>ID</h2></th>
+                    <th><h2>Catégorie</h2></th>
+                    <th><h2>Libellé</h2></th>
+                    <th><h2>Prix</h2></th>
+                    <th><h2>Couleur</h2></th>
+                </tr>
+            </thead>
+            <tbody class="table-warning">
+                <tr>
+                    <td><img src="src/img/7.jpg" height="100" alt="Barbecue Athos Noir"></td>
+                    <td>7</td>
+                    <td>Barbecues</td>
+                    <td>Athos</td>
+                    <td>249.99€</td>
+                    <td>Brun</td>
+                </tr>
+                <tr class="table-light">
+                    <td><img src="src/img/8.jpg" height="100" alt="Barbecue Athos Brun"></td>
+                    <td>8</td>
+                    <td>Barbecues</td>
+                    <td>Athos</td>
+                    <td>249.99€</td>
+                    <td>Noir</td>
+                </tr>
+                <tr>
+                    <td><img src="src/img/11.jpg" height="100" alt="Barbecue Clatronic Chrome"></td>
+                    <td>11</td>
+                    <td>Barbecues</td>
+                    <td>Clatronic</td>
+                    <td>135.90€</td>
+                    <td>Chrome</td>
+                </tr>
+                <tr class="table-light">
+                    <td><img src="src/img/12.jpg" height="100" alt="Barbecue Camping Noir"></td>
+                    <td>12</td>
+                    <td>Barbecues</td>
+                    <td>Camping</td>
+                    <td>88.00€</td>
+                    <td>Noir</td>
+                </tr>
+                <tr>
+                    <td><img src="src/img/13.jpg" height="100" alt="Brouette Green Verte"></td>
+                    <td>13</td>
+                    <td>Brouette</td>
+                    <td>Green</td>
+                    <td>49.00€</td>
+                    <td>Verte</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Barre de navigation basse du site -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" title="Mentions légales">Mentions légales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" title="Horaires">Horaires</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link disabled" href="#" title="Plan du site">Plan du site</a>
+                    </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
