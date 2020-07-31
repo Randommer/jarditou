@@ -43,7 +43,7 @@
                         <a class="nav-link" href="tableau.html" title="Tableau">Tableau</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="contact.html" title="Contact">Contact</a>
+                            <a class="nav-link" href="contact.php" title="Contact">Contact</a>
                         </li>
                 </ul>
             </div>
