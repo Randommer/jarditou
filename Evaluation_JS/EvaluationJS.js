@@ -157,11 +157,11 @@ bouton2md.addEventListener("click", Exo2);
 function Exo2()
 {
     //Texte de l'interface de l'Exercice 2
-    document.getElementById("titre").innerHTML = "Execice 2";
-    document.getElementById("enonce").innerHTML = "Nous allons afficher une table de multiplication.";
-    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un nombre entier, une fois rentré la page affichera sa table de multiplication.";
+    document.getElementById("titre").textContent = "Execice 2";
+    document.getElementById("enonce").textContent = "Nous allons afficher une table de multiplication.";
+    document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer un nombre entier, une fois rentré la page affichera sa table de multiplication.";
     document.getElementById("start").innerHTML = "<button id='start2' class='btn btn-info'>Commencer</button>"
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").textContent = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 2
     var start2 = document.getElementById("start2");
     start2.addEventListener("click", Go2);
@@ -203,7 +203,7 @@ function Go2()
     //Affichage du resultat en injectant le code HTML de la table dans la page
     document.getElementById("result").innerHTML = code;
     //Changement de nom du bouton
-    document.getElementById("start2").innerHTML = "Recommencer";
+    document.getElementById("start2").textContent = "Recommencer";
 }
 
 //--
@@ -220,9 +220,9 @@ bouton3md.addEventListener("click", Exo3);
 function Exo3()
 {
     //Texte de l'interface de l'Exercice 3
-    document.getElementById("titre").innerHTML = "Execice 3";
-    document.getElementById("enonce").innerHTML = "Nous avons un tableau de prénoms, quand vous trouverez un prénom dans le tableau, il sera retiré.";
-    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer de celui-ci. (Recommencer, remet le tableau à son état initial, Chercher ouvre la fenêtre pour entrer un prénom à chercher dans le tableau)";
+    document.getElementById("titre").textContent = "Execice 3";
+    document.getElementById("enonce").textContent = "Nous avons un tableau de prénoms, quand vous trouverez un prénom dans le tableau, il sera retiré.";
+    document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer de celui-ci. (Recommencer, remet le tableau à son état initial, Chercher ouvre la fenêtre pour entrer un prénom à chercher dans le tableau)";
     document.getElementById("start").innerHTML = "<div class='btn-group'><button id='restart' class='btn btn-danger'>Recommencer</button><button id='start3' class='btn btn-info'>Chercher</button></div>"
     //Création du tableau tab qui contient les prénoms
     var tab = ["Audrey", "Aurélien", "Flavien", "Jérémy", "Laurent", "Melik", "Nouara", "Salem", "Samuel", "Stéphane"];
@@ -315,11 +315,11 @@ bouton4md.addEventListener("click", Exo4);
 function Exo4()
 {
     //Texte de l'interface de l'Exercice 4
-    document.getElementById("titre").innerHTML = "Execice 4";
-    document.getElementById("enonce").innerHTML = "Nous allons afficher une facture à partir du prix unitaire d'un produit et de sa quantité commandée.";
-    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer le prix unitaire d'un produit et la quantité commandée, nous afficherons le prix total à payer qui prend en compte les remises possibles et les frais de port.";
+    document.getElementById("titre").textContent = "Execice 4";
+    document.getElementById("enonce").textContent = "Nous allons afficher une facture à partir du prix unitaire d'un produit et de sa quantité commandée.";
+    document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer le prix unitaire d'un produit et la quantité commandée, nous afficherons le prix total à payer qui prend en compte les remises possibles et les frais de port.";
     document.getElementById("start").innerHTML = "<button id='start4' class='btn btn-info'>Commencer</button>"
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").textContent = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 4
     var start4 = document.getElementById("start4");
     start4.addEventListener("click", Go4);
@@ -434,5 +434,5 @@ function Go4()
     //Affichage du resultat en injectant le code HTML de la facture dans la page
     document.getElementById("result").innerHTML = code;
     //Changement de nom du bouton
-    document.getElementById("start4").innerHTML = "Recommencer";
+    document.getElementById("start4").textContent = "Recommencer";
 }
