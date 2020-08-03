@@ -12,11 +12,11 @@ bouton1md.addEventListener("click", Exo1);
 function Exo1()
 {
     //Texte de l'interface de l'Exercice 1
-    document.getElementById("titre").innerHTML = "Execice 1";
-    document.getElementById("enonce").innerHTML = "Nous allons dénombrer les personnes d'âge strictement inférieur à 20 ans, les personnes d'âge strictement supérieur à 40 ans et celles dont l'âge est compris entre 20 ans et 40 ans (20 ans et 40 ans y compris).";
-    document.getElementById("deroule").innerHTML = "Nous allons vous demander de rentrer des ages les uns à la suite des autres, quand vous aurez terminé, rentrer l'age d'une personne centenaire.";
+    document.getElementById("titre").textContent = "Execice 1";
+    document.getElementById("enonce").textContent = "Nous allons dénombrer les personnes d'âge strictement inférieur à 20 ans, les personnes d'âge strictement supérieur à 40 ans et celles dont l'âge est compris entre 20 ans et 40 ans (20 ans et 40 ans y compris).";
+    document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer des ages les uns à la suite des autres, quand vous aurez terminé, rentrer l'age d'une personne centenaire.";
     document.getElementById("start").innerHTML = "<button id='start1' class='btn btn-info'>Commencer</button>"
-    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").textContent = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 1
     var start1 = document.getElementById("start1");
     start1.addEventListener("click", Go1);
@@ -91,14 +91,14 @@ function Go1()
     //Affichage en cas d'une seule personne de plus de 40 ans
     if (n==1)
     {
-        document.getElementById("result").innerHTML = "La seule personne que vous avez rentré, a plus de 40 ans.";
+        document.getElementById("result").textContent = "La seule personne que vous avez rentré, a plus de 40 ans.";
     }
     else
     {
         //Affichage du cas avec seulement des personnes de plus de 40 ans
         if (sen == n)
         {
-            document.getElementById("result").innerHTML = "Toutes les "+n+" personnes que vous avez rentré, ont de plus de 40 ans.";
+            document.getElementById("result").textContent = "Toutes les "+n+" personnes que vous avez rentré, ont de plus de 40 ans.";
         }
         //Affichage adapatif des autres cas
         else
@@ -110,12 +110,12 @@ function Go1()
                 //Affichage du cas d'une seule personne de moins de 20 ans
                 if (min==1)
                 {
-                    document.getElementById("mineur").innerHTML = min+" personne de moins de 20 ans, ";
+                    document.getElementById("mineur").textContent = min+" personne de moins de 20 ans, ";
                 }
                 //Affichage avec pluseurs personnes de moins de 20 ans
                 else
                 {
-                    document.getElementById("mineur").innerHTML = min+" personnes de moins de 20 ans, ";
+                    document.getElementById("mineur").textContent = min+" personnes de moins de 20 ans, ";
                 }
             }
             //Affichage avec personnes entre 20 et 40 ans
@@ -124,23 +124,23 @@ function Go1()
                 //Affichage du cas d'une seule personne entre 20 et 40 ans
                 if (maj==1)
                 {
-                    document.getElementById("majeur").innerHTML = maj+" personne entre 20 et 40 ans et ";
+                    document.getElementById("majeur").textContent = maj+" personne entre 20 et 40 ans et ";
                 }
                 //Affichage avec pluseurs personnes de entre 20 et 40 ans
                 else
                 {
-                    document.getElementById("majeur").innerHTML = maj+" personnes entre 20 et 40 ans et ";
+                    document.getElementById("majeur").textContent = maj+" personnes entre 20 et 40 ans et ";
                 }
             }
             //Affichage avec plusieurs personnes de plus de 40 ans
             if (sen>1)
             {
-                document.getElementById("senior").innerHTML = "s";
+                document.getElementById("senior").textContent = "s";
             }
         }
     }
     //Changement de nom du bouton
-    document.getElementById("start1").innerHTML = "Recommencer";
+    document.getElementById("start1").textContent = "Recommencer";
 }
 
 //--
