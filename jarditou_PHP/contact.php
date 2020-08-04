@@ -1,5 +1,6 @@
 <?php
     $Titre = "Contact";
+    $nav = 3;
     include("header.php");
 ?>
 <?php

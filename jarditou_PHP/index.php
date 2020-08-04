@@ -1,5 +1,6 @@
 <?php
     $Titre = "Accueil";
+    $nav = 1;
     include("header.php");
 ?>
 <!-- Corps du site -->

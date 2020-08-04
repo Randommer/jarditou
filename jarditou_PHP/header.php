@@ -36,13 +36,13 @@
             <!-- Boutons du menu -->
             <div class="collapse navbar-collapse" id="navbarHaute">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item <?php if ($nav == 1) { echo "active"; } ?>">
                         <a class="nav-link" href="index.php" title="Accueil">Accueil</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tableau.html" title="Tableau">Tableau</a>
+                    <li class="nav-item <?php if ($nav == 2) { echo "active"; } ?>">
+                        <a class="nav-link" href="liste.php" title="Tableau">Tableau</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?php if ($nav == 3) { echo "active"; } ?>">
                             <a class="nav-link" href="contact.php" title="Contact">Contact</a>
                         </li>
                 </ul>
