@@ -39,7 +39,7 @@
     <div class="col-4">
         <form action="delete_script.php" method="POST">
             <input type="hidden" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
-            <input type="submit" class="btn btn-danger">
+            <input type="submit" class="btn btn-danger" value="Supprimer">
             <a href="liste.php" title="Annuler">
                 <button type="button" class="btn btn-success">Annuler</button>
             </a>
