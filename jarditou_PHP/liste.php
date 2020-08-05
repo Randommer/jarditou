@@ -44,21 +44,32 @@
                 while ($row = $result->fetch(PDO::FETCH_OBJ))
                 {
                     echo"<tr class='text-center'>";
-                    echo "<td class='table-warning'><img src='src/img/".$row->pro_id.".".$row->pro_photo."' width='100'></td>";//Photo
+                    echo "<td class='table-warning'><img src='src/img/".$row->pro_id.".".$row->pro_photo."' width='100' alt='".$row->pro_libelle." ".$row->pro_couleur."'></td>";//Photo
                     echo "<td>".$row->pro_id."</td>"; //ID
                     echo "<td>".$row->pro_ref."</td>"; //Référence
-                    echo '<td class="table-warning"><a class="text-danger font-weight-bold" href="detail.php?id='.$row->pro_id.'" title="'.$row->pro_libelle.'">'.strtoupper($row->pro_libelle).'</a></td>'; //Libellé
+                    echo '<td class="table-warning"><a class="text-danger font-weight-bold" href="detail.php?id='.$row->pro_id.'" title="'.$row->pro_libelle.'"><u>'.strtoupper($row->pro_libelle).'</u></a></td>'; //Libellé
                     echo "<td>".$row->pro_prix." €</td>"; //Prix
                     echo "<td>".$row->pro_stock."</td>"; //Stock
                     echo "<td>".$row->pro_couleur."</td>"; //Couleur
                     echo "<td>".$row->pro_d_ajout."</td>"; //Ajout
                     echo "<td>".$row->pro_d_modif."</td>"; //Modif
-                    echo "<td class='text-danger font-weight-bold'>".$row->pro_bloque."</td>"; //Bloqué
+                    if ($row->pro_bloque != null) //Bloqué
+                    {
+                        echo "<td class='text-danger font-weight-bold'>BLOQUÉ</td>"; //Bloqué
+                    }
+                    else
+                    {
+                        echo "<td></td>";
+                    }
                     echo"</tr>";
                 }
+                $result->closeCursor();
             ?>
         </tbody>
     </table>
+    <a href="add_form.php" title="Ajouter">
+        <button type="button" class="btn btn-info " id="ajouter">Ajouter</button>
+    </a>
 </div>
 <?php
     include("footer.php");

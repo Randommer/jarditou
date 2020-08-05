@@ -1,5 +1,6 @@
 <?php
     $Titre = "Page de détail";
+    $nav = 2;
     include("header.php");
 ?>
 <!-- Corps du site -->
@@ -14,6 +15,7 @@
 
     // Renvoi de l'enregistrement sous forme d'un objet
     $produit = $result->fetch(PDO::FETCH_OBJ);
+    $result->closeCursor();
 ?>
 <div class="row mx-0 mb-1">
     <div class="col-4"></div>
@@ -27,7 +29,7 @@
 
     <div class="form-group">
         <label for="ref">Référence :</label>
-        <input type="text" class="form-control" name="ref" id="ref" disabled value="<?php echo $produit->pro_id; ?>">
+        <input type="text" class="form-control" name="ref" id="ref" disabled value="<?php echo $produit->pro_ref; ?>">
     </div>
 
     <?php
@@ -49,11 +51,12 @@
         }
 
         $cats = array();
-        $cats[] = "Sélectionnez une catégorie";
+        $cats["0"] = "Sélectionnez une catégorie";
         while ($row = $result->fetch(PDO::FETCH_OBJ))
         {
-            $cats[] = $row->cat_nom;
+            $cats["".$row->cat_id] = $row->cat_nom;
         }
+        $result->closeCursor();
     ?>
     <div class="form-group">
         <label for="cat">Catégorie :</label>
@@ -62,7 +65,7 @@
                 foreach($cats as $i => $kitten)
                 {
                     echo "<option ";
-                    if ($i == 0)
+                    if ($i == "0")
                     {
                         echo "disabled ";
                     }
@@ -104,6 +107,11 @@
         <input type="text" class="form-control" name="color" id="color" disabled value="<?php echo $produit->pro_couleur; ?>">
     </div>
 
+    <div class="form-group d-none">
+        <label for="ext">Extension de la photo :</label>
+        <input type="hidden" class="form-control" name="ext" id="ext" disabled value="<?php echo $produit->pro_photo; ?>">
+    </div>
+
     <div class="form-group">
         <label for="block">Produit bloqué ? :</label>
         <?php
@@ -137,19 +145,22 @@
         <input type="text" class="form-control" name="modif" id="modif" disabled value="<?php echo $produit->pro_d_modif; ?>">
     </div>
 
-    <div class="form-group">
-        <a href="liste.php" title="retour">
-            <button class="btn btn-secondary " id="retour">Retour</button>
-        </a>
-        <a href="<?php echo 'update_form.php?id='.$pro_id; ?>" title="modifier">
-            <button class="btn btn-warning" id="modifier">Modifier</button>
-        </a>
-        <a href="<?php echo 'delete_form.php?id='.$pro_id; ?>" title="supprimer">
-            <button class="btn btn-danger" id="supprimer">Supprimer</button>
-        </a>
-    </div>
-
 </form>
+
+<div class="row mx-0 mb-1">
+    <a href="liste.php" title="Retour">
+        <button type="button" class="btn btn-secondary " id="retour">Retour</button>
+    </a>
+
+    <a href="<?php echo 'update_form.php?id='.$pro_id; ?>" title="Modifier">
+        <button type="button" class="btn btn-warning" id="modifier">Modifier</button>
+    </a>
+
+    <a href="<?php echo 'delete_form.php?id='.$pro_id; ?>" title="Supprimer">
+        <button type="button" class="btn btn-danger" id="supprimer">Supprimer</button>
+    </a>
+</div>
+
 <?php
     include("footer.php");
 ?>
