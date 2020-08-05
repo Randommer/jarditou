@@ -83,7 +83,7 @@ function Validation(contact, event)
         if (Date.parse(contact.elements['naissance'].value) >= Date.now())
         {
             //changement du texte d'erreur pour indiquer à l'utilisateur qu'il n'est pas né dans le futur
-            //document.getElementById('naissance-invalid').innerHTML = "A part si vous êtes né dans le futur, selectionnez une date passée ;-)";
+            //document.getElementById('naissance-invalid').textContent = "A part si vous êtes né dans le futur, selectionnez une date passée ;-)";
             document.getElementById('naissance-invalid').textContent = "A part si vous êtes né dans le futur, selectionnez une date passée ;-)";
         }
     }

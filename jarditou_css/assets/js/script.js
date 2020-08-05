@@ -21,7 +21,7 @@ function Validation(contact, event)
         //ajout la classe error pour rendre le champ rouge
         contact.elements['nom'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-nom').innerHTML = "Entrez un nom valide.";
+        document.getElementById('invalid-nom').textContent = "Entrez un nom valide.";
         //formulaire invalide
         check = false;
     }
@@ -32,7 +32,7 @@ function Validation(contact, event)
         //ajout de la classe valid
         contact.elements['nom'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-nom').innerHTML = "";
+        document.getElementById('invalid-nom').textContent = "";
     }
 
     //test si le champ Prénom n'est pas rempli
@@ -42,7 +42,7 @@ function Validation(contact, event)
         contact.elements['prenom'].classList.remove('valid');
         contact.elements['prenom'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-prenom').innerHTML = "Entrez un prénom valide.";
+        document.getElementById('invalid-prenom').textContent = "Entrez un prénom valide.";
         //formulaire invalide
         check = false;
     }
@@ -52,21 +52,21 @@ function Validation(contact, event)
         contact.elements['prenom'].classList.remove('error');
         contact.elements['prenom'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-prenom').innerHTML = "";
+        document.getElementById('invalid-prenom').textContent = "";
     }
 
     //test si un bouton radio Sexe n'est pas sélectionné
     if (contact.elements['sexe'].value.length == 0)
     {
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-sexe').innerHTML = "Selectionnez un sexe.";
+        document.getElementById('invalid-sexe').textContent = "Selectionnez un sexe.";
         //formulaire invalide
         check = false;
     }
     else //si un bouton radio Sexe est sélectionné
     {
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-sexe').innerHTML = "";
+        document.getElementById('invalid-sexe').textContent = "";
     }
 
     //test si le champ Date de Naissance n'est pas rempli ou rempli avec une date future
@@ -76,14 +76,14 @@ function Validation(contact, event)
         contact.elements['naissance'].classList.remove('valid');
         contact.elements['naissance'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-naissance').innerHTML = "Selectionnez une date.";
+        document.getElementById('invalid-naissance').textContent = "Selectionnez une date.";
         //formulaire invalide
         check = false;
         //test si le champ Date de Naissance est rempli avec une date future
         if (Date.parse(contact.elements['naissance'].value) >= Date.now())
         {
             //changement du texte d'erreur pour indiquer à l'utilisateur qu'il n'est pas né dans le futur
-            document.getElementById('invalid-naissance').innerHTML = "A part si vous êtes né dans le futur, selectionnez une date passée ;-)";
+            document.getElementById('invalid-naissance').textContent = "A part si vous êtes né dans le futur, selectionnez une date passée ;-)";
         }
     }
     else //si le champ Date de Naissance est rempli avec une date antérieure à aujourd'hui
@@ -92,7 +92,7 @@ function Validation(contact, event)
         contact.elements['naissance'].classList.remove('error');
         contact.elements['naissance'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-naissance').innerHTML = "";
+        document.getElementById('invalid-naissance').textContent = "";
     }
 
     //Mise en place de l'expression régulière pour le Code Postal
@@ -104,7 +104,7 @@ function Validation(contact, event)
         contact.elements['CP'].classList.remove('valid');
         contact.elements['CP'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-CP').innerHTML = "Entrez un Code Postal valide.";
+        document.getElementById('invalid-CP').textContent = "Entrez un Code Postal valide.";
         //formulaire invalide
         check = false;
     }
@@ -114,7 +114,7 @@ function Validation(contact, event)
         contact.elements['CP'].classList.remove('error');
         contact.elements['CP'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-CP').innerHTML = "";
+        document.getElementById('invalid-CP').textContent = "";
     }
 
     //Mise en place de l'expression régulière pour le mail
@@ -126,7 +126,7 @@ function Validation(contact, event)
         contact.elements['email'].classList.remove('valid');
         contact.elements['email'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-email').innerHTML = "Entrez une adresse e-mail valide.";
+        document.getElementById('invalid-email').textContent = "Entrez une adresse e-mail valide.";
         //formulaire invalide
         check = false;
     }
@@ -136,7 +136,7 @@ function Validation(contact, event)
         contact.elements['email'].classList.remove('error');
         contact.elements['email'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-email').innerHTML = "";
+        document.getElementById('invalid-email').textContent = "";
     }
 
     //test si un Sujet de la liste déroualante n'est pas sélectionné
@@ -146,7 +146,7 @@ function Validation(contact, event)
         contact.elements['sujet'].classList.remove('valid');
         contact.elements['sujet'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-sujet').innerHTML = "Selectionnez un sujet pour votre demande.";
+        document.getElementById('invalid-sujet').textContent = "Selectionnez un sujet pour votre demande.";
         //formulaire invalide
         check = false;
     }
@@ -156,7 +156,7 @@ function Validation(contact, event)
         contact.elements['sujet'].classList.remove('error');
         contact.elements['sujet'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-sujet').innerHTML = "";
+        document.getElementById('invalid-sujet').textContent = "";
     }
 
     //test si le champ Question n'est pas rempli
@@ -166,7 +166,7 @@ function Validation(contact, event)
         contact.elements['question'].classList.remove('valid');
         contact.elements['question'].classList.add('error');
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-question').innerHTML = "Formulez votre demande en quelques mots s'il vous plait.";
+        document.getElementById('invalid-question').textContent = "Formulez votre demande en quelques mots s'il vous plait.";
         //formulaire invalide
         check = false;
     }
@@ -176,21 +176,21 @@ function Validation(contact, event)
         contact.elements['question'].classList.remove('error');
         contact.elements['question'].classList.add('valid');
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-question').innerHTML = "";
+        document.getElementById('invalid-question').textContent = "";
     }
 
     //test si la case J'accepte n'a pas été cochée (checkValidity, vérifie par rapport aux critères de validité écrit dans les balises HTML de l'input)
     if (!(contact.elements['accepted'].checkValidity()))
     {
         //injecte un message d'erreur dans la page HTML
-        document.getElementById('invalid-accepted').innerHTML = "Cocher cette case est obligatoire.";
+        document.getElementById('invalid-accepted').textContent = "Cocher cette case est obligatoire.";
         //formulaire invalide
         check = false;
     }
     else //si la case J'accepte a été cochée
     {
         //retire le message d'erreur dans la page HTML
-        document.getElementById('invalid-accepted').innerHTML = "";
+        document.getElementById('invalid-accepted').textContent = "";
     }
 
     //vérifie si le formulaire est faux
