@@ -27,6 +27,11 @@
 
 <form method="POST">
 
+    <div class="form-group d-none">
+        <label for="id">ID :</label>
+        <input type="hidden" class="form-control" name="id" id="id" disabled value="<?php echo $produit->pro_id; ?>">
+    </div>
+
     <div class="form-group">
         <label for="ref">Référence :</label>
         <input type="text" class="form-control" name="ref" id="ref" disabled value="<?php echo $produit->pro_ref; ?>">
