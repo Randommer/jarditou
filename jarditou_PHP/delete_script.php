@@ -33,9 +33,9 @@
         $pro_bloque = null;
     } */
 
-    require("connexion_bdd.php"); // Inclusion de notrebibliothèque de fonctions
+    require("connexion_bdd.php"); // Inclusion de notre bibliothèque de fonctions
 
-    $db = connexionBase(); // Appel de la fonction deconnexion
+    $db = connexionBase(); // Appel de la fonction de connexion
     $requete = $db->prepare("DELETE FROM produits WHERE pro_id = :pro_id");
     $requete->bindValue(":pro_id", $pro_id);
     //$requete->bindValue(":pro_cat_id", $pro_cat_id);

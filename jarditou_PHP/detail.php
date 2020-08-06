@@ -147,24 +147,24 @@
 
     <div class="form-group">
         <label for="modif">Date de modification :</label>
-        <input type="text" class="form-control" name="modif" id="modif" disabled value="<?php echo $produit->pro_d_modif; ?>">
+        <input type="text" class="form-control" name="modif" id="modif" placeholder="Ce Produit n'a jamais été modifié"  disabled value="<?php echo $produit->pro_d_modif; ?>">
+    </div>
+
+    <div class="form-group">
+        <a href="liste.php" title="Retour">
+            <button type="button" class="btn btn-secondary " id="retour">Retour</button>
+        </a>
+
+        <a href="<?php echo 'update_form.php?id='.$pro_id; ?>" title="Modifier">
+            <button type="button" class="btn btn-warning" id="modifier">Modifier</button>
+        </a>
+
+        <a href="<?php echo 'delete_form.php?id='.$pro_id; ?>" title="Supprimer">
+            <button type="button" class="btn btn-danger" id="supprimer">Supprimer</button>
+        </a>
     </div>
 
 </form>
-
-<div class="row mx-0 mb-1">
-    <a href="liste.php" title="Retour">
-        <button type="button" class="btn btn-secondary " id="retour">Retour</button>
-    </a>
-
-    <a href="<?php echo 'update_form.php?id='.$pro_id; ?>" title="Modifier">
-        <button type="button" class="btn btn-warning" id="modifier">Modifier</button>
-    </a>
-
-    <a href="<?php echo 'delete_form.php?id='.$pro_id; ?>" title="Supprimer">
-        <button type="button" class="btn btn-danger" id="supprimer">Supprimer</button>
-    </a>
-</div>
 
 <?php
     include("footer.php");
