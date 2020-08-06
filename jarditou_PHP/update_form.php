@@ -16,7 +16,45 @@
     // Renvoi de l'enregistrement sous forme d'un objet
     $produit = $result->fetch(PDO::FETCH_OBJ);
     $result->closeCursor();
+    
+
+    //
+    $requeteCat = "SELECT cat_id, cat_nom FROM categories ORDER by cat_id";
+
+    $result = $db->query($requeteCat);
+
+    if (!$result)
+    {
+        $tableauErreurs = $db->errorInfo();
+        echo $tableauErreur[2];
+        die("Erreur dans la requête");
+    }
+
+    if ($result->rowCount() == 0)
+    {
+        // Pas d'enregistrement
+        die("La table est vide");
+    }
+
+    $cats = array();
+    $cats["0"] = "Sélectionnez une catégorie";
+    while ($row = $result->fetch(PDO::FETCH_OBJ))
+    {
+        $cats["".$row->cat_id] = $row->cat_nom;
+    }
+    $result->closeCursor();
+
+    //
+    if ($produit->pro_bloque == null)
+    {
+        $block = false;
+    }
+    else
+    {
+        $block = true;
+    }
 ?>
+
 <div class="row mx-0 mb-1">
     <div class="col-4"></div>
     <div class="col-4">
@@ -29,41 +67,16 @@
 
     <div class="form-group">
         <label for="id">ID :</label>
-        <input type="text" class="form-control" name="id" id="id" placeholder="L'ID sera donné à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
+        <input type="text" class="form-control" placeholder="L'ID sera donné à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
         <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
     </div>
 
     <div class="form-group">
         <label for="ref">Référence :</label>
         <input type="text" class="form-control" name="ref" id="ref" placeholder="Exemple : Produit4" pattern="[\w\-]{1,10}" required value="<?php echo $produit->pro_ref; ?>">
+        <div class="invalid-feedback">La Référence doit faire entre 1 et 10 caractères, sans accents et ne comporte pas d'espace (chiffres et tirets sont acceptés).</div>
     </div>
 
-    <?php
-        $requeteCat = "SELECT cat_id, cat_nom FROM categories ORDER by cat_id";
-
-        $result = $db->query($requeteCat);
-
-        if (!$result)
-        {
-            $tableauErreurs = $db->errorInfo();
-            echo $tableauErreur[2];
-            die("Erreur dans la requête");
-        }
-
-        if ($result->rowCount() == 0)
-        {
-            // Pas d'enregistrement
-            die("La table est vide");
-        }
-
-        $cats = array();
-        $cats["0"] = "Sélectionnez une catégorie";
-        while ($row = $result->fetch(PDO::FETCH_OBJ))
-        {
-            $cats["".$row->cat_id] = $row->cat_nom;
-        }
-        $result->closeCursor();
-    ?>
     <div class="form-group">
         <label for="cat">Catégorie :</label>
         <select class="form-control" name="cat" id="cat" required>
@@ -86,50 +99,46 @@
                 }
             ?>
         </select>
+        <div class="invalid-feedback">Sélectionner une Catégorie est obligatoire pour pouvoir enregistrer un produit.</div>
     </div>
 
     <div class="form-group">
         <label for="lib">Libellé :</label>
         <input type="text" class="form-control" name="lib" id="lib" placeholder="Exemple : Produit numéro 4" pattern="[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}" required value="<?php echo $produit->pro_libelle; ?>">
+        <div class="invalid-feedback">Le Libellé doit faire entre 1 et 200 caractères (chiffres, espaces, apostrophes et tirets sont acceptés).</div>
     </div>
 
     <div class="form-group">
         <label for="des">Description :</label>
-        <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000" value=""><?php echo $produit->pro_description; ?></textarea>
+        <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->pro_description; ?></textarea>
     </div>
 
     <div class="form-group">
         <label for="prix">Prix :</label>
         <input type="text" class="form-control" name="prix" id="prix" placeholder="Exemple : 12.99 (utilisez un point pas une virgule)" pattern="[0-9]{1,6}[.]{0,1}[0-9]{0,2}" required value="<?php echo $produit->pro_prix; ?>">
+        <div class="invalid-feedback">Le Prix doit avoir au moins un chiffre avant le point (la virgule n'est pas acceptée) et deux chiffres max après.</div>
     </div>
 
     <div class="form-group">
         <label for="stock">Stock :</label>
         <input type="text" class="form-control" name="stock" id="stock" placeholder="Exemple : 2 (peut se mettre à zéro)" pattern="[0-9]{0,11}" value="<?php echo $produit->pro_stock; ?>">
+        <div class="invalid-feedback">Le Stock doit être égal ou supérieur à zéro.</div>
     </div>
 
     <div class="form-group">
         <label for="color">Couleur :</label>
-        <input type="text" class="form-control" name="color" id="color" placeholder="Exemple : Café (peut rester vide)" pattern="[\wàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}" value="<?php echo $produit->pro_couleur; ?>">
+        <input type="text" class="form-control" name="color" id="color" placeholder="Exemple : Café (peut rester vide)" pattern="[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}" value="<?php echo $produit->pro_couleur; ?>">
+        <div class="invalid-feedback">La Couleur peut faire jusqu'à 30 caractères (espaces et apostrophes sont acceptés).</div>
     </div>
 
     <div class="form-group">
         <label for="ext">Extension de la photo :</label>
         <input type="text" class="form-control" name="ext" id="ext" placeholder="jpg" pattern="[\w]{0,4}" value="<?php echo $produit->pro_photo; ?>">
+        <div class="invalid-feedback">L'Extension peut faire jusqu'à 4 caractères (chiffres et lettres).</div>
     </div>
 
     <div class="form-group">
         <label for="block">Produit bloqué ? :</label>
-        <?php
-            if ($produit->pro_bloque == null)
-            {
-                $block = false;
-            }
-            else
-            {
-                $block = true;
-            }
-        ?>
         <br>
             <div class="form-check-inline">
                 <input class="form-check-input" type="radio" name="block" id="blocked" <?php if ($block) { echo "checked"; } ?> value="blocked">

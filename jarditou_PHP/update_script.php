@@ -78,28 +78,28 @@
                     $pro_bloque = NULL;
                 }
             }
+        
+            require("connexion_bdd.php"); // Inclusion de notr bibliothèque de fonctions
+
+            $db = connexionBase(); // Appel de la fonction de connexion
+            $requete = $db->prepare("UPDATE produits SET pro_cat_id = :pro_cat_id, pro_ref = :pro_ref, pro_libelle = :pro_libelle, pro_description = :pro_description, pro_prix = :pro_prix, pro_stock = :pro_stock, pro_couleur = :pro_couleur, pro_photo = :pro_photo, pro_d_modif = CURRENT_TIME(), pro_bloque = :pro_bloque WHERE pro_id = :pro_id");
+            $requete->bindValue(":pro_id", $pro_id);
+            $requete->bindValue(":pro_cat_id", $pro_cat_id);
+            $requete->bindValue(":pro_ref", $pro_ref);
+            $requete->bindValue(":pro_libelle", $pro_libelle);
+            $requete->bindValue(":pro_description", $pro_description);
+            $requete->bindValue(":pro_prix", $pro_prix);
+            $requete->bindValue(":pro_stock", $pro_stock);
+            $requete->bindValue(":pro_couleur", $pro_couleur);
+            $requete->bindValue(":pro_photo", $pro_photo);
+            //$requete->bindValue(":pro_d_ajout", $pro_d_ajout);
+            //$requete->bindValue(":pro_d_modif", $pro_d_modif);
+            $requete->bindValue(":pro_bloque", $pro_bloque);
+
+            $requete->execute();
+
+            $db = null;
         }
-
-        require("connexion_bdd.php"); // Inclusion de notr bibliothèque de fonctions
-
-        $db = connexionBase(); // Appel de la fonction de connexion
-        $requete = $db->prepare("UPDATE produits SET pro_cat_id = :pro_cat_id, pro_ref = :pro_ref, pro_libelle = :pro_libelle, pro_description = :pro_description, pro_prix = :pro_prix, pro_stock = :pro_stock, pro_couleur = :pro_couleur, pro_photo = :pro_photo, pro_d_modif = CURRENT_TIME(), pro_bloque = :pro_bloque WHERE pro_id = :pro_id");
-        $requete->bindValue(":pro_id", $pro_id);
-        $requete->bindValue(":pro_cat_id", $pro_cat_id);
-        $requete->bindValue(":pro_ref", $pro_ref);
-        $requete->bindValue(":pro_libelle", $pro_libelle);
-        $requete->bindValue(":pro_description", $pro_description);
-        $requete->bindValue(":pro_prix", $pro_prix);
-        $requete->bindValue(":pro_stock", $pro_stock);
-        $requete->bindValue(":pro_couleur", $pro_couleur);
-        $requete->bindValue(":pro_photo", $pro_photo);
-        //$requete->bindValue(":pro_d_ajout", $pro_d_ajout);
-        //$requete->bindValue(":pro_d_modif", $pro_d_modif);
-        $requete->bindValue(":pro_bloque", $pro_bloque);
-
-        $requete->execute();
-
-        $db = null;
     }
     header("Location:liste.php");
 ?>
