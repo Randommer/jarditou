@@ -67,7 +67,7 @@
 
     <div class="form-group">
         <label for="id">ID :</label>
-        <input type="text" class="form-control" placeholder="L'ID sera donné à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
+        <input type="text" class="form-control" placeholder="L'ID sera donné automatiquement à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
         <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
     </div>
 

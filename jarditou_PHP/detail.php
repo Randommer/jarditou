@@ -17,7 +17,6 @@
     $produit = $result->fetch(PDO::FETCH_OBJ);
     $result->closeCursor();
 
-
     //
     $requeteCat = "SELECT cat_id, cat_nom FROM categories ORDER by cat_id";
 
@@ -67,7 +66,7 @@
 
     <div class="form-group d-none">
         <label for="id">ID :</label>
-        <input type="text" class="form-control" placeholder="L'ID sera donné à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
+        <input type="text" class="form-control" placeholder="L'ID sera donné automatiquement à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
         <input type="hidden" class="form-control" name="id" id="id" disabled value="<?php echo $produit->pro_id; ?>">
     </div>
 

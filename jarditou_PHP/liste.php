@@ -55,7 +55,7 @@
                     echo "<td>".$row->pro_d_modif."</td>"; //Modif
                     if ($row->pro_bloque != null) //Bloqué
                     {
-                        echo "<td class='text-danger font-weight-bold'>BLOQUÉ</td>"; //Bloqué
+                        echo "<td><div class='badge badge-danger'>BLOQUÉ</div></td>"; //Bloqué
                     }
                     else
                     {

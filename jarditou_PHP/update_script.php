@@ -12,9 +12,9 @@
 <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST" )
     {
-        if (empty($_POST["id"]) || empty($_POST["cat"] || empty($_POST["ref"]) || empty($_POST["lib"]) || empty($_POST["prix"])))
+        if (empty($_POST["id"]) || empty($_POST["cat"]) || empty($_POST["ref"]) || empty($_POST["lib"]) || empty($_POST["prix"]))
         {
-            header("Location:liste.php");
+            header("Location: liste.php");
         }
         else
         {
@@ -101,7 +101,7 @@
             $db = null;
         }
     }
-    header("Location:liste.php");
+    header("Location: liste.php");
 ?>
 <?php
     include("footer.php");
