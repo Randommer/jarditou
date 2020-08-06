@@ -15,7 +15,7 @@ function Exo1()
     document.getElementById("titre").textContent = "Execice 1";
     document.getElementById("enonce").textContent = "Nous allons dénombrer les personnes d'âge strictement inférieur à 20 ans, les personnes d'âge strictement supérieur à 40 ans et celles dont l'âge est compris entre 20 ans et 40 ans (20 ans et 40 ans y compris).";
     document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer des ages les uns à la suite des autres, quand vous aurez terminé, rentrer l'age d'une personne centenaire.";
-    document.getElementById("start").innerHTML = "<button id='start1' class='btn btn-info'>Commencer</button>"
+    AffBouton(1);
     document.getElementById("result").textContent = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 1
     var start1 = document.getElementById("start1");
@@ -160,7 +160,7 @@ function Exo2()
     document.getElementById("titre").textContent = "Execice 2";
     document.getElementById("enonce").textContent = "Nous allons afficher une table de multiplication.";
     document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer un nombre entier, une fois rentré la page affichera sa table de multiplication.";
-    document.getElementById("start").innerHTML = "<button id='start2' class='btn btn-info'>Commencer</button>"
+    AffBouton(2);
     document.getElementById("result").textContent = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 2
     var start2 = document.getElementById("start2");
@@ -223,7 +223,7 @@ function Exo3()
     document.getElementById("titre").textContent = "Execice 3";
     document.getElementById("enonce").textContent = "Nous avons un tableau de prénoms, quand vous trouverez un prénom dans le tableau, il sera retiré.";
     document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer un prénom, nous allons voir si il existe dans le tableau puis le retirer de celui-ci. (Recommencer, remet le tableau à son état initial, Chercher ouvre la fenêtre pour entrer un prénom à chercher dans le tableau)";
-    document.getElementById("start").innerHTML = "<div class='btn-group'><button id='restart' class='btn btn-danger'>Recommencer</button><button id='start3' class='btn btn-info'>Chercher</button></div>"
+    AffBouton(3);
     //Création du tableau tab qui contient les prénoms
     var tab = ["Audrey", "Aurélien", "Flavien", "Jérémy", "Laurent", "Melik", "Nouara", "Salem", "Samuel", "Stéphane"];
     //Ecoute des boutons de lancement et de réinitialisation du programme de l'Exercice 3
@@ -318,7 +318,7 @@ function Exo4()
     document.getElementById("titre").textContent = "Execice 4";
     document.getElementById("enonce").textContent = "Nous allons afficher une facture à partir du prix unitaire d'un produit et de sa quantité commandée.";
     document.getElementById("deroule").textContent = "Nous allons vous demander de rentrer le prix unitaire d'un produit et la quantité commandée, nous afficherons le prix total à payer qui prend en compte les remises possibles et les frais de port.";
-    document.getElementById("start").innerHTML = "<button id='start4' class='btn btn-info'>Commencer</button>"
+    AffBouton(4);
     document.getElementById("result").textContent = "";
     //Ecoute du bouton de lancement du programme de l'Exercice 4
     var start4 = document.getElementById("start4");
@@ -435,4 +435,36 @@ function Go4()
     document.getElementById("result").innerHTML = code;
     //Changement de nom du bouton
     document.getElementById("start4").textContent = "Recommencer";
+}
+
+//Fonction de gestion d'affichage des boutons spécifiques aux exercices
+function AffBouton(bouton)
+{
+    //ajout d'une classe Bootstrap pour qu'ils n'apparaissent pas
+    document.getElementById("start1").classList.add('d-none');
+    document.getElementById("start2").classList.add('d-none');
+    document.getElementById("grp3").classList.add('d-none');
+    document.getElementById("start4").classList.add('d-none');
+    //retire la classe Bootstrap en fonction de l'exercice, permettant qu'il apparaisse
+    switch (bouton)
+    {
+        case 1:
+            document.getElementById("start1").classList.remove('d-none');
+        break;
+        
+        case 2:
+            document.getElementById("start2").classList.remove('d-none');
+        break;
+
+        //cas spécial pour l'Exercice 3, à cause de l'envoie du tableau via EventListener, si on se contente de faire disparaitre et aparaitre le bouton, il fera l'objet de plusieurs EventListener qui lanceront une copie du programme en parrallèle, donc les boutons sont recréés entièrement à chaque passage, pour qu'il n'est qu'un seul et unique EventListener
+        case 3:
+            document.getElementById("grp3").classList.remove('d-none');
+            var boutons3 = document.getElementById("grp3").innerHTML;
+            document.getElementById("grp3").innerHTML = boutons3;
+        break;
+
+        case 4:
+            document.getElementById("start4").classList.remove('d-none');
+        break;
+    } 
 }
