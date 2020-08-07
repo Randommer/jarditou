@@ -20,8 +20,10 @@
         {
             $pro_id = $_POST["id"]*1;
             $pro_cat_id = $_POST["cat"]*1;
-            $pro_ref = $_POST["ref"]."";
-            $pro_libelle = $_POST["lib"]."";
+            $pro_ref = trim($_POST["ref"]);
+            //stripslashes
+            //htmlspecialchars
+            $pro_libelle = trim($_POST["lib"]);
             $pro_prix = $_POST["prix"]*1;
 
             if (empty($_POST["des"]))
@@ -30,7 +32,7 @@
             }
             else
             {
-                $pro_description = $_POST["des"];
+                $pro_description = trim($_POST["des"]);
             }
 
             if (empty($_POST["stock"]))
@@ -48,7 +50,7 @@
             }
             else
             {
-                $pro_couleur = $_POST["color"]."";
+                $pro_couleur = trim($_POST["color"]);
             }
 
             if (empty($_POST["ext"]))
@@ -57,7 +59,7 @@
             }
             else
             {
-                $pro_photo = $_POST["ext"]."";
+                $pro_photo = trim($_POST["ext"]);
             }
 
             //$pro_d_ajout  = $_POST["pro_d_ajout"];

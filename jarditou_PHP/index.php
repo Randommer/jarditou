@@ -1,7 +1,10 @@
 <?php
+    //donne un nom à la page, que le header utilisera
     $Titre = "Accueil";
+    //donne la position de la page dans le menu du header
     $nav = 1;
-    include("header.php");
+    //Le header du site sera ici
+    require("header.php");
 ?>
 <!-- Corps du site -->
 <div class="row mx-0 mb-1">
@@ -24,5 +27,6 @@
     </div>
 </div>
 <?php
-    include("footer.php");
+    //Le footer du site sera ici
+    require("footer.php");
 ?>

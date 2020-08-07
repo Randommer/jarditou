@@ -1,7 +1,10 @@
 <?php
+    //donne un nom à la page, que le header utilisera
     $Titre = "Contact";
+    //donne la position de la page dans le menu du header
     $nav = 3;
-    include("header.php");
+    //Le header du site sera ici
+    require("header.php");
 ?>
 <?php
     //initialisation des variables qui garderont en mémoire le contenu des champs
@@ -16,6 +19,7 @@
     $sj1 = true;
     $sj2 = $sj3 = $sj4 = $sj5 = false;
 
+    //on verifie si un POST a été envoyé à la page
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         //on admet que tout les champs sont valides, puis on test si ils ne le sont pas
@@ -173,13 +177,14 @@
     //test si tout les champs obligatoire sont correctement remplis, si ils le sont, la page affichera les données reçues par le serveurs, sinon elle affichera le formulaire
     if ($nomval == 1 && $prenomval == 1 && $sexeval == 1 && $naissanceval == 1 && $CPval == 1 && $emailval == 1 && $sujetval == 1 && $questionval == 1 && $acceptedval == 1)
     {
-        include("script.php");
+        require("script.php");
     }
     else
     {
-        include("form.php");
+        require("form.php");
     }
 ?>
 <?php
-    include("footer.php");
+    //Le footer du site sera ici
+    require("footer.php");
 ?>

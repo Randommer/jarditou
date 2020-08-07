@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- CSS des icons Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
-    <title>JardiTou - <?php echo $Titre; ?></title>
+    <title>JardiTou - <?php echo $Titre;//reprend le titre que la page lui donne ?></title>
     
 </head>
 <body>
@@ -36,13 +36,13 @@
             <!-- Boutons du menu -->
             <div class="collapse navbar-collapse" id="navbarHaute">
                 <ul class="navbar-nav">
-                    <li class="nav-item <?php if ($nav == 1) { echo "active"; } ?>">
+                    <li class="nav-item <?php if ($nav == 1) { echo "active"; }//active le bouton que la page lui donne ?>">
                         <a class="nav-link" href="index.php" title="Accueil">Accueil</a>
                     </li>
-                    <li class="nav-item <?php if ($nav == 2) { echo "active"; } ?>">
+                    <li class="nav-item <?php if ($nav == 2) { echo "active"; }//active le bouton que la page lui donne ?>">
                         <a class="nav-link" href="liste.php" title="Tableau">Tableau</a>
                     </li>
-                    <li class="nav-item <?php if ($nav == 3) { echo "active"; } ?>">
+                    <li class="nav-item <?php if ($nav == 3) { echo "active"; }//active le bouton que la page lui donne ?>">
                             <a class="nav-link" href="contact.php" title="Contact">Contact</a>
                         </li>
                 </ul>
