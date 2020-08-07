@@ -28,15 +28,21 @@
     <div class="col-4"></div>
     <div class="col-4">
         <h1><?php echo $produit->pro_libelle; ?></h1>
-        <p>
-            Êtes vous sûr de vouloir supprimer <?php echo $produit->pro_libelle; ?> de la base de données ?
-        </p>
     </div>
     <div class="col-4"></div>
 </div>
 <div class="row mx-0 mb-1">
-    <div class="col-4"></div>
-    <div class="col-4">
+    <div class="d-sm-none d-lg-block col-lg-3"></div>
+    <div class="col-sm-12 col-lg-5">
+        <p>
+            Êtes vous sûr de vouloir supprimer <?php echo $produit->pro_libelle; ?> de la base de données ?
+        </p>
+    </div>
+    <div class="d-sm-none d-lg-block col-lg-2"></div>
+</div>
+<div class="row mx-0 mb-1">
+    <div class="d-sm-none d-lg-block col-lg-4"></div>
+    <div class="col-sm-12 col-lg-4">
         <form action="delete_script.php" method="POST">
             <input type="hidden" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
             <input type="submit" class="btn btn-danger" value="Supprimer">
@@ -45,7 +51,7 @@
             </a>
         </form>
     </div>
-    <div class="col-4"></div>
+    <div class="d-sm-none d-lg-block col-lg-4"></div>
 </div>
 <?php
     include("footer.php");
