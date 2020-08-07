@@ -7,7 +7,6 @@
 <div class="row mx-0 mb-1">
     <p>
         Votre produit s'enregistre dans la base de données, vous allez être redirigé.
-        <?php //echo var_dump($_FILES["img"]); ?>
     </p>
 </div>
 <?php
@@ -99,13 +98,13 @@
 
             $requete->execute();
 
-            $db = null;
+            $requete = "SELECT MAX(pro_id) AS 'pro_id' FROM produits WHERE pro_ref = '".$pro_ref."'";
+            $result = $db->query($requete);
+            $produit = $result->fetch(PDO::FETCH_OBJ);
 
-            echo var_dump($_FILES["img"]);
         }
     }
-    header("Location: liste.php");
-    echo var_dump($_FILES["img"]);
+    
     if ($_FILES["img"]["error"] == 0)
     {
         $types = array("image/gif", "image/jpeg", "image/pjpeg", "image/png", "image/x-png", "image/tiff");
@@ -118,24 +117,23 @@
         {
             $extension = substr(strrchr($_FILES["img"]["name"], "."), 1);
             echo $extension;
-            $db = connexionBase(); // Appel de la fonction de connexion
-            $requete = "SELECT MAX(pro_id) FROM produits";
-            $result = $db->query($requete);
-            $produit = $result->fetch(PDO::FETCH_OBJ);
             move_uploaded_file($_FILES["img"]["tmp_name"], "src/img/".$produit->pro_id.".".$extension);
             $requete = $db->prepare("UPDATE produits SET pro_photo = :pro_photo WHERE pro_id = :pro_id");
             $requete->bindValue(":pro_id", $produit->pro_id);
             $requete->bindValue(":pro_photo", $extension);
             $requete->execute();
-
-            $db = null;
         }
         else
         {
-            echo "Erreur durant l'importation";
+            echo "Le format de l'image n'est pas supporté";
         }
-        
     }
+    else
+    {
+        echo "Erreur durant l'importation";
+    }
+    $db = null;
+    header("Location: liste.php");
 ?>
 <?php
     include("footer.php");

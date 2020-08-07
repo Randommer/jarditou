@@ -186,9 +186,9 @@
     </div>
 
     <div class="form-group">
-        <label for="img">Fichier Image :</label>
-        <input type="file" class="form-control" name="img" id="img">
-        <input type="hidden" name="MAX_FILE_SIZE" value="30000">
+        <label for="img">Fichier image :</label>
+        <input type="file" class="form-control" name="img" id="img" accept="image/*">
+        <div class="valid-feedback">Importer une image n'est pas obligatoire pour l'Enregistrement du produit.</div>
     </div>
 
     <div class="form-group">
