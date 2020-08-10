@@ -30,6 +30,7 @@
             <?php
                 //Inclusion d'un fonction de connexion à la base de donnéee
                 require("connexion_bdd.php");
+
                 //Appel de la fonction de connexion
                 $db = connexionBase();
                 //Ecriture de la requète à envoyer à la base de donnée
@@ -46,7 +47,7 @@
                     die("Erreur dans la requête");
                 }
 
-                //Gestion si le résultat de la réquète est vide
+                //Gestion si le résultat de la requète est vide
                 if ($result->rowCount() == 0)
                 {
                     echo "<tr>";
