@@ -4,7 +4,7 @@
     //donne la position de la page dans le menu du header
     $nav = 2;
     //Le header du site sera ici
-    include("header.php");
+    require("header.php");
 ?>
 <!-- Corps du site -->
 <?php
@@ -38,10 +38,10 @@
     {
         //Récupération en objet du produit demandé en requète
         $produit = $result->fetch(PDO::FETCH_OBJ);
-        //Fermeture du curseur sur les résultats
+        //Fermeture du curseur sur le résultat
         $result->closeCursor();
 
-        //On veut récupérer les noms des différentes catégories disponible dans la base
+        ////On veut récupérer les noms des différentes catégories disponible dans la base
         //Ecriture de la requète à envoyer à la base de donnée
         $requeteCat = "SELECT cat_id, cat_nom FROM categories ORDER by cat_id";
 
@@ -69,7 +69,7 @@
         //Récupération en objet d'une entrée du résultat par tour de boucle
         while ($row = $result->fetch(PDO::FETCH_OBJ))
         {
-            //Le pointeur de la case sera l'ID de la catégorie (on le met en chaine de caracère dans le cas où des ID ont été supprimés), on rempli la case par le nom de la catégorie
+            //Les clés du tableau seront les ID de la catégorie (on le met en chaine de caracère dans le cas où des ID ont été supprimés), on rempli la case par le nom de la catégorie
             $cats["".$row->cat_id] = $row->cat_nom;
         }
         //Fermeture du curseur sur les résultats
@@ -99,78 +99,101 @@
     </div>
 
     <!-- On crée un formulaire qui nous servira de présentation pour la description produit, tout les champs sont disabled car il s'agit juste d'affichage des données produit -->
+    <!-- Tout les champs ont leurs value remplie avec les valeurs obtenues dans la base -->
     <!-- Ce formulaire sert de base à celui d'ajout et de modification, il a donc plein de truc que ne servent pas, mais qui servent dans d'autres pages (qui sont de base un copier coller de celle-ci) -->
     <form>
 
-        <!--  -->
+        <!-- Champ ID du produit, ici il ne s'affiche pas -->
         <div class="form-group d-none">
             <label for="id">ID :</label>
             <input type="text" class="form-control" placeholder="L'ID sera donné automatiquement à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
             <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
         </div>
 
+        <!-- Champ Référence -->
         <div class="form-group">
             <label for="ref">Référence :</label>
             <input type="text" class="form-control" name="ref" id="ref" placeholder="Exemple : Produit4" pattern="[\w\-]{1,10}" required disabled value="<?php echo $produit->pro_ref; ?>">
+
         </div>
 
+        <!-- Champ Catégorie -->
         <div class="form-group">
             <label for="cat">Catégorie :</label>
             <select class="form-control" name="cat" id="cat" required disabled>
                 <?php
+                    //Pour Catégorie, on fait une boucle qui crée une entrée du Selec par catégorie
                     foreach($cats as $i => $kitten)
                     {
                         echo "<option ";
+                        //Cas de la case défaut qui sera disabled
                         if ($i == "0")
                         {
                             echo "disabled ";
                         }
+                        //Cas de la catégorie trouvée dans la base, qui sera donc afficher par défaut au chargement
                         if ($produit->pro_cat_id == $i)
                         {
                             echo "selected ";
                         }
+                        //en value, on met l'ID de la catégorie
                         echo 'value="'.($i).'">';
+                        //le champ prend le nom de la catégorie
                         echo $kitten;
                         echo "</option>";
 
                     }
                 ?>
             </select>
+
         </div>
 
+        <!-- Champ Libellé -->
         <div class="form-group">
             <label for="lib">Libellé :</label>
             <input type="text" class="form-control" name="lib" id="lib" placeholder="Exemple : Produit numéro 4" pattern="[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}" required disabled value="<?php echo $produit->pro_libelle; ?>">
+
         </div>
 
+        <!-- Champ Description -->
         <div class="form-group">
             <label for="des">Description :</label>
             <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000" disabled><?php echo $produit->pro_description; ?></textarea>
         </div>
 
+        <!-- Champ Prix -->
         <div class="form-group">
             <label for="prix">Prix :</label>
             <input type="text" class="form-control" name="prix" id="prix" placeholder="Exemple : 12.99 (utilisez un point pas une virgule)" pattern="[0-9]{1,6}[.]{0,1}[0-9]{0,2}" required disabled value="<?php echo $produit->pro_prix; ?>">
+
         </div>
 
+        <!-- Champ Stock -->
         <div class="form-group">
             <label for="stock">Stock :</label>
             <input type="text" class="form-control" name="stock" id="stock" placeholder="Exemple : 2 (peut se mettre à zéro)" pattern="[0-9]{0,11}" disabled value="<?php echo $produit->pro_stock; ?>">
+
         </div>
 
+        <!-- Champ Couleur -->
         <div class="form-group">
             <label for="color">Couleur :</label>
             <input type="text" class="form-control" name="color" id="color" placeholder="Exemple : Café (peut rester vide)" pattern="[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}" disabled value="<?php echo $produit->pro_couleur; ?>">
+
         </div>
 
+        <!-- Champ Extension de la photo -->
         <div class="form-group d-none">
             <label for="ext">Extension de la photo :</label>
             <input type="hidden" class="form-control" name="ext" id="ext" placeholder="jpg" pattern="[\w]{0,4}" disabled value="<?php echo $produit->pro_photo; ?>">
+
         </div>
 
+        <!-- Bouton radio Produit bloqué -->
         <div class="form-group">
             <label for="block">Produit bloqué ? :</label>
             <br>
+                    <!-- On récupère le booléen créé plus haut si dans la base le produit n'est pas bloqué à la vente, Non sera checked, sinon ça sera Oui -->
                 <div class="form-check-inline">
                     <input class="form-check-input" type="radio" name="block" id="blocked" disabled <?php if ($block) { echo "checked"; } ?> value="blocked">
                     <label class="form-check-label" for="blocked"> Oui</label>
@@ -181,26 +204,32 @@
                 </div>
         </div>
 
+        <!-- Champ Date d'ajout -->
         <div class="form-group">
             <label for="ajout">Date d'ajout :</label>
             <input type="date" class="form-control" name="ajout" id="ajout" disabled value="<?php echo $produit->pro_d_ajout; ?>">
         </div>
 
+        <!-- Champ Date de modification -->
         <div class="form-group">
             <label for="modif">Date de modification :</label>
             <input type="text" class="form-control" name="modif" id="modif" placeholder="Ce Produit n'a jamais été modifié" disabled value="<?php echo $produit->pro_d_modif; ?>">
         </div>
 
+        <!-- Boutons en bas de page pour quitter la page de Détail -->
         <div class="form-group">
+            <!-- Bouton Retour qui envoie à la page de la liste des produits -->
             <a href="liste.php" title="Retour">
                 <button type="button" class="btn btn-secondary " id="retour">Retour</button>
             </a>
 
-            <a href="<?php echo 'update_form.php?id='.$pro_id; ?>" title="Modifier">
+            <!-- Bouton Modifier qui envoie sur le formulaire de Modification produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
+            <a href="<?php echo 'update_form.php?id='.$produit->pro_id; ?>" title="Modifier">
                 <button type="button" class="btn btn-warning" id="modifier">Modifier</button>
             </a>
 
-            <a href="<?php echo 'delete_form.php?id='.$pro_id; ?>" title="Supprimer">
+            <!-- Bouton Supprimer qui envoie sur le formulaire de Suppression produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
+            <a href="<?php echo 'delete_form.php?id='.$produit->pro_id; ?>" title="Supprimer">
                 <button type="button" class="btn btn-danger" id="supprimer">Supprimer</button>
             </a>
         </div>
@@ -209,5 +238,6 @@
 
     <?php
     }
-    include("footer.php");
+    //Le footer du site sera ici
+    require("footer.php");
 ?>
