@@ -88,7 +88,7 @@
     <div class="col-5"></div>
 </div>
 
-<form action="add_script.php" method="POST" enctype="multipart/form-data" class="was-validated" validate>
+<form action="add_script.php" method="POST" enctype="multipart/form-data" class="was-validated" id="theform" validate>
 
     <div class="form-group">
         <label for="id">ID :</label>
@@ -204,6 +204,9 @@
     </div>
 
 </form>
+
+<!-- Appel du fichier JavaScript de vérification du Formulaire -->
+<script src="assets/js/verif.js"></script>
 
 <?php
     include("footer.php");

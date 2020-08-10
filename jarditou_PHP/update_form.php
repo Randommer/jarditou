@@ -63,7 +63,7 @@
     <div class="col-4"></div>
 </div>
 
-<form action="update_script.php" method="POST" class="was-validated" validate>
+<form action="update_script.php" method="POST" class="was-validated" id="theform" validate>
 
     <div class="form-group">
         <label for="id">ID :</label>
@@ -173,6 +173,9 @@
     </div>
 
 </form>
+
+<!-- Appel du fichier JavaScript de vérification du Formulaire -->
+<script src="assets/js/verif.js"></script>
 
 <?php
     include("footer.php");
