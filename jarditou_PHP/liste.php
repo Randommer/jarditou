@@ -14,15 +14,33 @@
         <thead class="thead-light">
             <tr>
                 <th>Photo</th>
-                <th>ID</th>
-                <th>Référence</th>
-                <th>Libellé</th>
-                <th>Prix</th>
-                <th>Stock</th>
-                <th>Couleur</th>
-                <th>Ajout</th>
-                <th>Modif</th>
-                <th>Bloqué</th>
+                <th>ID</th> <!-- lien clicable
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_id ASC
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_id DESC -->
+                <th>Référence</th> <!-- lien clicable
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_ref ASC
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_ref DESC -->
+                <th>Libellé</th> <!-- lien clicable
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_libelle ASC 
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_libelle DESC -->
+                <th>Prix</th> <!-- lien clicable
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_prix ASC 
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_prix DESC -->
+                <th>Stock</th> <!-- lien clicable
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_stock ASC
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_stock DESC -->
+                <th>Couleur</th> <!-- lien clicable
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_couleur ASC 
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_couleur DESC -->
+                <th>Ajout</th> <!-- lien clicable 
+                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_d_ajout ASC 
+                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_d_ajout DESC  -->
+                <th>Modif</th> <!-- lien clicable 
+                SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif ASC
+                ou SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif DESC -->
+                <th>Bloqué</th> <!-- lien clicable
+                SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_id ASC
+                SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE pro_bloque IS NOT NULL ORDER BY pro_id ASC -->
             </tr>
         </thead>
         <!-- Corps du tableau -->
@@ -34,7 +52,7 @@
                 //Appel de la fonction de connexion
                 $db = connexionBase();
                 //Ecriture de la requète à envoyer à la base de donnée
-                $requete = "SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
 
                 //Envoie de la requète à la base
                 $result = $db->query($requete);
