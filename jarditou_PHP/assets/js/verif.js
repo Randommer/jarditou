@@ -175,52 +175,76 @@ function StockVerif()
     }
 }
 
+//Ecoute du champ Couleur, active la fonction ColorVerif quand le champ perd le focus
 document.getElementById("color").addEventListener("blur", ColorVerif);
 
+//Fonction qui vérifie si le champ Couleur correspond à une expression régulière
 function ColorVerif()
 {
+    //On récupère le champ Couleur
     var color = document.getElementById("color");
+    //Initialisation d'une expression régulière pour Couleur
     REGEX = new RegExp("^[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}$");
+    //Test si Couleur ne respecte pas l'expression régulière
     if (REGEX.test(color.value) == false)
     {
+        //ajout de classS bootstrap pour rendre le champ rouge
         color.classList.remove('is-valid');
         color.classList.add('is-invalid');
+        //Retourne 1 pour indiquer la présence d'une erreur
         return 1;
     }
-    else
+    else //si Couleur respecte l'expression régulière
     {
+        //ajout de classS bootstrap pour rendre le champ vert
         color.classList.remove('is-invalid');
         color.classList.add('is-valid');
+        //Retourne 0 pour indiquer la présence d'aucune erreur
         return 0;
     }
 }
 
+//Ecoute du champ Extension de la photo, active la fonction ExtVerif quand le champ perd le focus
 document.getElementById("ext").addEventListener("blur", ExtVerif);
 
+//Fonction qui vérifie si le champ Extension de la photo correspond à une expression régulière
 function ExtVerif()
 {
+    //On récupère le champ Extension de la photo
     var ext = document.getElementById("ext");
+    //Initialisation d'une expression régulière pour Extension de la photo
     REGEX = new RegExp("^[\\w]{0,4}$");
+    //Test si Extension de la photo ne respecte pas l'expression régulière
     if (REGEX.test(ext.value) == false)
     {
+        //ajout de classS bootstrap pour rendre le champ rouge
         ext.classList.remove('is-valid');
         ext.classList.add('is-invalid');
+        //Retourne 1 pour indiquer la présence d'une erreur
         return 1;
     }
-    else
+    else //si Extension de la photo respecte l'expression régulière
     {
+        //ajout de classS bootstrap pour rendre le champ vert
         ext.classList.remove('is-invalid');
         ext.classList.add('is-valid');
+        //Retourne 0 pour indiquer la présence d'aucune erreur
         return 0;
     }
 }
 
+//Ecoute du formulaire, active la fonction Verif quand le bouton Submit est cliqué
 document.getElementById("theform").addEventListener("submit", function(event){ Verif(event); });
 
+//Fonction de vérification des formulaires (add et update) produit
 function Verif(event)
 {
+    //Initialisation d'un entier qui comptera le nombre d'erreur dans le formulaire
     var nmbError = 0;
 
+    //On incrémente nmbError avec les résultats de toutes les fonctions de vérification de champ
+    //les fonctions renvoient 1 si ils ont une erreur et 0 quand le champ est correct
+    //nmbError compte donc le nombre d'erreurs du formulaire
     nmbError = nmbError + RefVerif();
     nmbError = nmbError + CatVerif();
     nmbError = nmbError + LibVerif();
@@ -230,8 +254,11 @@ function Verif(event)
     nmbError = nmbError + ColorVerif();
     nmbError = nmbError + ExtVerif();
 
+    //test si le formulaire à des erreurs
     if (nmbError > 0)
     {
+        //empèche l'envoie du formulaire
         event.preventDefault();
     }
+    //Ne rien faire à event, envoie le formulaire normalement vers son script de destination
 }
