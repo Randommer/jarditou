@@ -11,6 +11,7 @@ Git
 Bootstrap
 JavaScript
 Base de données/SQL
+PHP
 
 
 HTML :
@@ -53,3 +54,9 @@ Base de données/SQL :
 Réalisation de 2 fichiers SQL contenant les requêtes à écrire pour l'Evaluation Base de données
 création d'un fichier SQL EvaluationSQL1, contenant les requètes pour créer une base dont le modèle est donné dans ennoncé et créer un index spécifique
 création d'un fichier SQL EvaluationSQL2, contenant les requètes pour appeler la base de données NorthWind et donner le resultat demandé dans l'ennoncé
+
+PHP :
+Recréation du site utilisant Bootstrap en PHP
+Tout le site est desormé uniforme, avec un header et un footer dans des fichiers PHP spécifiques, utilisées par toutes les pages.
+Le Formulaire de contact est constitué de trois pages PHP, une page qui verifie les infos passées et qui affiche soit la page de formulaire, soit la page de avec les infos passées en POST
+Et enfin, la page Tableau, qui est le plus gros travail de la nouvelle version du site, la page communique avec la base de données pour afficher les produits dynamiquement. On peut consulter des pages produits spécifiques, qui donnent les infos complètes sur le produit, puis donne l'option de modifier ou supprimer le produit. Modifier donne un formulaire, qui enverra les données du formulaire à un script qui changera les données produits dans la base. Supprimer donne une page de confirmation de suppression, qui enverra ou non la demande à un script de suppression du produit dans la base. Enfin, le tableau a un bouton ajouter, qui mène à un formulaire d'ajout de produit, une fois rempli, le formulaire enverre les données à un script qui créera un nouveau produit dans la base, avec possibilité d'y adjoindre une image. Toutes les données des formulaires sont vérifiées 3 fois pour être sur que les valeurs envoyées à la base respectent sa structure, il y a une vérfication au niveau du HTML, avec infos à respectés dans les balises des formulaires, une deuxième vérfication JavaScript, qui vérifie les champs au fur et à mesure qu'ils sont remplis puis une dernière fois au moment de l'envoie du formulaire et une troisème et dernière vérification au niveau du script PHP, les données sont verifiées et formatées avant d'être envoyées à la base.

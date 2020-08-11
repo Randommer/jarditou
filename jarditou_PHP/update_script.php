@@ -226,7 +226,6 @@
                 $requete->bindValue(":pro_photo", $pro_photo);
                 $requete->bindValue(":pro_bloque", $pro_bloque);
 
-
                 //Exécute la requète
                 $requete->execute();
 
