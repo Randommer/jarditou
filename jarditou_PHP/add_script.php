@@ -1,23 +1,34 @@
 <?php
+    //donne un nom à la page, que le header utilisera
     $Titre = "Enregistrement dans la base";
+    //donne la position de la page dans le menu du header
     $nav = 2;
-    include("header.php");
+    //Le header du site sera ici
+    require("header.php");
+
+    //Fonction de sécurité qui prend une chaine de caractères, y retire des blancs, les antislashs et transforme les caractères spéciaux en entités HTML
     function verifstring($chaine)
     {
+        //verifie que le paramètre est bien une chaine de caractères
         if (is_string($chaine))
         {
+            //on lui retire les espaces au début et en fin de chaine
             $chaine = trim($chaine);
+            //on lui retire les antislashs
             $chaine = stripslashes($chaine);
+            //on transforme les caractères spéciaux en entités HTML, puis retourne la nouvelle chaine
             return htmlspecialchars($chaine);
         }
-        else
+        else //le paramètre n'est pas une chaine de caractères
         {
+            //on revoie rien
             return null;
         }
     }
 ?>
 <!-- Corps du site -->
 <div class="row mx-0 mb-1">
+    <!-- Message à l'utilisateur si la base de données met du temps à répondre -->
     <p>
         Votre produit s'enregistre dans la base de données, vous allez être redirigé.
     </p>
@@ -210,8 +221,10 @@
     {
         $db = null;
     }
+    //on redirige le navigateur vers la liste produit
     header("Location: liste.php");
 ?>
 <?php
-    include("footer.php");
+    //Le footer du site sera ici
+    require("footer.php");
 ?>

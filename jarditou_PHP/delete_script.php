@@ -1,69 +1,80 @@
 <?php
+    //donne un nom à la page, que le header utilisera
     $Titre = "Suppression dans la base";
+    //donne la position de la page dans le menu du header
     $nav = 2;
-    include("header.php");
+    //Le header du site sera ici
+    require("header.php");
 ?>
 <!-- Corps du site -->
 <div class="row mx-0 mb-1">
+    <!-- Message à l'utilisateur si la base de données met du temps à répondre -->
     <p>
         Votre produit se supprime de la base de données, vous allez être redirigé.
     </p>
 </div>
 <?php
+    //on verifie si un POST a été envoyé à la page
     if ($_SERVER["REQUEST_METHOD"] == "POST" )
     {
+        //on vérifie que le champ ID a été renseigné
         if (empty($_POST["id"]))
         {
+            //on redirige le navigateur vers la liste produit
             header("Location: liste.php");
         }
-        else
+        else //le champ ID est renseigné
         {
-            $pro_id = $_POST["id"];
-            //$pro_cat_id = $_POST["cat"];
-            //$pro_ref = $_POST["ref"];
-            //$pro_libelle = $_POST["lib"];
-            //$pro_description = $_POST["des"];
-            //$pro_prix = $_POST["prix"];
-            //$pro_stock = $_POST["stock"];
-            //$pro_couleur = $_POST["color"];
-            //$pro_photo = $_POST["ext"];
+            //Initialisation d'un booléen qui déterminera la validité ou non des données POST
+            //si il est vrai, on pourra faire appel à la base de donnée
+            //si il est faux, on donnera un message d'erreur et on redirige le navigateur vers la liste produit
+            $verif = true;
 
-            //$pro_d_ajout  = $_POST["pro_d_ajout"];
-            //$pro_d_modif = getdate();
-
-            /* if ($_POST["block"] == true)
+            //on verifie que ID est une valeur numérique, supérieur à 0
+            if (is_numeric($_POST["id"]) && $_POST["id"] > 0)
             {
-                $pro_bloque = 0;
+                //les valeurs POST sont des chaines de caractères, on change ID en entier et le stock dans une variable
+                $pro_id = intval($_POST["id"]);
             }
-            else
+            else //ID n'est pas numérique ou supérieur à 0
             {
-                $pro_bloque = null;
-            } */
+                //données invalides
+                $verif = false;
+            }
 
-            require("connexion_bdd.php"); // Inclusion de notre bibliothèque de fonctions
+            //Inclusion d'un fonction de connexion à la base de donnéee
+            require("connexion_bdd.php");
 
-            $db = connexionBase(); // Appel de la fonction de connexion
-            $requete = $db->prepare("DELETE FROM produits WHERE pro_id = :pro_id");
-            $requete->bindValue(":pro_id", $pro_id);
-            //$requete->bindValue(":pro_cat_id", $pro_cat_id);
-            //$requete->bindValue(":pro_ref", $pro_ref);
-            //$requete->bindValue(":pro_libelle", $pro_libelle);
-            //$requete->bindValue(":pro_description", $pro_description);
-            //$requete->bindValue(":pro_prix", $pro_prix);
-            //$requete->bindValue(":pro_stock", $pro_stock);
-            //$requete->bindValue(":pro_couleur", $pro_couleur);
-            //$requete->bindValue(":pro_photo", $pro_photo);
-            //$requete->bindValue(":pro_d_ajout", $pro_d_ajout);
-            //$requete->bindValue(":pro_d_modif", $pro_d_modif);
-            //$requete->bindValue(":pro_bloque", $pro_bloque);
+            //on verifie qu'il n'y aucune erreur dans les données
+            if ($verif)
+            {
+                //Appel de la fonction de connexion
+                $db = connexionBase();
 
-            $requete->execute();
+                //Préparation de la requète à envoyer à la base de donnée
+                $requete = $db->prepare("DELETE FROM produits WHERE pro_id = :pro_id");
 
-            $db = null;
+                //On met les données récupérées dans la requète
+                $requete->bindValue(":pro_id", $pro_id);
+
+                
+                //Exécute la requète
+                $requete->execute();
+
+                //Ferme la connexion vers la base de donnée
+                $db = null;
+            }
+            else //au moins une donnée n'est pas valide
+            {
+                //Message d'erreur
+                echo "Erreur dans les données envoyées.";
+            }
         }
     }
+    //on redirige le navigateur vers la liste produit
     header("Location: liste.php");
 ?>
 <?php
-    include("footer.php");
+    //Le footer du site sera ici
+    require("footer.php");
 ?>
