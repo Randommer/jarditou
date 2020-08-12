@@ -12,35 +12,116 @@
     <table class="table table-bordered table-responsive-lg table-striped">
         <!-- Entête du tableau -->
         <thead class="thead-light">
+            <?php
+                $aff2 = $aff4 = $aff6 = $aff8 = $aff10 = $aff12 = $aff14 = $aff16 = $aff18 = false;
+                //echo var_dump($_SERVER);
+                if (empty($_GET["by"]))
+                {
+                    $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                }
+                else
+                {
+                    $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits";
+                    switch ($_GET["by"])
+                    {
+                        case 1:
+                            $requete = $requete." ORDER BY pro_id ASC";
+                            $aff2 = true;
+                        break;
+
+                        case 2:
+                            $requete = $requete." ORDER BY pro_id DESC";
+                        break;
+
+                        case 3:
+                            $requete = $requete." ORDER BY pro_ref ASC";
+                            $aff4 = true;
+                        break;
+
+                        case 4:
+                            $requete = $requete." ORDER BY pro_ref DESC";
+                        break;
+
+                        case 5:
+                            $requete = $requete." ORDER BY pro_libelle ASC";
+                            $aff6 = true;
+                        break;
+
+                        case 6:
+                            $requete = $requete." ORDER BY pro_libelle DESC";
+                        break;
+
+                        case 7:
+                            $requete = $requete." ORDER BY pro_prix ASC";
+                            $aff8 = true;
+                        break;
+
+                        case 8:
+                            $requete = $requete." ORDER BY pro_prix DESC";
+                        break;
+
+                        case 9:
+                            $requete = $requete." ORDER BY pro_stock ASC";
+                            $aff10 = true;
+                        break;
+
+                        case 10:
+                            $requete = $requete." ORDER BY pro_stock DESC";
+                        break;
+
+                        case 11:
+                            $requete = $requete." ORDER BY pro_couleur ASC";
+                            $aff12 = true;
+                        break;
+
+                        case 12:
+                            $requete = $requete." ORDER BY pro_couleur DESC";
+                        break;
+
+                        case 13:
+                            $requete = $requete." ORDER BY pro_d_ajout ASC";
+                            $aff14 = true;
+                        break;
+
+                        case 14:
+                            $requete = $requete." ORDER BY pro_d_ajout DESC";
+                        break;
+
+                        case 15:
+                            $requete = $requete." WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif ASC";
+                            $aff16 = true;
+                        break;
+
+                        case 16:
+                            $requete = $requete." WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif DESC";
+                        break;
+
+                        case 17:
+                            $requete = $requete." WHERE pro_bloque IS NOT NULL ORDER BY pro_id ASC";
+                            $aff18 = true;
+                        break;
+
+                        case 18:
+                            $requete = $requete." WHERE ISNULL(pro_bloque) ORDER BY pro_id ASC";
+                        break;
+
+                        default:
+                        $requete = $requete." WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                    }
+                    $requete = $requete.", pro_id ASC";
+                }
+            ?>
             <tr>
                 <th>Photo</th>
-                <th>ID</th> <!-- lien clicable
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_id ASC
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_id DESC -->
-                <th>Référence</th> <!-- lien clicable
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_ref ASC
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_ref DESC -->
-                <th>Libellé</th> <!-- lien clicable
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_libelle ASC 
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_libelle DESC -->
-                <th>Prix</th> <!-- lien clicable
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_prix ASC 
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_prix DESC -->
-                <th>Stock</th> <!-- lien clicable
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_stock ASC
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_stock DESC -->
-                <th>Couleur</th> <!-- lien clicable
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_couleur ASC 
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_couleur DESC -->
-                <th>Ajout</th> <!-- lien clicable 
-                SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_d_ajout ASC 
-                ou SELECT pro_photo, pro_id, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits ORDER BY pro_d_ajout DESC  -->
-                <th>Modif</th> <!-- lien clicable 
-                SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif ASC
-                ou SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif DESC -->
-                <th>Bloqué</th> <!-- lien clicable
-                SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_id ASC
-                SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE pro_bloque IS NOT NULL ORDER BY pro_id ASC -->
+                <th><a href="liste.php?by=<?php if($aff2) {echo 2;}else{echo 1;} ?>">ID</a></th>
+                <th><a href="liste.php?by=<?php if($aff4) {echo 4;}else{echo 3;} ?>">Référence</a></th>
+                <th><a href="liste.php?by=<?php if($aff6) {echo 6;}else{echo 5;} ?>">Libellé</a></th>
+                <th><a href="liste.php?by=<?php if($aff8) {echo 8;}else{echo 7;} ?>">Prix</a></th>
+                <th><a href="liste.php?by=<?php if($aff10) {echo 10;}else{echo 9;} ?>">Stock</a></th>
+                <th><a href="liste.php?by=<?php if($aff12) {echo 12;}else{echo 11;} ?>">Couleur</a></th>
+                <th><a href="liste.php?by=<?php if($aff14) {echo 14;}else{echo 13;} ?>">Ajout</a></th>
+                <th><a href="liste.php?by=<?php if($aff16) {echo 16;}else{echo 15;} ?>">Modif</a></th>
+                <th><a href="liste.php?by=<?php if($aff18) {echo 18;}else{echo 17;} ?>">Bloqué</a></th>
             </tr>
         </thead>
         <!-- Corps du tableau -->
@@ -52,7 +133,7 @@
                 //Appel de la fonction de connexion
                 $db = connexionBase();
                 //Ecriture de la requète à envoyer à la base de donnée
-                $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                //$requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
 
                 //Envoie de la requète à la base
                 $result = $db->query($requete);
