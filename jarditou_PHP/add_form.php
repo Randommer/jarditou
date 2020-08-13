@@ -134,24 +134,28 @@
                 //Pour Catégorie, on fait une boucle qui crée une entrée du Selec par catégorie
                 foreach($cats as $i => $kitten)
                 {
-                    echo "<option ";
-                    //Cas de la case défaut qui sera disabled
-                    if ($i == "0")
-                    {
-                        echo "disabled ";
-                    }
-                    //Cas de la catégorie trouvée dans la base, qui sera donc afficher par défaut au chargement
-                    if ($produit->pro_cat_id == $i)
-                    {
-                        echo "selected ";
-                    }
-                    ////Au chargement de ce formulaire, la case par défaut sera toujours selectionné, si tout va bien ;)
-                    //en value, on met l'ID de la catégorie
-                    echo 'value="'.($i).'">';
-                    //le champ prend le nom de la catégorie
-                    echo $kitten;
-                    echo "</option>";
-
+            ?>
+                    <option 
+                        <?php
+                        //Cas de la case défaut qui sera disabled
+                        if ($i == "0")
+                        {
+                            echo "disabled ";
+                        }
+                        //Cas de la catégorie trouvée dans la base, qui sera donc afficher par défaut au chargement
+                        if ($produit->pro_cat_id == $i)
+                        {
+                            echo "selected ";
+                        }
+                        ////Au chargement de ce formulaire, la case par défaut sera toujours selectionné, si tout va bien ;)
+                        //en value, on met l'ID de la catégorie
+                        echo 'value="'.($i).'"';
+                        ?>
+                        >
+                        <!-- le champ prend le nom de la catégorie -->
+                        <?php echo $kitten; ?>
+                        </option>
+            <?php
                 }
             ?>
         </select>

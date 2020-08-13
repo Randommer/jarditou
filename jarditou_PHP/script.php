@@ -33,18 +33,23 @@
                 //si l'utilisateur a rentré une adresse, affiche l'adresse
                 if ($adresse != "")
                 {
-                    echo "<dt>Adresse : </dt>";
-                    echo "<dd>";
-                    echo $adresse;
-                    echo "</dd>";
+            ?>
+                    <dt>Adresse : </dt>
+                    <dd>
+                        <?php echo $adresse; ?>
+                    </dd>
+            <?php
                 }
+                
                 //si l'utilisateur a rentré une ville, affiche la ville
                 if ($ville != "")
                 {
-                    echo "<dt>Ville : </dt>";
-                    echo "<dd>";
-                    echo $ville;
-                    echo "</dd>";
+            ?>
+                    <dt>Ville : </dt>
+                    <dd>
+                        <?php echo $ville; ?>
+                    </dd>
+            <?php
                 }
             ?>
 

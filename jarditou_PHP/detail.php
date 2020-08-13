@@ -93,7 +93,7 @@
         <div class="col-4"></div>
         <div class="col-4">
             <!-- On crée une balise image avec l'adresse préremplie, à laquelle on ajoute le ID produit et l'extension photo trouvés donnés par la base -->
-            <?php echo "<img class='img-fluid' src='src/img/".$produit->pro_id.".".$produit->pro_photo."' alt='".$produit->pro_libelle." ".$produit->pro_couleur."'>"; ?>
+            <img class='img-fluid' src='src/img/<?php echo $produit->pro_id.".".$produit->pro_photo; ?>' alt='<?php echo $produit->pro_libelle." ".$produit->pro_couleur; ?>'>
         </div>
         <div class="col-4"></div>
     </div>
@@ -125,7 +125,9 @@
                     //Pour Catégorie, on fait une boucle qui crée une entrée du Selec par catégorie
                     foreach($cats as $i => $kitten)
                     {
-                        echo "<option ";
+                ?>
+                        <option 
+                        <?php
                         //Cas de la case défaut qui sera disabled
                         if ($i == "0")
                         {
@@ -137,11 +139,13 @@
                             echo "selected ";
                         }
                         //en value, on met l'ID de la catégorie
-                        echo 'value="'.($i).'">';
-                        //le champ prend le nom de la catégorie
-                        echo $kitten;
-                        echo "</option>";
-
+                        echo 'value="'.($i).'"';
+                        ?>
+                        >
+                        <!-- le champ prend le nom de la catégorie -->
+                        <?php echo $kitten; ?>
+                        </option>
+                <?php
                     }
                 ?>
             </select>
@@ -224,12 +228,12 @@
             </a>
 
             <!-- Bouton Modifier qui envoie sur le formulaire de Modification produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
-            <a href="<?php echo 'update_form.php?id='.$produit->pro_id; ?>" title="Modifier">
+            <a href='update_form.php?id=<?php echo $produit->pro_id; ?>' title='Modifier'>
                 <button type="button" class="btn btn-warning" id="modifier">Modifier</button>
             </a>
 
             <!-- Bouton Supprimer qui envoie sur le formulaire de Suppression produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
-            <a href="<?php echo 'delete_form.php?id='.$produit->pro_id; ?>" title="Supprimer">
+            <a href='delete_form.php?id=<?php echo $produit->pro_id; ?>' title='Supprimer'>
                 <button type="button" class="btn btn-danger" id="supprimer">Supprimer</button>
             </a>
         </div>

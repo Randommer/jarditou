@@ -13,20 +13,37 @@
         <!-- Entête du tableau -->
         <thead class="thead-light">
             <?php
-                $aff2 = $aff4 = $aff6 = $aff8 = $aff10 = $aff12 = $aff14 = $aff16 = $aff18 = false;
-                //echo var_dump($_SERVER);
+                //initialisation d'un tableau pour la gestion des flèches et des liens de tri
+                $aff = array(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+                //initialisation d'un marqueur pour le tableau
+                $affkey = 0;
+                ////Ecriture de la requète à envoyer à la base de donnée
+                //on vérifie si il existe une valeur by via GET
                 if (empty($_GET["by"]))
                 {
+                    //requète par défaut
                     $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                    //On met les deux icones qui correspondent à la requète
+                    $aff[14] = true;
+                    $aff[18] = true;
                 }
-                else
+                else //il y a une valeur by via GET
                 {
+                    //on vérifie si by est une valeur numérique
+                    if (is_numeric($_GET["by"]))
+                    {
+                        //on enregistre la valeur by dans le marqueur pour le tableau
+                        $affkey = $_GET["by"];
+                        //on met l'icone qui correspond au tri qu'on va mettre en requète
+                        $aff[$affkey] = true;
+                    }
+                    //début de la requète
                     $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits";
+                    //en fonction de la valeur by, on change la fin de la requète
                     switch ($_GET["by"])
                     {
                         case 1:
                             $requete = $requete." ORDER BY pro_id ASC";
-                            $aff2 = true;
                         break;
 
                         case 2:
@@ -35,7 +52,6 @@
 
                         case 3:
                             $requete = $requete." ORDER BY pro_ref ASC";
-                            $aff4 = true;
                         break;
 
                         case 4:
@@ -44,7 +60,6 @@
 
                         case 5:
                             $requete = $requete." ORDER BY pro_libelle ASC";
-                            $aff6 = true;
                         break;
 
                         case 6:
@@ -53,7 +68,6 @@
 
                         case 7:
                             $requete = $requete." ORDER BY pro_prix ASC";
-                            $aff8 = true;
                         break;
 
                         case 8:
@@ -62,7 +76,6 @@
 
                         case 9:
                             $requete = $requete." ORDER BY pro_stock ASC";
-                            $aff10 = true;
                         break;
 
                         case 10:
@@ -71,7 +84,6 @@
 
                         case 11:
                             $requete = $requete." ORDER BY pro_couleur ASC";
-                            $aff12 = true;
                         break;
 
                         case 12:
@@ -80,7 +92,6 @@
 
                         case 13:
                             $requete = $requete." ORDER BY pro_d_ajout ASC";
-                            $aff14 = true;
                         break;
 
                         case 14:
@@ -89,7 +100,6 @@
 
                         case 15:
                             $requete = $requete." WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif ASC";
-                            $aff16 = true;
                         break;
 
                         case 16:
@@ -98,7 +108,6 @@
 
                         case 17:
                             $requete = $requete." WHERE pro_bloque IS NOT NULL ORDER BY pro_id ASC";
-                            $aff18 = true;
                         break;
 
                         case 18:
@@ -107,21 +116,60 @@
 
                         default:
                         $requete = $requete." WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                        $aff[14] = true;
+                        $aff[18] = true;
                     }
+                    //un deuxième ORDER BY pour la requète
                     $requete = $requete.", pro_id ASC";
                 }
             ?>
-            <tr>
-                <th>Photo</th>
-                <th><a href="liste.php?by=<?php if($aff2) {echo 2;}else{echo 1;} ?>">ID</a></th>
-                <th><a href="liste.php?by=<?php if($aff4) {echo 4;}else{echo 3;} ?>">Référence</a></th>
-                <th><a href="liste.php?by=<?php if($aff6) {echo 6;}else{echo 5;} ?>">Libellé</a></th>
-                <th><a href="liste.php?by=<?php if($aff8) {echo 8;}else{echo 7;} ?>">Prix</a></th>
-                <th><a href="liste.php?by=<?php if($aff10) {echo 10;}else{echo 9;} ?>">Stock</a></th>
-                <th><a href="liste.php?by=<?php if($aff12) {echo 12;}else{echo 11;} ?>">Couleur</a></th>
-                <th><a href="liste.php?by=<?php if($aff14) {echo 14;}else{echo 13;} ?>">Ajout</a></th>
-                <th><a href="liste.php?by=<?php if($aff16) {echo 16;}else{echo 15;} ?>">Modif</a></th>
-                <th><a href="liste.php?by=<?php if($aff18) {echo 18;}else{echo 17;} ?>">Bloqué</a></th>
+            <tr class="text-center">
+                <th class="align-middle">Photo</th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[1]){echo 2;}else{echo 1;} ?>" title="Trier par ID">
+                        ID<i class="fas fa-sort-<?php if($aff[1]){echo "up";} if($aff[2]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[3]){echo 4;}else{echo 3;} ?>" title="Trier par Référence">
+                        Référence<i class="fas fa-sort-<?php if($aff[3]){echo "up";} if($aff[4]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[5]){echo 6;}else{echo 5;} ?>" title="Trier par Libellé">
+                        Libellé<i class="fas fa-sort-<?php if($aff[5]){echo "up";} if($aff[6]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[7]){echo 8;}else{echo 7;} ?>" title="Trier par Prix">
+                        Prix<i class="fas fa-sort-<?php if($aff[7]){echo "up";} if($aff[8]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[9]){echo 10;}else{echo 9;} ?>" title="Trier par Stock">
+                        Stock<i class="fas fa-sort-<?php if($aff[9]){echo "up";} if($aff[10]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[11]){echo 12;}else{echo 11;} ?>" title="Trier par Couleur">
+                        Couleur<i class="fas fa-sort-<?php if($aff[11]){echo "up";} if($aff[12]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[13]){echo 14;}else{echo 13;} ?>" title="Trier par Date d'ajout">
+                        Date d'ajout<i class="fas fa-sort-<?php if($aff[13]){echo "up";} if($aff[14]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[15]){echo 16;}else{echo 15;} ?>" title="Trier par Date de modification">
+                        Date de modif<i class="fas fa-sort-<?php if($aff[15]){echo "up";} if($aff[16]){echo "down";} ?> fa-xs"></i>
+                    </a>
+                </th>
+                <th class="align-middle">
+                    <a href="liste.php?by=<?php if($aff[17]) {echo '18" title="Ne pas ';}else{echo '17" title="';} ?>Afficher les Produits Bloqués">
+                        Bloqué<i class="far fa-<?php if($aff[17]){echo "check-square";} if($aff[18]){echo "square";} ?> fa-xs"></i>
+                    </a>
+                </th>
             </tr>
         </thead>
         <!-- Corps du tableau -->
@@ -149,44 +197,73 @@
                 //Gestion si le résultat de la requète est vide
                 if ($result->rowCount() == 0)
                 {
-                    echo "<tr>";
-                    echo "<td colspan='10'><h1 class='text-danger font-weight-bold'>Le tableau est vide</h1></td>";
-                    echo "</tr>";
+            ?>
+                    <tr>
+                        <td colspan='10'>
+                            <h1 class='text-danger font-weight-bold'>
+                                Le tableau est vide
+                            </h1>
+                        </td>
+                    </tr>
+            <?php
                 }
                 else
                 {
                     //Récupération en objet d'une entrée du résultat par tour de boucle
                     while ($row = $result->fetch(PDO::FETCH_OBJ))
                     {
-                        //Ouverture d'une ligne du tableau
-                        echo "<tr class='text-center'>";
+            ?>
+                        <!-- Ouverture d'une ligne du tableau -->
+                        <tr class='text-center'>
 
-                        //Remplissage de la case avec une balise image
-                        echo "<td class='table-warning'><img src='src/img/".$row->pro_id.".".$row->pro_photo."' width='100' alt='".$row->pro_libelle." ".$row->pro_couleur."'></td>";//Photo
+                        <!-- Remplissage de la case avec une balise image -->
+                        <td class='table-warning'>
+                            <img src='src/img/<?php echo $row->pro_id.".".$row->pro_photo;?>' alt='<?php echo $row->pro_libelle." ".$row->pro_couleur; ?>' width='100'>
+                        </td> <!-- Photo -->
 
-                        echo "<td>".$row->pro_id."</td>";//ID
-                        echo "<td>".$row->pro_ref."</td>";//Référence
+                        <td><?php echo $row->pro_id; ?></td> <!-- ID -->
+                        <td><?php echo $row->pro_ref; ?></td> <!-- Référence -->
 
-                        //Remplissage de la case avec un lien vers la page detail du produit
-                        echo '<td class="table-warning"><a class="text-danger font-weight-bold" href="detail.php?id='.$row->pro_id.'" title="'.$row->pro_libelle.'"><u>'.strtoupper($row->pro_libelle).'</u></a></td>';//Libellé
+                        <!-- Remplissage de la case avec un lien vers la page detail du produit -->
+                        <td class="table-warning">
+                            <a class='text-danger font-weight-bold' href='detail.php?id=<?php echo $row->pro_id; ?>' title='<?php echo $row->pro_libelle; ?>'>
+                                <u>
+                                    <?php echo strtoupper($row->pro_libelle); ?>
+                                </u>
+                            </a>
+                        </td> <!-- Libellé -->
 
-                        echo "<td>".$row->pro_prix." €</td>";//Prix
-                        echo "<td>".$row->pro_stock."</td>";//Stock
-                        echo "<td>".$row->pro_couleur."</td>";//Couleur
-                        echo "<td>".$row->pro_d_ajout."</td>";//Ajout
-                        echo "<td>".$row->pro_d_modif."</td>";//Modif
+                        <td>
+                            <?php
+                                if($row->pro_prix == round($row->pro_prix))
+                                {
+                                    echo round($row->pro_prix);
+                                }
+                                else
+                                {
+                                    echo $row->pro_prix;
+                                }
+                            ?>€
+                        </td> <!-- Prix -->
+                        <td><?php echo $row->pro_stock; ?></td> <!-- Stock -->
+                        <td><?php echo $row->pro_couleur; ?></td> <!-- Couleur -->
+                        <td><?php echo $row->pro_d_ajout; ?></td> <!-- Ajout -->
+                        <td><?php echo $row->pro_d_modif; ?></td> <!-- Modif -->
 
-                        //vérifie la valeur de pro_bloque et affiche en conséquence
-                        if ($row->pro_bloque != null)
-                        {
-                            echo "<td><div class='badge badge-danger'>BLOQUÉ</div></td>";//Bloqué
-                        }
-                        else
-                        {
-                            echo "<td></td>";//Bloqué
-                        }
-                        //Fermeture de la ligne du tableau
-                        echo"</tr>";
+                        <!-- vérifie la valeur de pro_bloque et affiche en conséquence -->
+                        <td>
+                            <?php
+                                if ($row->pro_bloque != null)
+                                {
+                                    echo "<div class='badge badge-danger'>";
+                                    echo "<i class='fas fa-lock fa-2x'></i>";
+                                    echo "</div>";
+                                }
+                            ?>
+                        </td> <!-- Bloqué -->
+                        <!-- Fermeture de la ligne du tableau -->
+                        </tr>
+            <?php
                     }
                 }
                 //Fermeture du curseur sur les résultats
