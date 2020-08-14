@@ -127,47 +127,47 @@
                 <th class="align-middle">Photo</th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[1]){echo 2;}else{echo 1;} ?>" title="Trier par ID">
-                        ID<i class="fas fa-sort-<?php if($aff[1]){echo "up";} if($aff[2]){echo "down";} ?> fa-xs"></i>
+                        ID<i class="fas fa-sort-<?php if($aff[1]){echo "up";} if($aff[2]){echo "down";} if(!$aff[1] && !$aff[2]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[3]){echo 4;}else{echo 3;} ?>" title="Trier par Référence">
-                        Référence<i class="fas fa-sort-<?php if($aff[3]){echo "up";} if($aff[4]){echo "down";} ?> fa-xs"></i>
+                        Référence<i class="fas fa-sort-<?php if($aff[3]){echo "up";} if($aff[4]){echo "down";} if(!$aff[3] && !$aff[4]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[5]){echo 6;}else{echo 5;} ?>" title="Trier par Libellé">
-                        Libellé<i class="fas fa-sort-<?php if($aff[5]){echo "up";} if($aff[6]){echo "down";} ?> fa-xs"></i>
+                        Libellé<i class="fas fa-sort-<?php if($aff[5]){echo "up";} if($aff[6]){echo "down";} if(!$aff[5] && !$aff[6]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[7]){echo 8;}else{echo 7;} ?>" title="Trier par Prix">
-                        Prix<i class="fas fa-sort-<?php if($aff[7]){echo "up";} if($aff[8]){echo "down";} ?> fa-xs"></i>
+                        Prix<i class="fas fa-sort-<?php if($aff[7]){echo "up";} if($aff[8]){echo "down";} if(!$aff[7] && !$aff[8]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[9]){echo 10;}else{echo 9;} ?>" title="Trier par Stock">
-                        Stock<i class="fas fa-sort-<?php if($aff[9]){echo "up";} if($aff[10]){echo "down";} ?> fa-xs"></i>
+                        Stock<i class="fas fa-sort-<?php if($aff[9]){echo "up";} if($aff[10]){echo "down";} if(!$aff[9] && !$aff[10]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[11]){echo 12;}else{echo 11;} ?>" title="Trier par Couleur">
-                        Couleur<i class="fas fa-sort-<?php if($aff[11]){echo "up";} if($aff[12]){echo "down";} ?> fa-xs"></i>
+                        Couleur<i class="fas fa-sort-<?php if($aff[11]){echo "up";} if($aff[12]){echo "down";} if(!$aff[11] && !$aff[12]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[13]){echo 14;}else{echo 13;} ?>" title="Trier par Date d'ajout">
-                        Date d'ajout<i class="fas fa-sort-<?php if($aff[13]){echo "up";} if($aff[14]){echo "down";} ?> fa-xs"></i>
+                        Date d'ajout<i class="fas fa-sort-<?php if($aff[13]){echo "up";} if($aff[14]){echo "down";} if(!$aff[13] && !$aff[14]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[15]){echo 16;}else{echo 15;} ?>" title="Trier par Date de modification">
-                        Date de modif<i class="fas fa-sort-<?php if($aff[15]){echo "up";} if($aff[16]){echo "down";} ?> fa-xs"></i>
+                        Date de modif<i class="fas fa-sort-<?php if($aff[15]){echo "up";} if($aff[16]){echo "down";} if(!$aff[15] && !$aff[16]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[17]) {echo '18" title="Ne pas ';}else{echo '17" title="';} ?>Afficher les Produits Bloqués">
-                        Bloqué<i class="far fa-<?php if($aff[17]){echo "check-square";} if($aff[18]){echo "square";} ?> fa-xs"></i>
+                        Bloqué<i class="far fa-<?php if($aff[17]){echo "check-square";} if($aff[18]){echo "square";} if(!$aff[17] && !$aff[18]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
             </tr>
