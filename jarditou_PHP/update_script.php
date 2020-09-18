@@ -54,7 +54,7 @@
             if (is_numeric($_POST["id"]) && $_POST["id"] > 0)
             {
                 //les valeurs POST sont des chaines de caractères, on change ID en entier et le stock dans une variable
-                $pro_id = intval($_POST["id"]);
+                $post_id = intval($_POST["id"]);
             }
             else //ID n'est pas numérique ou supérieur à 0
             {
@@ -66,7 +66,7 @@
             if (is_numeric($_POST["cat"]) && $_POST["cat"] != 0)
             {
                 //les valeurs POST sont des chaines de caractères, on change Catégorie en entier et le stock dans une variable
-                $pro_cat_id = intval($_POST["cat"]);
+                $post_cat_id = intval($_POST["cat"]);
             }
             else //Catégorie n'est pas numérique ou différente de 0
             {
@@ -75,18 +75,18 @@
             }
             
             //on passe la valeur POST de Référence par verifstring et le stock dans une variable
-            $pro_ref = verifstring($_POST["ref"]);
+            $post_ref = verifstring($_POST["ref"]);
             //on cherche si Référence ne respecte pas son expression regulière 
-            if (preg_match("/[\w\-]{1,10}/", $pro_ref) == false)
+            if (preg_match("/[\w\-]{1,10}/", $post_ref) == false)
             {
                 //données invalides
                 $verif = false;
             }
             
             //on passe la valeur POST de Libellé par verifstring et le stock dans une variable
-            $pro_libelle = verifstring($_POST["lib"]);
+            $post_libelle = verifstring($_POST["lib"]);
             //on cherche si Libellé ne respecte pas son expression regulière
-            if (preg_match("/[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}/", $pro_libelle) == false)
+            if (preg_match("/[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}/", $post_libelle) == false)
             {
                 //données invalides
                 $verif = false;
@@ -96,14 +96,14 @@
             if (empty($_POST["des"]))
             {
                 //on stock une valeur vide dans une variable
-                $pro_description = NULL;
+                $post_description = NULL;
             }
             else //le champ Description est renseigné
             {
                 //on passe la valeur POST de Description par verifstring et le stock dans une variable
-                $pro_description = verifstring($_POST["des"]);
+                $post_description = verifstring($_POST["des"]);
                 //on cherche si Description depasse sa limite de 1000 caractères
-                if (strlen($pro_description) > 1000)
+                if (strlen($post_description) > 1000)
                 {
                     //données invalides
                     $verif = false;
@@ -114,7 +114,7 @@
             if (is_numeric($_POST["prix"]) && $_POST["prix"] > 0 && preg_match("/[0-9]{1,6}[.]{0,1}[0-9]{0,2}/", $_POST["prix"]))
             {
                 //les valeurs POST sont des chaines de caractères, on change Prix en décimal et le stock dans une variable
-                $pro_prix = floatval($_POST["prix"]);
+                $post_prix = floatval($_POST["prix"]);
             }
             else //Prix n'est pas numérique, supérieur à 0 ou ne respecte pas son expression regulière
             {
@@ -126,7 +126,7 @@
             if (empty($_POST["stock"]))
             {
                 //on stock 0 dans une variable
-                $pro_stock = 0;
+                $post_stock = 0;
             }
             else //le champ Stock est renseigné
             {
@@ -134,7 +134,7 @@
                 if (is_numeric($_POST["stock"]) && $_POST["stock"] >= 0 && preg_match("/[0-9]{0,11}/", $_POST["stock"]))
                 {
                     //les valeurs POST sont des chaines de caractères, on change Stock en entier et le stock dans une variable
-                    $pro_stock = intval($_POST["stock"]);
+                    $post_stock = intval($_POST["stock"]);
                 }
                 else //Stock n'est pas numérique, supérieur ou égal à 0 ou ne respecte pas son expression regulière
                 {
@@ -148,14 +148,14 @@
             if (empty($_POST["color"]))
             {
                 //on stock une valeur vide dans une variable
-                $pro_couleur = NULL;
+                $post_couleur = NULL;
             }
             else //le champ Couleur est renseigné
             {
                 //on passe la valeur POST de Couleur par verifstring et le stock dans une variable
-                $pro_couleur = verifstring($_POST["color"]);
+                $post_couleur = verifstring($_POST["color"]);
                 //on cherche si Couleur ne respecte pas son expression regulière
-                if (preg_match("/[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}/", $pro_couleur) == false)
+                if (preg_match("/[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}/", $post_couleur) == false)
                 {
                     //données invalides
                     $verif = false;
@@ -166,14 +166,14 @@
             if (empty($_POST["ext"]))
             {
                 //on stock la chaine "jpg" dans une variable (valeur par défaut dans la base)
-                $pro_photo = "jpg";
+                $post_photo = "jpg";
             }
             else //le champ Extension de la photo est renseigné
             {
                 //on passe la valeur POST de Extension de la photo par verifstring et le stock dans une variable
-                $pro_photo = verifstring($_POST["ext"]);
+                $post_photo = verifstring($_POST["ext"]);
                 //on cherche si Extension de la photo ne respecte pas son expression regulière
-                if (preg_match("/[\w]{0,4}/", $pro_photo) == false)
+                if (preg_match("/[\w]{0,4}/", $post_photo) == false)
                 {
                     //données invalides
                     $verif = false;
@@ -184,7 +184,7 @@
             if (empty($_POST["block"]))
             {
                 //on stock une valeur vide dans une variable (valeur par défaut dans la base)
-                $pro_bloque = NULL;
+                $post_bloque = NULL;
             }
             else //le bouton radio Produit bloqué est renseigné
             {
@@ -192,12 +192,12 @@
                 if ($_POST["block"] == "blocked")
                 {
                     //on stock 0 dans une variable
-                    $pro_bloque = 0;
+                    $post_bloque = 0;
                 }
                 else //le Non de Produit bloqué a été sélectionné
                 {
                     //on stock une valeur vide dans une variable
-                    $pro_bloque = NULL;
+                    $post_bloque = NULL;
                 }
             }
         
@@ -211,20 +211,20 @@
                 $db = connexionBase();
 
                 //Préparation de la requète à envoyer à la base de donnée
-                //On change la valeur pro_d_modif par le date et heure actuelle avec CURRENT_TIME
-                $requete = $db->prepare("UPDATE produits SET pro_cat_id = :pro_cat_id, pro_ref = :pro_ref, pro_libelle = :pro_libelle, pro_description = :pro_description, pro_prix = :pro_prix, pro_stock = :pro_stock, pro_couleur = :pro_couleur, pro_photo = :pro_photo, pro_d_modif = CURRENT_TIME(), pro_bloque = :pro_bloque WHERE pro_id = :pro_id");
+                //On change la valeur jpro_d_modif par le date et heure actuelle avec CURRENT_TIME
+                $requete = $db->prepare("UPDATE jproduits SET jpro_jcat_id = :cat_id, jpro_ref = :ref, jpro_libelle = :libelle, jpro_description = :descript, jpro_prix = :prix, jpro_stock = :stock, jpro_couleur = :couleur, jpro_photo = :photo, jpro_d_modif = CURRENT_TIME(), jpro_bloque = :bloque WHERE jpro_id = :id");
 
                 //On met les données récupérées dans la requète
-                $requete->bindValue(":pro_id", $pro_id);
-                $requete->bindValue(":pro_cat_id", $pro_cat_id);
-                $requete->bindValue(":pro_ref", $pro_ref);
-                $requete->bindValue(":pro_libelle", $pro_libelle);
-                $requete->bindValue(":pro_description", $pro_description);
-                $requete->bindValue(":pro_prix", $pro_prix);
-                $requete->bindValue(":pro_stock", $pro_stock);
-                $requete->bindValue(":pro_couleur", $pro_couleur);
-                $requete->bindValue(":pro_photo", $pro_photo);
-                $requete->bindValue(":pro_bloque", $pro_bloque);
+                $requete->bindValue(":id", $post_id);
+                $requete->bindValue(":cat_id", $post_cat_id);
+                $requete->bindValue(":ref", $post_ref);
+                $requete->bindValue(":libelle", $post_libelle);
+                $requete->bindValue(":descript", $post_description);
+                $requete->bindValue(":prix", $post_prix);
+                $requete->bindValue(":stock", $post_stock);
+                $requete->bindValue(":couleur", $post_couleur);
+                $requete->bindValue(":photo", $post_photo);
+                $requete->bindValue(":bloque", $post_bloque);
 
                 //Exécute la requète
                 $requete->execute();

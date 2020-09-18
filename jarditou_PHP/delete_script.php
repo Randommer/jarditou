@@ -34,7 +34,7 @@
             if (is_numeric($_POST["id"]) && $_POST["id"] > 0)
             {
                 //les valeurs POST sont des chaines de caractères, on change ID en entier et le stock dans une variable
-                $pro_id = intval($_POST["id"]);
+                $post_id = intval($_POST["id"]);
             }
             else //ID n'est pas numérique ou supérieur à 0
             {
@@ -42,7 +42,7 @@
                 $verif = false;
             }
 
-            //Inclusion d'un fonction de connexion à la base de donnéee
+            //Inclusion d'un fonction de connexion à la base de données
             require("connexion_bdd.php");
 
             //on verifie qu'il n'y aucune erreur dans les données
@@ -52,10 +52,10 @@
                 $db = connexionBase();
 
                 //Préparation de la requète à envoyer à la base de donnée
-                $requete = $db->prepare("DELETE FROM produits WHERE pro_id = :pro_id");
+                $requete = $db->prepare("DELETE FROM jproduits WHERE jpro_id = :id");
 
                 //On met les données récupérées dans la requète
-                $requete->bindValue(":pro_id", $pro_id);
+                $requete->bindValue(":id", $post_id);
 
                 
                 //Exécute la requète

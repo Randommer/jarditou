@@ -14,9 +14,9 @@
     //Appel de la fonction de connexion
     $db = connexionBase();
     //Récupération de l'ID produit passé en GET
-    $pro_id = $_GET["id"];
+    $get_id = $_GET["id"];
     //Ecriture de la requète à envoyer à la base de donnée
-    $requete = "SELECT * FROM produits WHERE pro_id=".$pro_id;
+    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_libelle as 'libelle', jpro_couleur as 'couleur' FROM jproduits WHERE jpro_id=".$get_id;
 
     //Envoie de la requète à la base
     $result = $db->query($requete);
@@ -47,7 +47,7 @@
         <div class="col-4"></div>
         <div class="col-4">
             <!-- On crée une balise image avec l'adresse préremplie, à laquelle on ajoute le ID produit et l'extension photo trouvés donnés par la base -->
-            <img class='img-fluid' src='src/img/<?php echo $produit->pro_id.".".$produit->pro_photo; ?>' alt='<?php echo $produit->pro_libelle." ".$produit->pro_couleur; ?>'>
+            <img class='img-fluid' src='src/img/<?php echo $produit->id.".".$produit->photo; ?>' alt='<?php echo $produit->libelle." ".$produit->couleur; ?>'>
         </div>
         <div class="col-4"></div>
     </div>
@@ -55,7 +55,7 @@
     <div class="row mx-0 mb-1">
         <div class="col-4"></div>
         <div class="col-4">
-            <h1><?php echo $produit->pro_libelle; ?></h1>
+            <h1><?php echo $produit->libelle; ?></h1>
         </div>
         <div class="col-4"></div>
     </div>
@@ -64,7 +64,7 @@
         <div class="d-sm-none d-lg-block col-lg-3"></div>
         <div class="col-sm-12 col-lg-5">
             <p>
-                Êtes vous sûr de vouloir supprimer <?php echo $produit->pro_libelle; ?> de la base de données ?
+                Êtes vous sûr de vouloir supprimer <?php echo $produit->libelle; ?> de la base de données ?
             </p>
         </div>
         <div class="d-sm-none d-lg-block col-lg-2"></div>
@@ -80,7 +80,7 @@
             <form action="delete_script.php" method="POST">
 
                 <!-- Champ ID du produit, ici hidden pour l'envoyer en POST sans avor à l'afficher -->
-                <input type="hidden" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
+                <input type="hidden" name="id" id="id" value="<?php echo $produit->id; ?>">
 
                 <!-- Bouton Annuler qui envoie à la page de la liste des produits -->
                 <a href="liste.php" title="Annuler">

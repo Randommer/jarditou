@@ -22,7 +22,8 @@
                 if (empty($_GET["by"]))
                 {
                     //requète par défaut
-                    $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_libelle as 'libelle', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif', jpro_bloque as 'bloque' FROM jproduits WHERE ISNULL(jpro_bloque) ORDER BY jpro_d_ajout DESC";
+                    
                     //On met les deux icones qui correspondent à la requète
                     $aff[14] = true;
                     $aff[18] = true;
@@ -38,89 +39,89 @@
                         $aff[$affkey] = true;
                     }
                     //début de la requète
-                    $requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits";
+                    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_libelle as 'libelle', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif', jpro_bloque as 'bloque' FROM jproduits";
                     //en fonction de la valeur by, on change la fin de la requète
                     switch ($_GET["by"])
                     {
                         case 1:
-                            $requete = $requete." ORDER BY pro_id ASC";
+                            $requete = $requete." ORDER BY jpro_id ASC";
                         break;
 
                         case 2:
-                            $requete = $requete." ORDER BY pro_id DESC";
+                            $requete = $requete." ORDER BY jpro_id DESC";
                         break;
 
                         case 3:
-                            $requete = $requete." ORDER BY pro_ref ASC";
+                            $requete = $requete." ORDER BY jpro_ref ASC";
                         break;
 
                         case 4:
-                            $requete = $requete." ORDER BY pro_ref DESC";
+                            $requete = $requete." ORDER BY jpro_ref DESC";
                         break;
 
                         case 5:
-                            $requete = $requete." ORDER BY pro_libelle ASC";
+                            $requete = $requete." ORDER BY jpro_libelle ASC";
                         break;
 
                         case 6:
-                            $requete = $requete." ORDER BY pro_libelle DESC";
+                            $requete = $requete." ORDER BY jpro_libelle DESC";
                         break;
 
                         case 7:
-                            $requete = $requete." ORDER BY pro_prix ASC";
+                            $requete = $requete." ORDER BY jpro_prix ASC";
                         break;
 
                         case 8:
-                            $requete = $requete." ORDER BY pro_prix DESC";
+                            $requete = $requete." ORDER BY jpro_prix DESC";
                         break;
 
                         case 9:
-                            $requete = $requete." ORDER BY pro_stock ASC";
+                            $requete = $requete." ORDER BY jpro_stock ASC";
                         break;
 
                         case 10:
-                            $requete = $requete." ORDER BY pro_stock DESC";
+                            $requete = $requete." ORDER BY jpro_stock DESC";
                         break;
 
                         case 11:
-                            $requete = $requete." ORDER BY pro_couleur ASC";
+                            $requete = $requete." ORDER BY jpro_couleur ASC";
                         break;
 
                         case 12:
-                            $requete = $requete." ORDER BY pro_couleur DESC";
+                            $requete = $requete." ORDER BY jpro_couleur DESC";
                         break;
 
                         case 13:
-                            $requete = $requete." ORDER BY pro_d_ajout ASC";
+                            $requete = $requete." ORDER BY jpro_d_ajout ASC";
                         break;
 
                         case 14:
-                            $requete = $requete." ORDER BY pro_d_ajout DESC";
+                            $requete = $requete." ORDER BY jpro_d_ajout DESC";
                         break;
 
                         case 15:
-                            $requete = $requete." WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif ASC";
+                            $requete = $requete." WHERE jpro_d_modif IS NOT NULL ORDER BY jpro_d_modif ASC";
                         break;
 
                         case 16:
-                            $requete = $requete." WHERE pro_d_modif IS NOT NULL ORDER BY pro_d_modif DESC";
+                            $requete = $requete." WHERE jpro_d_modif IS NOT NULL ORDER BY jpro_d_modif DESC";
                         break;
 
                         case 17:
-                            $requete = $requete." WHERE pro_bloque IS NOT NULL ORDER BY pro_id ASC";
+                            $requete = $requete." WHERE jpro_bloque IS NOT NULL ORDER BY jpro_id ASC";
                         break;
 
                         case 18:
-                            $requete = $requete." WHERE ISNULL(pro_bloque) ORDER BY pro_id ASC";
+                            $requete = $requete." WHERE ISNULL(jpro_bloque) ORDER BY jpro_id ASC";
                         break;
 
                         default:
-                        $requete = $requete." WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                        $requete = $requete." WHERE ISNULL(jpro_bloque) ORDER BY jpro_d_ajout DESC";
                         $aff[14] = true;
                         $aff[18] = true;
                     }
                     //un deuxième ORDER BY pour la requète
-                    $requete = $requete.", pro_id ASC";
+                    $requete = $requete.", jpro_id ASC";
                 }
             ?>
             <tr class="text-center">
@@ -181,7 +182,7 @@
                 //Appel de la fonction de connexion
                 $db = connexionBase();
                 //Ecriture de la requète à envoyer à la base de donnée
-                //$requete = "SELECT pro_id, pro_photo, pro_ref, pro_libelle, pro_prix, pro_stock, pro_couleur, pro_d_ajout, pro_d_modif, pro_bloque FROM produits WHERE ISNULL(pro_bloque) ORDER BY pro_d_ajout DESC";
+                //$requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_libelle as 'libelle', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif', jpro_bloque as 'bloque' FROM jproduits WHERE ISNULL(jpro_bloque) ORDER BY jpro_d_ajout DESC";
 
                 //Envoie de la requète à la base
                 $result = $db->query($requete);
@@ -218,42 +219,42 @@
 
                         <!-- Remplissage de la case avec une balise image -->
                         <td class='table-warning'>
-                            <img src='src/img/<?php echo $row->pro_id.".".$row->pro_photo;?>' alt='<?php echo $row->pro_libelle." ".$row->pro_couleur; ?>' width='100'>
+                            <img src='src/img/<?php echo $row->id.".".$row->photo;?>' alt='<?php echo $row->libelle." ".$row->couleur; ?>' width='100'>
                         </td> <!-- Photo -->
 
-                        <td><?php echo $row->pro_id; ?></td> <!-- ID -->
-                        <td><?php echo $row->pro_ref; ?></td> <!-- Référence -->
+                        <td><?php echo $row->id; ?></td> <!-- ID -->
+                        <td><?php echo $row->ref; ?></td> <!-- Référence -->
 
                         <!-- Remplissage de la case avec un lien vers la page detail du produit -->
                         <td class="table-warning">
-                            <a class='text-danger font-weight-bold' href='detail.php?id=<?php echo $row->pro_id; ?>' title='<?php echo $row->pro_libelle; ?>'>
+                            <a class='text-danger font-weight-bold' href='detail.php?id=<?php echo $row->id; ?>' title='<?php echo $row->libelle; ?>'>
                                 <u>
-                                    <?php echo strtoupper($row->pro_libelle); ?>
+                                    <?php echo strtoupper($row->libelle); ?>
                                 </u>
                             </a>
                         </td> <!-- Libellé -->
 
                         <td>
                             <?php
-                                if($row->pro_prix == round($row->pro_prix))
+                                if($row->prix == round($row->prix))
                                 {
-                                    echo round($row->pro_prix);
+                                    echo round($row->prix);
                                 }
                                 else
                                 {
-                                    echo $row->pro_prix;
+                                    echo $row->prix;
                                 }
                             ?>€
                         </td> <!-- Prix -->
-                        <td><?php echo $row->pro_stock; ?></td> <!-- Stock -->
-                        <td><?php echo $row->pro_couleur; ?></td> <!-- Couleur -->
-                        <td><?php echo $row->pro_d_ajout; ?></td> <!-- Ajout -->
-                        <td><?php echo $row->pro_d_modif; ?></td> <!-- Modif -->
+                        <td><?php echo $row->stock; ?></td> <!-- Stock -->
+                        <td><?php echo $row->couleur; ?></td> <!-- Couleur -->
+                        <td><?php echo $row->ajout; ?></td> <!-- Ajout -->
+                        <td><?php echo $row->modif; ?></td> <!-- Modif -->
 
                         <!-- vérifie la valeur de pro_bloque et affiche en conséquence -->
                         <td>
                             <?php
-                                if ($row->pro_bloque != null)
+                                if ($row->bloque != null)
                                 {
                                     echo "<div class='badge badge-danger'>";
                                     echo "<i class='fas fa-lock fa-2x'></i>";

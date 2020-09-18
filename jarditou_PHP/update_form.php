@@ -14,9 +14,9 @@
     //Appel de la fonction de connexion
     $db = connexionBase();
     //Récupération de l'ID produit passé en GET
-    $pro_id = $_GET["id"];
+    $get_id = $_GET["id"];
     //Ecriture de la requète à envoyer à la base de donnée
-    $requete = "SELECT * FROM produits WHERE pro_id=".$pro_id;
+    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_jcat_id as 'cat_id', jpro_libelle as 'libelle', jpro_description as 'description', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_bloque as 'bloque', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif' FROM jproduits WHERE jpro_id=".$get_id;
 
     //Envoie de la requète à la base
     $result = $db->query($requete);
@@ -43,7 +43,7 @@
         
         ////On veut récupérer les noms des différentes catégories disponible dans la base
         //Ecriture de la requète à envoyer à la base de donnée
-        $requeteCat = "SELECT cat_id, cat_nom FROM categories ORDER by cat_id";
+        $requeteCat = "SELECT jcat_id as 'id', jcat_nom as 'nom' FROM jcategories ORDER by jcat_id";
 
         //Envoie de la requète à la base
         $result = $db->query($requeteCat);
@@ -64,13 +64,13 @@
 
         //Création d'un tableau pour enregistrer les catégories
         $cats = array();
-        //Sa première case gèrera le champ select par défaut
+        //Sa première case gérera le champ select par défaut
         $cats["0"] = "Sélectionnez une catégorie";
         //Récupération en objet d'une entrée du résultat par tour de boucle
         while ($row = $result->fetch(PDO::FETCH_OBJ))
         {
-            //Les clés du tableau seront les ID de la catégorie (on le met en chaine de caracère dans le cas où des ID ont été supprimés), on rempli la case par le nom de la catégorie
-            $cats["".$row->cat_id] = $row->cat_nom;
+            //Les clés du tableau seront les ID de la catégorie (on le met en chaine de caractère dans le cas où des ID ont été supprimés), on rempli la case par le nom de la catégorie
+            $cats["".$row->id] = $row->nom;
         }
         //Fermeture du curseur sur les résultats
         $result->closeCursor();
@@ -78,7 +78,7 @@
         $db = null;
 
         //Pour facilité l'affichage du bouton radio de bloqcage de vente, on assigne un booléen en fonction de la valeur dans la base
-        if ($produit->pro_bloque == null)
+        if ($produit->bloque == null)
         {
             $block = false;
         }
@@ -93,7 +93,7 @@
         <div class="col-4"></div>
         <div class="col-4">
             <!-- On crée une balise image avec l'adresse préremplie, à laquelle on ajoute le ID produit et l'extension photo trouvés donnés par la base -->
-            <?php echo "<img class='img-fluid' src='src/img/".$produit->pro_id.".".$produit->pro_photo."' alt='".$produit->pro_libelle." ".$produit->pro_couleur."'>"; ?>
+            <?php echo "<img class='img-fluid' src='src/img/".$produit->id.".".$produit->photo."' alt='".$produit->libelle." ".$produit->couleur."'>"; ?>
         </div>
         <div class="col-4"></div>
     </div>
@@ -110,15 +110,15 @@
         <!-- Pourquoi, il y a un champ text et un champ hidden ? Un champ disabled, ne s'envoie pas par POST, du coup on utilise le champ text pour l'affichage et celui hidden pour envoyer la valeur -->
         <div class="form-group">
             <label for="id">ID :</label>
-            <input type="text" class="form-control" placeholder="L'ID sera donné automatiquement à l'enregistrement" disabled value="<?php echo $produit->pro_id; ?>">
-            <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $produit->pro_id; ?>">
+            <input type="text" class="form-control" placeholder="L'ID sera donné automatiquement à l'enregistrement" disabled value="<?php echo $produit->id; ?>">
+            <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $produit->id; ?>">
         </div>
 
         <!-- Champ Référence -->
         <div class="form-group">
             <label for="ref">Référence :</label>
             <!-- L'Expression Régulière respecte la structure de la base de donnée, la référence est une valeur obligatoire de 10 caractères au plus -->
-            <input type="text" class="form-control" name="ref" id="ref" placeholder="Exemple : Produit4" pattern="[\w\-]{1,10}" required value="<?php echo $produit->pro_ref; ?>">
+            <input type="text" class="form-control" name="ref" id="ref" placeholder="Exemple : Produit4" pattern="[\w\-]{1,10}" required value="<?php echo $produit->ref; ?>">
             <div class="invalid-feedback">La Référence doit faire entre 1 et 10 caractères, sans accents et ne comporte pas d'espace (chiffres et tirets sont acceptés).</div>
         </div>
 
@@ -128,23 +128,23 @@
             <select class="form-control" name="cat" id="cat" required>
                 <?php
                     //Pour Catégorie, on fait une boucle qui crée une entrée du Selec par catégorie
-                    foreach($cats as $i => $kitten)
+                    foreach($cats as $kit_id => $kitten)
                     {
                 ?>
                         <option 
                         <?php
                         //Cas de la case défaut qui sera disabled
-                        if ($i == "0")
+                        if ($kit_id == "0")
                         {
                             echo "disabled ";
                         }
                         //Cas de la catégorie trouvée dans la base, qui sera donc afficher par défaut au chargement
-                        if ($produit->pro_cat_id == $i)
+                        if ($produit->cat_id == $kit_id)
                         {
                             echo "selected ";
                         }
                         //en value, on met l'ID de la catégorie
-                        echo 'value="'.($i).'"';
+                        echo 'value="'.($kit_id).'"';
                         ?>
                         >
                         <!-- le champ prend le nom de la catégorie -->
@@ -161,7 +161,7 @@
         <div class="form-group">
             <label for="lib">Libellé :</label>
             <!-- L'Expression Régulière respecte la structure de la base de donnée, le libellé est une valeur obligatoire de 200 caractères au plus -->
-            <input type="text" class="form-control" name="lib" id="lib" placeholder="Exemple : Produit numéro 4" pattern="[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}" required value="<?php echo $produit->pro_libelle; ?>">
+            <input type="text" class="form-control" name="lib" id="lib" placeholder="Exemple : Produit numéro 4" pattern="[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}" required value="<?php echo $produit->libelle; ?>">
             <div class="invalid-feedback">Le Libellé doit faire entre 1 et 200 caractères (chiffres, espaces, apostrophes et tirets sont acceptés).</div>
         </div>
 
@@ -169,14 +169,14 @@
         <div class="form-group">
             <label for="des">Description :</label>
             <!-- Ici nous vérifions simplement que la description entrée par l'utilisateur ne dépasse pas les 1000 caractères, un limite de la valeur dans la base -->
-            <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->pro_description; ?></textarea>
+            <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->description; ?></textarea>
         </div>
 
         <!-- Champ Prix -->
         <div class="form-group">
             <label for="prix">Prix :</label>
             <!-- L'Expression Régulière respecte la structure de la base de donnée, le prix est une valeur obligatoire avec 6 chiffres maximum avant la virgule et 2 chiffres après, pour faciliter l'insertion, la virgule devra obligatoirement être représentée par un point -->
-            <input type="text" class="form-control" name="prix" id="prix" placeholder="Exemple : 12.99 (utilisez un point pas une virgule)" pattern="[0-9]{1,6}[.]{0,1}[0-9]{0,2}" required value="<?php echo $produit->pro_prix; ?>">
+            <input type="text" class="form-control" name="prix" id="prix" placeholder="Exemple : 12.99 (utilisez un point pas une virgule)" pattern="[0-9]{1,6}[.]{0,1}[0-9]{0,2}" required value="<?php echo $produit->prix; ?>">
             <div class="invalid-feedback">Le Prix doit avoir au moins un chiffre avant le point (la virgule n'est pas acceptée) et deux chiffres max après.</div>
         </div>
 
@@ -184,7 +184,7 @@
         <div class="form-group">
             <label for="stock">Stock :</label>
             <!-- L'Expression Régulière respecte la structure de la base de donnée, le stock est une valeur entière jusqu'à 11 chiffres et peut rester vide -->
-            <input type="text" class="form-control" name="stock" id="stock" placeholder="Exemple : 2 (peut se mettre à zéro)" pattern="[0-9]{0,11}" value="<?php echo $produit->pro_stock; ?>">
+            <input type="text" class="form-control" name="stock" id="stock" placeholder="Exemple : 2 (peut se mettre à zéro)" pattern="[0-9]{0,11}" value="<?php echo $produit->stock; ?>">
             <div class="invalid-feedback">Le Stock doit être égal ou supérieur à zéro.</div>
         </div>
 
@@ -192,7 +192,7 @@
         <div class="form-group">
             <label for="color">Couleur :</label>
             <!-- L'Expression Régulière respecte la structure de la base de donnée, la couleur est une chaine de 30 caractères maximum et peut rester vide -->
-            <input type="text" class="form-control" name="color" id="color" placeholder="Exemple : Café (peut rester vide)" pattern="[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}" value="<?php echo $produit->pro_couleur; ?>">
+            <input type="text" class="form-control" name="color" id="color" placeholder="Exemple : Café (peut rester vide)" pattern="[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}" value="<?php echo $produit->couleur; ?>">
             <div class="invalid-feedback">La Couleur peut faire jusqu'à 30 caractères (espaces et apostrophes sont acceptés).</div>
         </div>
 
@@ -200,7 +200,7 @@
         <div class="form-group">
             <label for="ext">Extension de la photo :</label>
             <!-- L'Expression Régulière respecte la structure de la base de donnée, l'extension de la photo est une chaine de 4 caractères maximum et peut rester vide -->
-            <input type="text" class="form-control" name="ext" id="ext" placeholder="jpg" pattern="[\w]{0,4}" value="<?php echo $produit->pro_photo; ?>">
+            <input type="text" class="form-control" name="ext" id="ext" placeholder="jpg" pattern="[\w]{0,4}" value="<?php echo $produit->photo; ?>">
             <div class="invalid-feedback">L'Extension peut faire jusqu'à 4 caractères (chiffres et lettres).</div>
         </div>
 
@@ -222,13 +222,13 @@
         <!-- Champ Date d'ajout -->
         <div class="form-group">
             <label for="ajout">Date d'ajout :</label>
-            <input type="date" class="form-control" name="ajout" id="ajout" disabled value="<?php echo $produit->pro_d_ajout; ?>">
+            <input type="date" class="form-control" name="ajout" id="ajout" disabled value="<?php echo $produit->ajout; ?>">
         </div>
 
         <!-- Champ Date de modification -->
         <div class="form-group">
             <label for="modif">Date de modification :</label>
-            <input type="text" class="form-control" name="modif" id="modif" placeholder="Ce Produit n'a jamais été modifié" disabled value="<?php echo $produit->pro_d_modif; ?>">
+            <input type="text" class="form-control" name="modif" id="modif" placeholder="Ce Produit n'a jamais été modifié" disabled value="<?php echo $produit->modif; ?>">
         </div>
 
         <!-- Bouton de type reset, remmettra les valeurs données au chargement de la page aux champs, donc leurs valeurs dans la base de données -->
