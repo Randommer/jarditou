@@ -246,18 +246,24 @@
 
     <!-- Bouton de type reset, remettra les valeurs données au chargement de la page aux champs, donc leurs valeurs dans la base de données -->
     <div class="form-group">
-        <input type="reset" class="btn btn-info" value="Réinitialiser le formulaire">
+        <button type="reset" class="btn btn-info">
+            <i class="fa fa-fw fa-undo"></i> Réinitialiser le formulaire
+        </button>
     </div>
 
     <!-- Boutons en bas de page pour quitter la page d'Ajout -->
     <div class="form-group">
         <!-- Bouton Retour qui envoie à la page de la liste des produits -->
         <a href="liste.php" title="Retour">
-            <button type="button" class="btn btn-secondary " id="retour">Retour</button>
+            <button type="button" class="btn btn-secondary " id="retour">
+                <i class="fa fa-fw fa-arrow-left"></i> Retour
+            </button>
         </a>
 
         <!-- Bouton Ajouter de type submit qui envoie sur les données rentrées dans les champs du formulaire en POST à un Script PHP qui les ajoutera dans la base (voir add_script.php) -->
-        <input type="submit" class="btn btn-success" value="Ajouter">
+        <button type="submit" class="btn btn-success">
+            <i class="fa fa-fw fa-plus-circle"></i> Ajouter
+        </button>
     </div>
 
 </form>

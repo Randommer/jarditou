@@ -122,8 +122,12 @@
     <!-- Boutons du formulaire -->
     <div class="form-group">
         <!-- bouton submit du formulaire -->
-        <input class="btn btn-primary bg-dark" type="submit" value="Envoyer">
+        <button type="submit" class="btn btn-primary bg-dark">
+            <i class="fa fa-fw fa-paper-plane"></i> Envoyer
+        </button>
         <!-- bouton qui remet à zéro tout les input du formulaire -->
-        <input class="btn btn-primary bg-dark" type="reset" value="Annuler">
+        <button type="reset" class="btn btn-primary bg-dark">
+            <i class="fa fa-fw fa-undo"></i> Annuler
+        </button>
     </div>
 </form>

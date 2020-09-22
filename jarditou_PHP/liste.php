@@ -275,8 +275,13 @@
         </tbody>
     </table>
     <!-- Bouton qui redirige sur le formulaire d'ajout produit -->
+    
+</div>
+<div>
     <a href="add_form.php" title="Ajouter">
-        <button type="button" class="btn btn-info " id="ajouter">Ajouter</button>
+        <button type="button" class="btn btn-info btn-block mb-2 font-weight-bold" id="ajouter">
+            <i class="fa fa-fw fa-plus-square"></i> Ajouter
+        </button>
     </a>
 </div>
 <?php

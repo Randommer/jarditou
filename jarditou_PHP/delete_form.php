@@ -83,12 +83,16 @@
                 <input type="hidden" name="id" id="id" value="<?php echo $produit->id; ?>">
 
                 <!-- Bouton Annuler qui envoie à la page de la liste des produits -->
-                <a href="liste.php" title="Annuler">
-                    <button type="button" class="btn btn-success">Annuler</button>
+                <a href="liste.php" title="Retour">
+                    <button type="button" class="btn btn-secondary">
+                        <i class="fa fa-fw fa-arrow-left"></i> Retour
+                    </button>
                 </a>
 
                 <!-- Bouton Supprimer de type submit qui envoie sur l'ID du produit en POST à un Script PHP qui le supprimera de la base (voir delete_script.php) -->
-                <input type="submit" class="btn btn-danger" value="Supprimer">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-fw fa-trash"></i> Supprimer
+                </button>
             </form>
         </div>
         <div class="d-sm-none d-lg-block col-lg-4"></div>

@@ -1,5 +1,5 @@
         <!-- Barre de navigation basse du site -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded" id="footer">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" title="Mentions légales">Mentions légales</a>

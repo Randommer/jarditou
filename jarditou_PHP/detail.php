@@ -224,17 +224,23 @@
         <div class="form-group">
             <!-- Bouton Retour qui envoie à la page de la liste des produits -->
             <a href="liste.php" title="Retour">
-                <button type="button" class="btn btn-secondary " id="retour">Retour</button>
+                <button type="button" class="btn btn-secondary " id="retour">
+                    <i class="fa fa-fw fa-arrow-left"></i> Retour
+                </button>
             </a>
 
             <!-- Bouton Modifier qui envoie sur le formulaire de Modification produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
             <a href='update_form.php?id=<?php echo $produit->id; ?>' title='Modifier'>
-                <button type="button" class="btn btn-warning" id="modifier">Modifier</button>
+                <button type="button" class="btn btn-warning" id="modifier">
+                    <i class="fa fa-fw fa-edit"></i> Modifier
+                </button>
             </a>
 
             <!-- Bouton Supprimer qui envoie sur le formulaire de Suppression produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
             <a href='delete_form.php?id=<?php echo $produit->id; ?>' title='Supprimer'>
-                <button type="button" class="btn btn-danger" id="supprimer">Supprimer</button>
+                <button type="button" class="btn btn-danger" id="supprimer">
+                    <i class="fa fa-fw fa-trash"></i> Supprimer
+                </button>
             </a>
         </div>
 
