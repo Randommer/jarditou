@@ -1,10 +1,10 @@
 <?php
-    //Fonction de connexion à la base de donnéee
+    //Fonction de connexion à la base de données
     function connexionBase()
     {
         //Paramètres de connexion au serveur
         $machine = "localhost";//IP du serveur
-        $login= "phpusr";//Loggin d'accès au serveur
+        $login= "phpusr";//Login d'accès au serveur
         $mdp="IAmTheB3st";//Mot de passe d'identification pour l'accès au serveur
         $base = "jarditou";//Base de donnée sur laquelle vous voulez vous connectez
 

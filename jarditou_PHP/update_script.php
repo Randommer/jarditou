@@ -9,7 +9,7 @@
     //Fonction de sécurité qui prend une chaine de caractères, y retire des blancs, les antislashs et transforme les caractères spéciaux en entités HTML
     function verifstring($chaine)
     {
-        //verifie que le paramètre est bien une chaine de caractères
+        //vérifie que le paramètre est bien une chaine de caractères
         if (is_string($chaine))
         {
             //on lui retire les espaces au début et en fin de chaine
@@ -34,7 +34,7 @@
     </p>
 </div>
 <?php
-    //on verifie si un POST a été envoyé à la page
+    //on vérifie si un POST a été envoyé à la page
     if ($_SERVER["REQUEST_METHOD"] == "POST" )
     {
         //on vérifie que les champs ID, Catégorie, Référence, Libellé et Prix ont été renseignés
@@ -50,7 +50,7 @@
             //si il est faux, on donnera un message d'erreur et on redirige le navigateur vers la liste produit
             $verif = true;
 
-            //on verifie que ID est une valeur numérique, supérieur à 0
+            //on vérifie que ID est une valeur numérique, supérieur à 0
             if (is_numeric($_POST["id"]) && $_POST["id"] > 0)
             {
                 //les valeurs POST sont des chaines de caractères, on change ID en entier et le stock dans une variable
@@ -62,7 +62,7 @@
                 $verif = false;
             }
             
-            //on verifie que Catégorie est une valeur numérique, différente de 0
+            //on vérifie que Catégorie est une valeur numérique, différente de 0
             if (is_numeric($_POST["cat"]) && $_POST["cat"] != 0)
             {
                 //les valeurs POST sont des chaines de caractères, on change Catégorie en entier et le stock dans une variable
@@ -76,7 +76,7 @@
             
             //on passe la valeur POST de Référence par verifstring et le stock dans une variable
             $post_ref = verifstring($_POST["ref"]);
-            //on cherche si Référence ne respecte pas son expression regulière 
+            //on cherche si Référence ne respecte pas son expression régulière 
             if (preg_match("/[\w\-]{1,10}/", $post_ref) == false)
             {
                 //données invalides
@@ -85,7 +85,7 @@
             
             //on passe la valeur POST de Libellé par verifstring et le stock dans une variable
             $post_libelle = verifstring($_POST["lib"]);
-            //on cherche si Libellé ne respecte pas son expression regulière
+            //on cherche si Libellé ne respecte pas son expression régulière
             if (preg_match("/[\w\-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{1,200}/", $post_libelle) == false)
             {
                 //données invalides
@@ -102,7 +102,7 @@
             {
                 //on passe la valeur POST de Description par verifstring et le stock dans une variable
                 $post_description = verifstring($_POST["des"]);
-                //on cherche si Description depasse sa limite de 1000 caractères
+                //on cherche si Description dépasse sa limite de 1000 caractères
                 if (strlen($post_description) > 1000)
                 {
                     //données invalides
@@ -110,13 +110,13 @@
                 }
             }
 
-            //on verifie que Prix est une valeur numérique, supérieur à 0 et respecte son expression regulière
+            //on vérifie que Prix est une valeur numérique, supérieur à 0 et respecte son expression régulière
             if (is_numeric($_POST["prix"]) && $_POST["prix"] > 0 && preg_match("/[0-9]{1,6}[.]{0,1}[0-9]{0,2}/", $_POST["prix"]))
             {
                 //les valeurs POST sont des chaines de caractères, on change Prix en décimal et le stock dans une variable
                 $post_prix = floatval($_POST["prix"]);
             }
-            else //Prix n'est pas numérique, supérieur à 0 ou ne respecte pas son expression regulière
+            else //Prix n'est pas numérique, supérieur à 0 ou ne respecte pas son expression régulière
             {
                 //données invalides
                 $verif = false;
@@ -130,13 +130,13 @@
             }
             else //le champ Stock est renseigné
             {
-                //on verifie que Stock est une valeur numérique, supérieur ou égal à 0 et respecte son expression regulière
+                //on vérifie que Stock est une valeur numérique, supérieur ou égal à 0 et respecte son expression régulière
                 if (is_numeric($_POST["stock"]) && $_POST["stock"] >= 0 && preg_match("/[0-9]{0,11}/", $_POST["stock"]))
                 {
                     //les valeurs POST sont des chaines de caractères, on change Stock en entier et le stock dans une variable
                     $post_stock = intval($_POST["stock"]);
                 }
-                else //Stock n'est pas numérique, supérieur ou égal à 0 ou ne respecte pas son expression regulière
+                else //Stock n'est pas numérique, supérieur ou égal à 0 ou ne respecte pas son expression régulière
                 {
                     //données invalides
                     $verif = false;
@@ -154,7 +154,7 @@
             {
                 //on passe la valeur POST de Couleur par verifstring et le stock dans une variable
                 $post_couleur = verifstring($_POST["color"]);
-                //on cherche si Couleur ne respecte pas son expression regulière
+                //on cherche si Couleur ne respecte pas son expression régulière
                 if (preg_match("/[a-zA-Zàáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{0,30}/", $post_couleur) == false)
                 {
                     //données invalides
@@ -172,7 +172,7 @@
             {
                 //on passe la valeur POST de Extension de la photo par verifstring et le stock dans une variable
                 $post_photo = verifstring($_POST["ext"]);
-                //on cherche si Extension de la photo ne respecte pas son expression regulière
+                //on cherche si Extension de la photo ne respecte pas son expression régulière
                 if (preg_match("/[\w]{0,4}/", $post_photo) == false)
                 {
                     //données invalides
@@ -201,20 +201,20 @@
                 }
             }
         
-            //Inclusion d'un fonction de connexion à la base de donnéee
+            //Inclusion d'un fonction de connexion à la base de données
             require("connexion_bdd.php");
 
-            //on verifie qu'il n'y aucune erreur dans les données
+            //on vérifie qu'il n'y aucune erreur dans les données
             if ($verif)
             {
                 //Appel de la fonction de connexion
                 $db = connexionBase();
 
-                //Préparation de la requète à envoyer à la base de donnée
+                //Préparation de la requete à envoyer à la base de donnée
                 //On change la valeur jpro_d_modif par le date et heure actuelle avec CURRENT_TIME
                 $requete = $db->prepare("UPDATE jproduits SET jpro_jcat_id = :cat_id, jpro_ref = :ref, jpro_libelle = :libelle, jpro_description = :descript, jpro_prix = :prix, jpro_stock = :stock, jpro_couleur = :couleur, jpro_photo = :photo, jpro_d_modif = CURRENT_TIME(), jpro_bloque = :bloque WHERE jpro_id = :id");
 
-                //On met les données récupérées dans la requète
+                //On met les données récupérées dans la requete
                 $requete->bindValue(":id", $post_id);
                 $requete->bindValue(":cat_id", $post_cat_id);
                 $requete->bindValue(":ref", $post_ref);
@@ -226,7 +226,7 @@
                 $requete->bindValue(":photo", $post_photo);
                 $requete->bindValue(":bloque", $post_bloque);
 
-                //Exécute la requète
+                //Exécute la requete
                 $requete->execute();
 
                 //Ferme la connexion vers la base de donnée

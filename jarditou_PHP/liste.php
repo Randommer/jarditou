@@ -8,7 +8,7 @@
 ?>
 <!-- Corps du site -->
 <div class="row mx-0 mb-1">
-    <!-- Tableau responsif -->
+    <!-- Tableau responsive -->
     <table class="table table-bordered table-responsive-lg table-striped">
         <!-- Entête du tableau -->
         <thead class="thead-light">
@@ -17,14 +17,14 @@
                 $aff = array(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
                 //initialisation d'un marqueur pour le tableau
                 $affkey = 0;
-                ////Ecriture de la requète à envoyer à la base de donnée
+                ////Ecriture de la requete à envoyer à la base de donnée
                 //on vérifie si il existe une valeur by via GET
                 if (empty($_GET["by"]))
                 {
-                    //requète par défaut
+                    //requete par défaut
                     $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_libelle as 'libelle', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif', jpro_bloque as 'bloque' FROM jproduits WHERE ISNULL(jpro_bloque) ORDER BY jpro_d_ajout DESC";
                     
-                    //On met les deux icones qui correspondent à la requète
+                    //On met les deux icones qui correspondent à la requete
                     $aff[14] = true;
                     $aff[18] = true;
                 }
@@ -35,12 +35,12 @@
                     {
                         //on enregistre la valeur by dans le marqueur pour le tableau
                         $affkey = $_GET["by"];
-                        //on met l'icone qui correspond au tri qu'on va mettre en requète
+                        //on met l'icone qui correspond au tri qu'on va mettre en requete
                         $aff[$affkey] = true;
                     }
-                    //début de la requète
+                    //début de la requete
                     $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_libelle as 'libelle', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif', jpro_bloque as 'bloque' FROM jproduits";
-                    //en fonction de la valeur by, on change la fin de la requète
+                    //en fonction de la valeur by, on change la fin de la requete
                     switch ($_GET["by"])
                     {
                         case 1:
@@ -120,7 +120,7 @@
                         $aff[14] = true;
                         $aff[18] = true;
                     }
-                    //un deuxième ORDER BY pour la requète
+                    //un deuxième ORDER BY pour la requete
                     $requete = $requete.", jpro_id ASC";
                 }
             ?>
@@ -176,18 +176,22 @@
         <!-- Corps du tableau -->
         <tbody>
             <?php
-                //Inclusion d'un fonction de connexion à la base de donnéee
+                //Inclusion d'un fonction de connexion à la base de données
                 require("connexion_bdd.php");
 
                 //Appel de la fonction de connexion
                 $db = connexionBase();
-                //Ecriture de la requète à envoyer à la base de donnée
+                //Ecriture de la requete à envoyer à la base de donnée
                 //$requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_libelle as 'libelle', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif', jpro_bloque as 'bloque' FROM jproduits WHERE ISNULL(jpro_bloque) ORDER BY jpro_d_ajout DESC";
 
-                //Envoie de la requète à la base
-                $result = $db->query($requete);
+                //Envoie de la requete à la base
+                $result = $db->prepare($requete);
+                $result->execute();
 
-                //Gestion d'erreurs si la requète pose problème
+                //Envoie de la requete à la base via query 
+                //$result = $db->query($requete);
+
+                //Gestion d'erreurs si la requete pose problème
                 if (!$result)
                 {
                     $tableauErreurs = $db->errorInfo();
@@ -195,7 +199,7 @@
                     die("Erreur dans la requête");
                 }
 
-                //Gestion si le résultat de la requète est vide
+                //Gestion si le résultat de la requete est vide
                 if ($result->rowCount() == 0)
                 {
             ?>

@@ -19,7 +19,7 @@
     $sj1 = true;
     $sj2 = $sj3 = $sj4 = $sj5 = false;
 
-    //on verifie si un POST a été envoyé à la page
+    //on vérifie si un POST a été envoyé à la page
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         //on admet que tout les champs sont valides, puis on test si ils ne le sont pas
@@ -76,7 +76,7 @@
         }
         else
         {
-            //enregitrement de la Date de Naissance dans une variable de type date
+            //enregistrement de la Date de Naissance dans une variable de type date
             $naissance = date_create_from_format("Y-m-d", $_POST["naissance"]);
             //test si la date n'est pas du futur
             $dfiff = date_diff(date_create(), $naissance);

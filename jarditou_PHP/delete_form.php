@@ -8,20 +8,24 @@
 ?>
 <!-- Corps du site -->
 <?php
-    //Inclusion d'un fonction de connexion à la base de donnéee
+    //Inclusion d'un fonction de connexion à la base de données
     require("connexion_bdd.php");
 
     //Appel de la fonction de connexion
     $db = connexionBase();
     //Récupération de l'ID produit passé en GET
     $get_id = $_GET["id"];
-    //Ecriture de la requète à envoyer à la base de donnée
-    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_libelle as 'libelle', jpro_couleur as 'couleur' FROM jproduits WHERE jpro_id=".$get_id;
+    //Préparation de la requete à envoyer à la base de donnée
+    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_jcat_id as 'cat_id', jpro_libelle as 'libelle', jpro_description as 'description', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_bloque as 'bloque', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif' FROM jproduits WHERE jpro_id=:id";
+    $result = $db->prepare($requete);
 
-    //Envoie de la requète à la base
-    $result = $db->query($requete);
+    //On met les données récupérées dans la requete
+    $result->bindValue(":id", $get_id);
 
-    //Gestion d'erreurs si la requète pose problème
+    //Exécute la requete
+    $result->execute();
+
+    //Gestion d'erreurs si la requete pose problème
     if (!$result)
     {
         $tableauErreurs = $db->errorInfo();
@@ -29,14 +33,14 @@
         die("Erreur dans la requête");
     }
 
-    //Gestion si le résultat de la requète est vide
+    //Gestion si le résultat de la requete est vide
     if ($result->rowCount() == 0)
     {
         echo "L'ID ".$_GET["id"]." ne correspond à aucun produit de la base";
     }
     else
     {
-        //Récupération en objet du produit demandé en requète
+        //Récupération en objet du produit demandé en requete
         $produit = $result->fetch(PDO::FETCH_OBJ);
         //Fermeture du curseur sur le résultat
         $result->closeCursor();
@@ -59,7 +63,7 @@
         </div>
         <div class="col-4"></div>
     </div>
-    <!-- On demande à l'utilisateur si il est sûr de vouloir supprimer le prduit de la base -->
+    <!-- On demande à l'utilisateur si il est sûr de vouloir supprimer le produit de la base -->
     <div class="row mx-0 mb-1">
         <div class="d-sm-none d-lg-block col-lg-3"></div>
         <div class="col-sm-12 col-lg-5">
@@ -79,7 +83,7 @@
             <!-- Le formulaire enverra les données en POST sur le script delete_script.php supprimera le produit de la base -->
             <form action="delete_script.php" method="POST">
 
-                <!-- Champ ID du produit, ici hidden pour l'envoyer en POST sans avor à l'afficher -->
+                <!-- Champ ID du produit, ici hidden pour l'envoyer en POST sans avoir à l'afficher -->
                 <input type="hidden" name="id" id="id" value="<?php echo $produit->id; ?>">
 
                 <!-- Bouton Annuler qui envoie à la page de la liste des produits -->

@@ -14,7 +14,7 @@
     </p>
 </div>
 <?php
-    //on verifie si un POST a été envoyé à la page
+    //on vérifie si un POST a été envoyé à la page
     if ($_SERVER["REQUEST_METHOD"] == "POST" )
     {
         //on vérifie que le champ ID a été renseigné
@@ -30,7 +30,7 @@
             //si il est faux, on donnera un message d'erreur et on redirige le navigateur vers la liste produit
             $verif = true;
 
-            //on verifie que ID est une valeur numérique, supérieur à 0
+            //on vérifie que ID est une valeur numérique, supérieur à 0
             if (is_numeric($_POST["id"]) && $_POST["id"] > 0)
             {
                 //les valeurs POST sont des chaines de caractères, on change ID en entier et le stock dans une variable
@@ -45,20 +45,20 @@
             //Inclusion d'un fonction de connexion à la base de données
             require("connexion_bdd.php");
 
-            //on verifie qu'il n'y aucune erreur dans les données
+            //on vérifie qu'il n'y aucune erreur dans les données
             if ($verif)
             {
                 //Appel de la fonction de connexion
                 $db = connexionBase();
 
-                //Préparation de la requète à envoyer à la base de donnée
+                //Préparation de la requete à envoyer à la base de donnée
                 $requete = $db->prepare("DELETE FROM jproduits WHERE jpro_id = :id");
 
-                //On met les données récupérées dans la requète
+                //On met les données récupérées dans la requete
                 $requete->bindValue(":id", $post_id);
 
                 
-                //Exécute la requète
+                //Exécute la requete
                 $requete->execute();
 
                 //Ferme la connexion vers la base de donnée

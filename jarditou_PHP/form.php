@@ -2,7 +2,7 @@
 <!-- Zone de formulaire -->
 <!-- novalidate désactive la validation du coté HTML pour permettre de la faire côté JavaScript -->
 <form action="<?php echo $_SERVER["PHP_SELF"];//le formulaire s'enverra sur la page courante ?>" method="POST" id="contact" name="contact" novalidate>
-    <p>* Ces zones sont oligatoires</p>
+    <p>* Ces zones sont obligatoires</p>
     <h1>Vos coordonnées</h1>
     <!-- Champ pour le nom -->
     <div class="form-group">
@@ -40,7 +40,7 @@
                 <!-- texte qui s'affiche si un sexe est sélectionné lors de la vérif -->
                 <div class="valid-feedback"></div>
                 <!-- texte qui s'affiche si aucun sexe n'est sélectionné lors de la vérif -->
-                <div class="invalid-feedback" style="margin-left: 1em;"><br>Selectionnez un sexe.</div>
+                <div class="invalid-feedback" style="margin-left: 1em;"><br>Sélectionnez un sexe.</div>
             </div>
     </div>
     <!-- Champ pour la date de naissance -->
@@ -54,7 +54,7 @@
             <!-- texte qui s'affiche si la date naissance est validée par la vérif -->
             <div class="valid-feedback"></div>
             <!-- texte qui s'affiche si la date naissance n'est pas validée par la vérif -->
-            <div class="invalid-feedback" id="naissance-invalid">Selectionnez une date<?php if ($naissanceval == 0) { echo " passée"; }//bonus gestion d'erreur ?>.</div>
+            <div class="invalid-feedback" id="naissance-invalid">Sélectionnez une date<?php if ($naissanceval == 0) { echo " passée"; }//bonus gestion d'erreur ?>.</div>
         </div>
     </div>
     <!-- Champ pour le code postal -->
@@ -99,7 +99,7 @@
         <!-- texte qui s'affiche si un sujet est sélectionné lors de la vérif -->
         <div class="valid-feedback"></div>
         <!-- texte qui s'affiche si un sujet n'est pas sélectionné lors de la vérif -->
-        <div class="invalid-feedback">Selectionnez un sujet pour votre demande.</div>
+        <div class="invalid-feedback">Sélectionnez un sujet pour votre demande.</div>
     </div>
     <!-- Champ d'écriture libre pour la question -->
     <div class="form-group">
@@ -121,13 +121,13 @@
     </div>
     <!-- Boutons du formulaire -->
     <div class="form-group">
-        <!-- bouton submit du formulaire -->
-        <button type="submit" class="btn btn-primary bg-dark">
-            <i class="fa fa-fw fa-paper-plane"></i> Envoyer
-        </button>
         <!-- bouton qui remet à zéro tout les input du formulaire -->
         <button type="reset" class="btn btn-primary bg-dark">
             <i class="fa fa-fw fa-undo"></i> Annuler
+        </button>
+        <!-- bouton submit du formulaire -->
+        <button type="submit" class="btn btn-primary bg-dark">
+            <i class="fa fa-fw fa-paper-plane"></i> Envoyer
         </button>
     </div>
 </form>

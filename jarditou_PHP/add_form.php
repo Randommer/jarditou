@@ -8,7 +8,7 @@
 ?>
 <!-- Corps du site -->
 <?php
-    //Inclusion d'un fonction de connexion à la base de donnéee
+    //Inclusion d'un fonction de connexion à la base de données
     require("connexion_bdd.php");
 
     //Appel de la fonction de connexion
@@ -17,13 +17,13 @@
 
 
     /////On veut récupérer les noms des différentes catégories disponible dans la base
-    //Ecriture de la requète à envoyer à la base de donnée
-    $requeteCat = "SELECT jcat_id as 'id', jcat_nom as 'nom' FROM jcategories ORDER by jcat_id";
+    //Préparation de la requete à envoyer à la base de donnée
+    $result = $db->prepare("SELECT jcat_id as 'id', jcat_nom as 'nom' FROM jcategories ORDER by jcat_id");
 
-    //Envoie de la requète à la base
-    $result = $db->query($requeteCat);
+    //Envoie de la requete à la base
+    $result->execute();
 
-    //Gestion d'erreurs si la requète pose problème
+    //Gestion d'erreurs si la requete pose problème
     if (!$result)
     {
         $tableauErreurs = $db->errorInfo();
@@ -31,7 +31,7 @@
         die("Erreur dans la requête");
     }
 
-    //Gestion si le résultat de la requète est vide
+    //Gestion si le résultat de la requete est vide
     if ($result->rowCount() == 0)
     {
         die("Il n'existe plus aucune catégorie dans la base");
@@ -78,7 +78,7 @@
     //On crée un objet Prod $produit à comme on aurai fait en récupérant un produit de la base
     $produit = new Prod();
 
-    //Pour facilité l'affichage du bouton radio de bloqcage de vente, on assigne un booléen en fonction de la valeur dans la base
+    //Pour facilité l'affichage du bouton radio de blocage de vente, on assigne un booléen en fonction de la valeur dans la base
     //Donc ici comme notre produit n'existe pas encore dans la base, il est mis à faux
     if ($produit->bloque == null)
     {

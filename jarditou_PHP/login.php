@@ -11,7 +11,7 @@
     <div class="d-sm-none d-lg-block col-lg-4"></div>
     <div class="col-sm-12 col-lg-4 border shadow">
         <h2 class="text-primary font-weight-bold">Connexion</h2>
-        <form action="connect.php" method="POST" id="" validate>
+        <form action="login_script.php" method="POST" id="" validate>
             <div class="form-group">
                 <label for="login">Identifiant</label>
                 <input type="text" class="form-control" name="login" id="login" placeholder="login" required value="">

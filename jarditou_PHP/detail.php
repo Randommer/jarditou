@@ -8,20 +8,24 @@
 ?>
 <!-- Corps du site -->
 <?php
-    //Inclusion d'un fonction de connexion à la base de donnéee
+    //Inclusion d'un fonction de connexion à la base de données
     require("connexion_bdd.php");
 
     //Appel de la fonction de connexion
     $db = connexionBase();
     //Récupération de l'ID produit passé en GET
     $get_id = $_GET["id"];
-    //Ecriture de la requète à envoyer à la base de donnée
-    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_jcat_id as 'cat_id', jpro_libelle as 'libelle', jpro_description as 'description', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_bloque as 'bloque', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif' FROM jproduits WHERE jpro_id=".$get_id;
+    //Préparation de la requete à envoyer à la base de donnée
+    $requete = "SELECT jpro_id as 'id', jpro_photo as 'photo', jpro_ref as 'ref', jpro_jcat_id as 'cat_id', jpro_libelle as 'libelle', jpro_description as 'description', jpro_prix as 'prix', jpro_stock as 'stock', jpro_couleur as 'couleur', jpro_bloque as 'bloque', jpro_d_ajout as 'ajout', jpro_d_modif as 'modif' FROM jproduits WHERE jpro_id = :id";
+    $result = $db->prepare($requete);
 
-    //Envoie de la requète à la base
-    $result = $db->query($requete);
+    //On met les données récupérées dans la requete
+    $result->bindValue(":id", $get_id);
 
-    //Gestion d'erreurs si la requète pose problème
+    //Exécute la requete
+    $result->execute();
+
+    //Gestion d'erreurs si la requete pose problème
     if (!$result)
     {
         $tableauErreurs = $db->errorInfo();
@@ -29,26 +33,26 @@
         die("Erreur dans la requête");
     }
 
-    //Gestion si le résultat de la requète est vide
+    //Gestion si le résultat de la requete est vide
     if ($result->rowCount() == 0)
     {
         echo "L'ID ".$_GET["id"]." ne correspond à aucun produit de la base";
     }
     else
     {
-        //Récupération en objet du produit demandé en requète
+        //Récupération en objet du produit demandé en requete
         $produit = $result->fetch(PDO::FETCH_OBJ);
         //Fermeture du curseur sur le résultat
         $result->closeCursor();
 
         ////On veut récupérer les noms des différentes catégories disponible dans la base
-        //Ecriture de la requète à envoyer à la base de donnée
-        $requeteCat = "SELECT jcat_id as 'id', jcat_nom as 'nom' FROM jcategories ORDER by jcat_id";
+        //Préparation de la requete à envoyer à la base de donnée
+        $result = $db->prepare("SELECT jcat_id as 'id', jcat_nom as 'nom' FROM jcategories ORDER by jcat_id");
 
-        //Envoie de la requète à la base
-        $result = $db->query($requeteCat);
+        //Envoie de la requete à la base
+        $result->execute();
 
-        //Gestion d'erreurs si la requète pose problème
+        //Gestion d'erreurs si la requete pose problème
         if (!$result)
         {
             $tableauErreurs = $db->errorInfo();
@@ -56,7 +60,7 @@
             die("Erreur dans la requête");
         }
 
-        //Gestion si le résultat de la requète est vide
+        //Gestion si le résultat de la requete est vide
         if ($result->rowCount() == 0)
         {
             die("Il n'existe plus aucune catégorie dans la base");
@@ -122,7 +126,7 @@
             <label for="cat">Catégorie :</label>
             <select class="form-control" name="cat" id="cat" required disabled>
                 <?php
-                    //Pour Catégorie, on fait une boucle qui crée une entrée du Selec par catégorie
+                    //Pour Catégorie, on fait une boucle qui crée une entrée du Select par catégorie
                     foreach($cats as $kit_id => $kitten)
                     {
                 ?>
