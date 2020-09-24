@@ -62,15 +62,24 @@
                     <i class="fa fa-fw fa-search"></i> Rechercher
                 </button>
             </form>
+            <!-- Bouton de Connexion/Déconnexion -->
             <div>
-                <a href="login.php" title="Connexion">
-                    <button class="btn btn-<?php if ($nav == 4) { echo "outline-"; } ?>primary ml-sm-0 ml-lg-2 <?php if ($nav == 4) { echo "font-weight-bold"; } ?>" type="button">
-                        <i class="fa fa-fw fa-user"></i> Connexion
-                    </button>
-                </a>
+                <?php if ($_SESSION["role"] == 0) { ?>
+                    <a href="login_form.php" title="Connexion">
+                        <button type="button" class="btn btn-<?php if ($nav == 4) { echo "outline-"; } ?>primary ml-sm-0 ml-lg-2 <?php if ($nav == 4) { echo "font-weight-bold"; } ?>" id="logbut">
+                            <i class="fa fa-fw fa-user" id="logicon"></i> Connexion
+                        </button>
+                    </a>
+                <?php } else { ?>
+                    <form action="logout_script.php" method="POST">
+                        <button type="submit" class="btn btn-outline-danger ml-sm-0 ml-lg-2" id="logbut">
+                            <i class="fa fa-fw fa-user" id="logicon"></i> Déconnexion
+                        </button>
+                    </form>
+                <?php } ?>
             </div>
         </nav>
-        <?php if ($nav != 4) { ?>
+        <?php if ($nav != 4 && $_SESSION["role"] == 0) { ?>
         <!-- Bannière promo du site -->
         <div class="row">
             <div class="col-sm-12"><img class="img-fluid" src="src/img/promotion.jpg" alt="Bannière de promotion"></div>

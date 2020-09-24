@@ -1,4 +1,8 @@
 <?php
+    //Initialisation de la session du site
+    require("session.php");
+    //Bibliothèque de fonctions
+    require("fonctions.php");
     //donne un nom à la page, que le header utilisera
     $Titre = "Contact";
     //donne la position de la page dans le menu du header

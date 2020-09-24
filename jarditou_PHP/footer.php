@@ -14,7 +14,12 @@
         </nav>
     </div>
 
-
+    <!-- Appel du fichier JavaScript de logo dynamique dans le bouton de Connexion/Déconnexion -->
+    <?php if ($_SESSION["role"] == 0) { ?>
+    <script src="assets/js/login.js"></script>
+    <?php } else { ?>
+    <script src="assets/js/logout.js"></script>
+    <?php } ?>
 
 
     <!-- Optional JavaScript -->

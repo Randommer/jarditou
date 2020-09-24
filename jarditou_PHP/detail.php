@@ -1,4 +1,8 @@
 <?php
+    //Initialisation de la session du site
+    require("session.php");
+    //Bibliothèque de fonctions
+    require("fonctions.php");
     //donne un nom à la page, que le header utilisera
     $Titre = "Page de détail";
     //donne la position de la page dans le menu du header
@@ -197,6 +201,7 @@
 
         </div>
 
+        <?php if (verifrole($_SESSION["role"], array(1))) { ?>
         <!-- Bouton radio Produit bloqué -->
         <div class="form-group">
             <label for="block">Produit bloqué ? :</label>
@@ -211,6 +216,7 @@
                     <label class="form-check-label" for="unblocked"> Non</label>
                 </div>
         </div>
+        <?php } ?>
 
         <!-- Champ Date d'ajout -->
         <div class="form-group">
@@ -218,11 +224,13 @@
             <input type="date" class="form-control" name="ajout" id="ajout" disabled value="<?php echo $produit->ajout; ?>">
         </div>
 
+        <?php if (verifrole($_SESSION["role"], array(1))) { ?>
         <!-- Champ Date de modification -->
         <div class="form-group">
             <label for="modif">Date de modification :</label>
             <input type="text" class="form-control" name="modif" id="modif" placeholder="Ce Produit n'a jamais été modifié" disabled value="<?php echo $produit->modif; ?>">
         </div>
+        <?php } ?>
 
         <!-- Boutons en bas de page pour quitter la page de Détail -->
         <div class="form-group">
@@ -233,6 +241,7 @@
                 </button>
             </a>
 
+            <?php if (verifrole($_SESSION["role"], array(1))) { ?>
             <!-- Bouton Modifier qui envoie sur le formulaire de Modification produit, l'adresse change en fonction de l'ID produit, pour le donner en GET -->
             <a href='update_form.php?id=<?php echo $produit->id; ?>' title='Modifier'>
                 <button type="button" class="btn btn-warning" id="modifier">
@@ -246,6 +255,7 @@
                     <i class="fa fa-fw fa-trash"></i> Supprimer
                 </button>
             </a>
+            <?php } ?>
         </div>
 
     </form>

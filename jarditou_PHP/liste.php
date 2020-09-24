@@ -1,4 +1,8 @@
 <?php
+    //Initialisation de la session du site
+    require("session.php");
+    //Bibliothèque de fonctions
+    require("fonctions.php");
     //donne un nom à la page, que le header utilisera
     $Titre = "Tableau";
     //donne la position de la page dans le menu du header
@@ -161,6 +165,7 @@
                         Date d'ajout<i class="fas fa-sort-<?php if($aff[13]){echo "up";} if($aff[14]){echo "down";} if(!$aff[13] && !$aff[14]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
+                <?php if (verifrole($_SESSION["role"], array(1))) { ?>
                 <th class="align-middle">
                     <a href="liste.php?by=<?php if($aff[15]){echo 16;}else{echo 15;} ?>" title="Trier par Date de modification">
                         Date de modif<i class="fas fa-sort-<?php if($aff[15]){echo "up";} if($aff[16]){echo "down";} if(!$aff[15] && !$aff[16]){echo " d-none";} ?> fa-xs"></i>
@@ -171,6 +176,7 @@
                         Bloqué<i class="far fa-<?php if($aff[17]){echo "check-square";} if($aff[18]){echo "square";} if(!$aff[17] && !$aff[18]){echo " d-none";} ?> fa-xs"></i>
                     </a>
                 </th>
+                <?php } ?>
             </tr>
         </thead>
         <!-- Corps du tableau -->
@@ -253,6 +259,7 @@
                         <td><?php echo $row->stock; ?></td> <!-- Stock -->
                         <td><?php echo $row->couleur; ?></td> <!-- Couleur -->
                         <td><?php echo $row->ajout; ?></td> <!-- Ajout -->
+                        <?php if (verifrole($_SESSION["role"], array(1))) { ?>
                         <td><?php echo $row->modif; ?></td> <!-- Modif -->
 
                         <!-- vérifie la valeur de pro_bloque et affiche en conséquence -->
@@ -266,6 +273,7 @@
                                 }
                             ?>
                         </td> <!-- Bloqué -->
+                        <?php } ?>
                         <!-- Fermeture de la ligne du tableau -->
                         </tr>
             <?php
@@ -281,6 +289,7 @@
     <!-- Bouton qui redirige sur le formulaire d'ajout produit -->
     
 </div>
+<?php if (verifrole($_SESSION["role"], array(1))) { ?>
 <div>
     <a href="add_form.php" title="Ajouter">
         <button type="button" class="btn btn-info btn-block mb-2 font-weight-bold" id="ajouter">
@@ -288,6 +297,7 @@
         </button>
     </a>
 </div>
+<?php } ?>
 <?php
     //Le footer du site sera ici
     require("footer.php");

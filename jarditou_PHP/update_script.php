@@ -1,30 +1,14 @@
 <?php
+    //Initialisation de la session du site
+    require("session.php");
+    //Bibliothèque de fonctions
+    require("fonctions.php");
     //donne un nom à la page, que le header utilisera
     $Titre = "Modification dans la base";
     //donne la position de la page dans le menu du header
     $nav = 2;
     //Le header du site sera ici
     require("header.php");
-
-    //Fonction de sécurité qui prend une chaine de caractères, y retire des blancs, les antislashs et transforme les caractères spéciaux en entités HTML
-    function verifstring($chaine)
-    {
-        //vérifie que le paramètre est bien une chaine de caractères
-        if (is_string($chaine))
-        {
-            //on lui retire les espaces au début et en fin de chaine
-            $chaine = trim($chaine);
-            //on lui retire les antislashs
-            $chaine = stripslashes($chaine);
-            //on transforme les caractères spéciaux en entités HTML, puis retourne la nouvelle chaine
-            return htmlspecialchars($chaine);
-        }
-        else //le paramètre n'est pas une chaine de caractères
-        {
-            //on revoie rien
-            return null;
-        }
-    }
 ?>
 <!-- Corps du site -->
 <div class="row mx-0 mb-1">
