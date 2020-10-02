@@ -4,9 +4,16 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    margin-bottom: 140px;
 }
 
+#footer {
+    position: absolute;
+    bottom: 0;
+    align-items: center;
+}
+
+/*
 .container {
     width: auto;
     max-width: 1140px;
@@ -22,4 +29,5 @@ body {
     max-height: 100%;
     margin-left: 0px;
     margin-right: 0px;
-}
+} */
+

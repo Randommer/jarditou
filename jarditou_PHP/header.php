@@ -52,7 +52,7 @@
                     </li>
                     <li class="nav-item <?php if ($nav == 3) { echo "active"; }//active le bouton que la page lui donne ?>">
                             <a class="nav-link" href="contact.php" title="Contact">
-                            <i class="fa fa-fw fa-envelope"></i> Contact
+                                <i class="fa fa-fw fa-envelope"></i> Contact
                             </a>
                         </li>
                 </ul>
