@@ -3,6 +3,12 @@
     require("session.php");
     //Bibliothèque de fonctions
     require("fonctions.php");
+
+    if (!verifrole($_SESSION["role"], array(1)))
+    {
+        header("Location: 403.php");
+    }
+
     //donne un nom à la page, que le header utilisera
     $Titre = "Êtes-vous sûr ?";
     //donne la position de la page dans le menu du header

@@ -3,6 +3,13 @@
     require("session.php");
     //Bibliothèque de fonctions
     require("fonctions.php");
+
+    if (!verifrole($_SESSION["role"], array(1)))
+    {
+        header("Location: 403.php");
+        exit;
+    }
+
     //donne un nom à la page, que le header utilisera
     $Titre = "Page de modification";
     //donne la position de la page dans le menu du header
@@ -75,10 +82,10 @@
         //Sa première case gérera le champ select par défaut
         $cats["0"] = "Sélectionnez une catégorie";
         //Récupération en objet d'une entrée du résultat par tour de boucle
-        while ($row = $result->fetch(PDO::FETCH_OBJ))
+        while ($categorie = $result->fetch(PDO::FETCH_OBJ))
         {
             //Les clés du tableau seront les ID de la catégorie (on le met en chaine de caractère dans le cas où des ID ont été supprimés), on rempli la case par le nom de la catégorie
-            $cats["".$row->id] = $row->nom;
+            $cats["".$categorie->id] = $categorie->nom;
         }
         //Fermeture du curseur sur les résultats
         $result->closeCursor();
@@ -116,10 +123,13 @@
 
         <!-- Champ ID du produit -->
         <!-- Pourquoi, il y a un champ text et un champ hidden ? Un champ disabled, ne s'envoie pas par POST, du coup on utilise le champ text pour l'affichage et celui hidden pour envoyer la valeur -->
+        <!-- Hello deux mois plus tard, un champ disabled ne s'envoie pas, mais un champ readonly oui ^_^ -->
         <div class="form-group">
             <label for="id">ID :</label>
-            <input type="text" class="form-control" placeholder="L'ID sera donné automatiquement à l'enregistrement" disabled value="<?php echo $produit->id; ?>">
+            <input type="text" class="form-control" name="id" id="id" placeholder="L'ID sera donné automatiquement à l'enregistrement" readonly value="<?php echo $produit->id; ?>">
+            <!--
             <input type="hidden" class="form-control" name="id" id="id" value="<?php echo $produit->id; ?>">
+            -->
         </div>
 
         <!-- Champ Référence -->

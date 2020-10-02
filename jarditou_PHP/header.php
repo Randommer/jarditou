@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- CSS des icons Font Awesome -->
     <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
-    <!-- Lien vers style CSS perso -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Lien vers style CSS écran normal -->
+    <link rel="stylesheet" media="screen and (min-width: 992px)" href="assets/css/styles.css">
+    <!-- Lien vers style CSS écran mobile -->
+    <link rel="stylesheet" media="screen and (max-width: 992px)" href="assets/css/mobile.css">
     <title>JardiTou - <?php echo $Titre;//reprend le titre que la page lui donne ?></title>
     
 </head>
@@ -79,7 +81,7 @@
                 <?php } ?>
             </div>
         </nav>
-        <?php if ($nav != 4 && $_SESSION["role"] == 0) { ?>
+        <?php if ($nav < 4 && $_SESSION["role"] == 0) { ?>
         <!-- Bannière promo du site -->
         <div class="row">
             <div class="col-sm-12"><img class="img-fluid" src="src/img/promotion.jpg" alt="Bannière de promotion"></div>

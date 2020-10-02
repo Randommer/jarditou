@@ -6,7 +6,7 @@
 
     if (!verifrole($_SESSION["role"], array(1)))
     {
-        header("Location: liste.php");
+        header("Location: 403.php");
     }
 
     //donne un nom à la page, que le header utilisera
@@ -52,10 +52,10 @@
     //Sa première case gérera le champ select par défaut
     $cats["0"] = "Sélectionnez une catégorie";
     //Récupération en objet d'une entrée du résultat par tour de boucle
-    while ($row = $result->fetch(PDO::FETCH_OBJ))
+    while ($categorie = $result->fetch(PDO::FETCH_OBJ))
     {
         //Les clés du tableau seront les ID de la catégorie (on le met en chaine de caractère dans le cas où des ID ont été supprimés), on rempli la case par le nom de la catégorie
-        $cats["".$row->id] = $row->nom;
+        $cats["".$categorie->id] = $categorie->nom;
     }
     //Fermeture du curseur sur les résultats
     $result->closeCursor();

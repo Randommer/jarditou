@@ -48,7 +48,7 @@
                 $db = connexionBase();
 
                 //Préparation de la requete à envoyer à la base de donnée
-                $result = $db->prepare("SELECT jusr_mdp as 'mdp' FROM jusers WHERE jusr_login = :jlogin");
+                $result = $db->prepare("SELECT jusr_id as 'id', jusr_prenom as 'prenom', jusr_mdp as 'mdp', jusr_role_id as 'role' FROM jusers WHERE jusr_login = :jlogin");
 
                 //On met les données récupérées dans la requete
                 $result->bindValue(":jlogin", $post_login);
@@ -65,38 +65,20 @@
                 {
                     //Récupération en objet de l'Utilisateur demandé en requete
                     $user = $result->fetch(PDO::FETCH_OBJ);
-                    //Fermeture du curseur sur le résultat
-                    $result->closeCursor();
 
                     if (password_verify($post_mdp, $user->mdp))
                     {
                         //Préparation de la requete à envoyer à la base de donnée
-                        $result = $db->prepare("SELECT jusr_prenom as 'prenom', jusr_role_id as 'role' FROM jusers WHERE jusr_login = :jlogin");
+                        $update = $db->prepare("UPDATE jusers SET jusr_last_connexion = CURRENT_TIME WHERE jusr_id = :id");
 
                         //On met les données récupérées dans la requete
-                        $result->bindValue(":jlogin", $post_login);
+                        $update->bindValue(":id", $user->id);
 
                         //Exécute la requete
-                        $result->execute();
-
-                        //Récupération en objet de l'Utilisateur demandé en requete
-                        $user = $result->fetch(PDO::FETCH_OBJ);
-                        //Fermeture du curseur sur le résultat
-                        $result->closeCursor();
-
-                        //Préparation de la requete à envoyer à la base de donnée
-                        $result = $db->prepare("UPDATE jusers SET jusr_last_connexion = CURRENT_TIME WHERE jusr_login = :jlogin");
-
-                        //On met les données récupérées dans la requete
-                        $result->bindValue(":jlogin", $post_login);
-
-                        //Exécute la requete
-                        $result->execute();
+                        $update->execute();
 
                         //Fermeture du curseur sur le résultat
-                        $result->closeCursor();
-                        //Ferme la connexion vers la base de donnée
-                        $db = null;
+                        $update->closeCursor();
 
                         $_SESSION = array();
                         if (ini_get("session.use_cookies")) 
@@ -111,7 +93,7 @@
                             setcookie(session_name(), '', time()+86400);
                         }
                         $_SESSION["role"] = $user->role;
-                        $_SESSION["nom"] = $user->prenom;
+                        $_SESSION["prenom"] = $user->prenom;
                     }
                     else
                     {
@@ -119,6 +101,10 @@
                     }
 
                 }
+                //Fermeture du curseur sur le résultat
+                $result->closeCursor();
+                //Ferme la connexion vers la base de donnée
+                $db = null;
             }
             else
             {

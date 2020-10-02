@@ -3,21 +3,7 @@
     require("session.php");
     //Bibliothèque de fonctions
     require("fonctions.php");
-    //donne un nom à la page, que le header utilisera
-    $Titre = "Enregistrement dans la base";
-    //donne la position de la page dans le menu du header
-    $nav = 2;
-    //Le header du site sera ici
-    require("header.php");
-?>
-<!-- Corps du site -->
-<div class="row mx-0 mb-1">
-    <!-- Message à l'utilisateur si la base de données met du temps à répondre -->
-    <p>
-        Votre produit s'enregistre dans la base de données, vous allez être redirigé.
-    </p>
-</div>
-<?php
+
     //on vérifie si un POST a été envoyé à la page
     if ($_SERVER["REQUEST_METHOD"] == "POST" )
     {
@@ -26,6 +12,7 @@
         {
             //on redirige le navigateur vers la liste produit
             header("Location: liste.php");
+            exit;
         }
         else //les champs Catégorie, Référence, Libellé et Prix sont renseignés
         {
@@ -288,8 +275,6 @@
     }
     //on redirige le navigateur vers la liste produit
     header("Location: liste.php");
-?>
-<?php
-    //Le footer du site sera ici
-    require("footer.php");
+    exit;
+
 ?>

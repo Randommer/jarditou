@@ -221,7 +221,7 @@
                 else
                 {
                     //Récupération en objet d'une entrée du résultat par tour de boucle
-                    while ($row = $result->fetch(PDO::FETCH_OBJ))
+                    while ($produit = $result->fetch(PDO::FETCH_OBJ))
                     {
             ?>
                         <!-- Ouverture d'une ligne du tableau -->
@@ -229,43 +229,43 @@
 
                         <!-- Remplissage de la case avec une balise image -->
                         <td class='table-warning'>
-                            <img src='src/img/<?php echo $row->id.".".$row->photo;?>' alt='<?php echo $row->libelle." ".$row->couleur; ?>' width='100'>
+                            <img src='src/img/<?php echo $produit->id.".".$produit->photo;?>' alt='<?php echo $produit->libelle." ".$produit->couleur; ?>' width='100'>
                         </td> <!-- Photo -->
 
-                        <td><?php echo $row->id; ?></td> <!-- ID -->
-                        <td><?php echo $row->ref; ?></td> <!-- Référence -->
+                        <td><?php echo $produit->id; ?></td> <!-- ID -->
+                        <td><?php echo $produit->ref; ?></td> <!-- Référence -->
 
                         <!-- Remplissage de la case avec un lien vers la page detail du produit -->
                         <td class="table-warning">
-                            <a class='text-danger font-weight-bold' href='detail.php?id=<?php echo $row->id; ?>' title='<?php echo $row->libelle; ?>'>
+                            <a class='text-danger font-weight-bold' href='detail.php?id=<?php echo $produit->id; ?>' title='<?php echo $produit->libelle; ?>'>
                                 <u>
-                                    <?php echo strtoupper($row->libelle); ?>
+                                    <?php echo strtoupper($produit->libelle); ?>
                                 </u>
                             </a>
                         </td> <!-- Libellé -->
 
                         <td>
                             <?php
-                                if($row->prix == round($row->prix))
+                                if($produit->prix == round($produit->prix))
                                 {
-                                    echo round($row->prix);
+                                    echo round($produit->prix);
                                 }
                                 else
                                 {
-                                    echo $row->prix;
+                                    echo $produit->prix;
                                 }
                             ?>€
                         </td> <!-- Prix -->
-                        <td><?php echo $row->stock; ?></td> <!-- Stock -->
-                        <td><?php echo $row->couleur; ?></td> <!-- Couleur -->
-                        <td><?php echo $row->ajout; ?></td> <!-- Ajout -->
+                        <td><?php echo $produit->stock; ?></td> <!-- Stock -->
+                        <td><?php echo $produit->couleur; ?></td> <!-- Couleur -->
+                        <td><?php echo $produit->ajout; ?></td> <!-- Ajout -->
                         <?php if (verifrole($_SESSION["role"], array(1))) { ?>
-                        <td><?php echo $row->modif; ?></td> <!-- Modif -->
+                        <td><?php echo $produit->modif; ?></td> <!-- Modif -->
 
                         <!-- vérifie la valeur de pro_bloque et affiche en conséquence -->
                         <td>
                             <?php
-                                if ($row->bloque != null)
+                                if ($produit->bloque != null)
                                 {
                                     echo "<div class='badge badge-danger'>";
                                     echo "<i class='fas fa-lock fa-2x'></i>";
