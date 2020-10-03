@@ -1,22 +1,25 @@
-        <!-- Barre de navigation basse du site -->
-        
-        <div class="row" id="footer">
-            <nav class="footer col-sm-12 navbar navbar-expand-lg navbar-dark bg-dark rounded">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" title="Mentions légales">Mentions légales</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" title="Horaires">Horaires</a>
-                </li>
-                <li class="nav-item">
+    </div>
+
+
+    <!-- Barre de navigation basse du site -->
+    <div class="container-fluid mx-0 px-0" id="footer">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" title="Mentions légales">Mentions légales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" title="Horaires">Horaires</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link disabled" href="#" title="Plan du site">Plan du site</a>
                     </li>
-            </ul>
+                </ul>
             </nav>
         </div>
-        
     </div>
+        
 
     <!-- Appel du fichier JavaScript de logo dynamique dans le bouton de Connexion/Déconnexion -->
     <?php if ($_SESSION["role"] == 0) { ?>
