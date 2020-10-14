@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- CSS des icons Font Awesome -->
-    <link href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet" crossorigin="anonymous">
     <!-- Lien vers style CSS écran normal -->
     <link rel="stylesheet" media="screen and (min-width: 992px)" href="assets/css/styles.css">
     <!-- Lien vers style CSS écran mobile -->
@@ -58,11 +58,15 @@
                 </ul>
             </div>
             <!-- Champ de recherche du menu -->
-            <form class="form-inline d-none d-lg-block my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Votre promotion" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                    <i class="fa fa-fw fa-search"></i> Rechercher
-                </button>
+            <form class="d-none d-lg-block my-lg-0">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Votre promotion" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <i class="fa fa-fw fa-search"></i> Rechercher
+                        </button>
+                    </div>
+                </div>
             </form>
             <!-- Bouton de Connexion/Déconnexion -->
             <div>

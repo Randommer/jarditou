@@ -133,7 +133,7 @@
         <label for="ref">Référence :</label>
         <!-- L'Expression Régulière respecte la structure de la base de donnée, la référence est une valeur obligatoire de 10 caractères au plus -->
         <input type="text" class="form-control" name="ref" id="ref" placeholder="Exemple : Produit4" pattern="[\w\-]{1,10}" required value="<?php echo $produit->ref; ?>">
-        <div class="invalid-feedback">La Référence doit faire entre 1 et 10 caractères, sans accents et ne comporte pas d'espace (chiffres et tirets sont acceptés).</div>
+        <div class="invalid-feedback alert alert-danger">La Référence doit faire entre 1 et 10 caractères, sans accents et ne comporte pas d'espace (chiffres et tirets sont acceptés).</div>
     </div>
 
     <!-- Champ Catégorie -->
@@ -184,7 +184,7 @@
     <div class="form-group">
         <label for="des">Description :</label>
         <!-- Ici nous vérifions simplement que la description entrée par l'utilisateur ne dépasse pas les 1000 caractères, un limite de la valeur dans la base -->
-        <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->description; ?></textarea>
+        <textarea class="form-control" name="des" id="des" rows="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->description; ?></textarea>
     </div>
 
     <!-- Champ Prix -->

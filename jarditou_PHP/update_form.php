@@ -187,7 +187,7 @@
         <div class="form-group">
             <label for="des">Description :</label>
             <!-- Ici nous vérifions simplement que la description entrée par l'utilisateur ne dépasse pas les 1000 caractères, un limite de la valeur dans la base -->
-            <textarea class="form-control" name="des" id="des" row="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->description; ?></textarea>
+            <textarea class="form-control" name="des" id="des" rows="2" placeholder="Exemple : Courte description de Produit numéro 4 (peut rester vide)" maxlength="1000"><?php echo $produit->description; ?></textarea>
         </div>
 
         <!-- Champ Prix -->
