@@ -108,7 +108,7 @@
         <div class="col-4"></div>
         <div class="col-4">
             <!-- On crée une balise image avec l'adresse préremplie, à laquelle on ajoute le ID produit et l'extension photo trouvés donnés par la base -->
-            <?php echo "<img class='img-fluid' src='src/img/".$produit->id.".".$produit->photo."' alt='".$produit->libelle." ".$produit->couleur."'>"; ?>
+            <img class='img-fluid' src='src/img/<?php echo $produit->id.".".$produit->photo; ?>' alt='<?php echo $produit->libelle." ".$produit->couleur; ?>'>
         </div>
         <div class="col-4"></div>
     </div>
